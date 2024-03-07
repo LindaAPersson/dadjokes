@@ -25,6 +25,9 @@ class Joke(models.Model):
             else:
                 self.title = '1'  # If there are no jokes in the database yet, start with 1
         super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return f"{self.title_number} | written by {self.creator}"
 
 
 class Comment(models.Model):
@@ -33,3 +36,6 @@ class Comment(models.Model):
     comment_text = models.TextField()
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_on"]

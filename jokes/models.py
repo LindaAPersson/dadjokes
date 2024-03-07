@@ -10,19 +10,26 @@ STATUS = ((0, "Draft"), (1, "Published"))
 class Joke(models.Model):
     title_number = models.CharField(max_length=100, unique=True)
     joke_text = models.TextField()
-    creator = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="joke_post")
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="joke_post")
     creator_image = CloudinaryField('image', default='placeholder')
     likes = models.ManyToManyField(User, related_name='jokes_like') 
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
     def save(self, *args, **kwargs):
-        if not self.title_number: 
+        if not self.title:  # If title is not provided by the user
             last_joke = Joke.objects.order_by('-id').first()  # Get the last joke
             if last_joke:
-                last_joke_number = int(last_joke.title_number)
+                last_joke_number = int(last_joke.title)
                 self.title = str(last_joke_number + 1)  # Assign the next available number
             else:
-                self.title_number = '1'  # If there are no jokes in the database yet, start with 1
+                self.title = '1'  # If there are no jokes in the database yet, start with 1
         super().save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    joke_text = models.ForeignKey(Joke, on_delete=models.CASCADE, related_name="comments")
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+    comment_text = models.TextField()
+    approved = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)

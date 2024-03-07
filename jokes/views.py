@@ -5,6 +5,7 @@ from .models import Joke
 # Create your views here.
 
 class JokeList(generic.ListView):
-    queryset = Joke.objects.filter(status=1)
+    model = Joke
     template_name = "jokes/jokes.html"
+    
     

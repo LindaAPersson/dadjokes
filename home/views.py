@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
 
 # Create your views here.
 
-def test(request):
-    return HttpResponse("Hello, joke!")
+class home_page():
+    template_name = "home/index.html"

@@ -3,7 +3,7 @@ from django.views import generic
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .models import Joke
+from .models import Joke, Comment
 
 # Create your views here.
 
@@ -19,4 +19,5 @@ def JokeLike(request, pk):
     else:
         post.likes.add(request.user)
 
-    return HttpResponseRedirect('', args=[str(pk)])       
+    return HttpResponseRedirect('JokeList', args=[str(pk)])     
+

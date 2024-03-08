@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('home.urls'), name='home_page'),
     path('', include('jokes.urls'), name='jokes_page'),
 #    path('about/', include('about.urls'), name='about_page'),
+
 ]

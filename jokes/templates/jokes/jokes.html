@@ -17,21 +17,9 @@
         <p>Author: {{joke.creator}}</p>
         {% endfor %}
 
-        <!-- LIKES -->
-        {% if user.is_authenticated %}
-        <!-- <form action="{% url 'JokeLike' %}" method="POST"></form> -->
-        {% csrf_token %}
+        
 
-        {% if post_is_liked %}
-        <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info">Unlike</button>
-        {% else %}
-        <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-info">Like</button>
-        {% endif %}
-        </form>
-        {% else %}
-        <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
-        {% endif %}
-        <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+        
     </body>
 <!-- jokes.html content ends here -->
 {% endblock %}

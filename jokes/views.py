@@ -1,8 +1,5 @@
 from django.shortcuts import render
 from django.views import generic
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from .models import Joke, Comment
 
 # Create your views here.

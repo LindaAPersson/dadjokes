@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% url 'JokeLike' as JokeLike_url %}
 {% block content %}
 
 <h1>Test ser vi detta?</h1>
@@ -18,21 +17,7 @@
         <p>Made: {{joke.created_on}}</p>
         {% endfor %}
 
-        <!-- LIKES 
-        {% if user.is_authenticated %}
-        <form action="{% url 'jokes_page' %}" method="POST"></form> 
-        {% csrf_token %}
-
-        {% if post_is_liked %}
-        <button type="submit" name="blogpost_id" value="{{joke.id}}" class="btn btn-info">Unlike</button>
-        {% else %}
-        <button type="submit" name="blogpost_id" value="{{joke.id}}" class="btn btn-info">Like</button>
-        {% endif %}
-        </form>
-        {% else %}
-        <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
-        {% endif %}
-        <strong class="text-secondary">{{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>-->
+        
 
 
         <!-- next button -->

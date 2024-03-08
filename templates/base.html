@@ -1,4 +1,6 @@
 {% load static %}
+{% url 'home' as home_url %}
+{% url 'jokes_page' as jokes_url %}
 
 <!DOCTYPE html>
 <html>
@@ -21,8 +23,8 @@
         <div class="nav-wrapper brown lighten-1">
             <a href="#" class="brand-logo">DADJOKES</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Jokes</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'jokes_page' %}">Jokes</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </div>

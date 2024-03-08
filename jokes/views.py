@@ -19,5 +19,5 @@ def JokeLike(request, pk):
     else:
         post.likes.add(request.user)
 
-    return HttpResponseRedirect('JokeList', args=[str(pk)])     
+    return HttpResponseRedirect(reverse('jokes_page', args=[str(pk)]))     
 

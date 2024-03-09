@@ -1,0 +1,21 @@
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    
+}
+
+main {
+    flex: 1 0 auto;
+    
+}
+
+#bg-img {
+    background: brown;
+    background-image: url(../images/hat-591973_1920.jpg);
+}
+
+#test {
+    color: blueviolet;
+}

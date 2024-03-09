@@ -12,8 +12,8 @@ main {
 }
 
 #bg-img {
-    background: brown;
-    background-image: url(../images/hat-591973_1920.jpg);
+    background: url(../images/hat-591973_1920.jpg) no-repeat center/cover;
+    height: 100vh;
 }
 
 #test {

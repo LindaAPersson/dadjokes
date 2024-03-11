@@ -16,6 +16,8 @@ main {
     height: 100vh;
 }
 
-#test {
-    color: blueviolet;
+.social-media {
+    display: flex;
+    align-items: center;
+    margin: 10px;
 }

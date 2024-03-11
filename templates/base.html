@@ -93,14 +93,25 @@
         
     <footer class="page-footer deep-orange accent-1">
         <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <div class="row">
+                <div class="col l6 s12">
+                    <p class="grey-text text-lighten-4">A website made for Code Institute by Linda Persson.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <ul id="social-media">
+                        <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/" target="_blank" aria-label="Visit Dadjokes on Instagram (opens in new tab)"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/" aria-label="Visit Dadjokes on youtube (opens in new tab)"><i class="fa-brands fa-square-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!--JavaScript at end of body for optimized loading-->
+    <!--Materialize JS-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <!--Custom JS-->
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    <!--Fontawesome JS-->
+    <script src="https://kit.fontawesome.com/b6bd3cd609.js" crossorigin="anonymous"></script>
 </body>
 </html>

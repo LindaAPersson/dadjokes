@@ -27,10 +27,12 @@
 </head>
 
 <body>
+    <!-- navbar desktop -->
     <nav>
         <div class="nav-wrapper deep-orange accent-1">
-            <a href="#" class="brand-logo">DADJOKES</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <a href="{% url 'home' %}" class="brand-logo">DADJOKES</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'jokes_page' %}">Jokes</a></li>
                 <li><a href="#">About</a></li>
@@ -48,10 +50,32 @@
                     <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
                 </li>
                 {% endif %}
-
             </ul>
         </div>
     </nav>
+
+<!-- navbar mobile -->
+    <ul class="sidenav deep-orange accent-1" id="mobile-demo">
+        <li class="brand-logo">DADJOKES</li>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'jokes_page' %}">Jokes</a></li>
+        <li><a href="#">About</a></li>
+    <!-- Login logout register-->
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                href="{% url 'account_signup' %}">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+        </li>
+        {% endif %}
+
+    </ul>
 
     <main>
         <!-- inlog/logout confirmation -->
@@ -77,5 +101,6 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

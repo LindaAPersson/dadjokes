@@ -2,22 +2,54 @@
 {% load static %}
 {% block content %}
 
-<h1>Test ser vi detta?</h1>
-    
-    <p>test</p>
-    <p>{{ joke.id }}</p>
-    <p>{{ joke.creator }}</p>
-
     <body>
-        <h1 class="blue-text">Posts list</h1>
         {% for joke in object_list %}
         <h2>{{joke.id}}</h2>
         <p>{{joke.joke_text}}</p>
-        <p>Author: {{joke.creator}}</p>
+        <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
         <p>Made: {{joke.created_on}}</p>
         {% endfor %}
 
-        
+          <!-- Displaying count of comments -->
+        <div class="row">
+            <div class="col-12">
+                <strong class="text-secondary">
+                    <i class="far fa-comments"></i> {{ comment_count }}
+                </strong>
+            </div>
+            <div class="col-12">
+            <hr>
+            </div>
+        </div>
+        <!-- Displaying Comments -->
+        <div class="row">
+            <div>
+                <h3>Comments:</h3>
+                <div class="card-body">
+                    {% for comment in comments %}
+                    <div class="comments
+                    {% if not comment.approved and comment.creator == user %}
+                    faded{% elif not comment.approved %} .hide {% endif %}">
+                        <p>
+                            {{ comment.creator }}
+                            <span>
+                            {{ comment.created_on }}
+                            </span> wrote:
+                        </p>
+                        <div id="comments"> {{ comment.comment_text | safe }}</div>
+                        {% if not comment.approved and comment.creator == user %}
+                            <p>This comment is awaiting approval</p>
+                        {% endif %}
+                        {% if user.is_authenticated and comment.author == user %}
+                            <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                            <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
+                        {% endif %}
+                    </div>
+                    <!-- Our for loop ends here -->
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
 
         <!-- next button -->

@@ -8,8 +8,14 @@ class JokeAdmin(SummernoteModelAdmin):
 
     list_display = ('id', 'creator', 'status')
     search_fields = ['id']
-    list_filter = ('status',)
+    list_filter = ('creator', 'status')
     summernote_fields = ('joke_text',)
 
 
-admin.site.register(Comment)
+@admin.register(Comment)
+class CommentAdmin(SummernoteModelAdmin):
+
+    list_display = ['id','creator']
+    search_fields = ['id']
+    list_filter = ('creator', 'approved')
+    summernote_fields = ('joke_text',)

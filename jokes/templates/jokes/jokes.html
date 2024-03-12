@@ -3,9 +3,9 @@
 {% block content %}
 
     <body>
-        {% for joke in object_list %}
+        {% for joke in joke_list %}
         <h2>{{joke.id}}</h2>
-        <p>{{joke.joke_text}}</p>
+        <p>{{joke.joke_text | safe}}</p>
         <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
         <p>Made: {{joke.created_on}}</p>
         {% endfor %}
@@ -25,28 +25,26 @@
         <div class="row">
             <div>
                 <h3>Comments:</h3>
-                <div class="card-body">
-                    {% for comment in comments %}
-                    <div class="comments
-                    {% if not comment.approved and comment.creator == user %}
-                    faded{% elif not comment.approved %} .hide {% endif %}">
-                        <p>
-                            {{ comment.creator }}
-                            <span>
-                            {{ comment.created_on }}
-                            </span> wrote:
-                        </p>
-                        <div id="comments"> {{ comment.comment_text | safe }}</div>
-                        {% if not comment.approved and comment.creator == user %}
-                            <p>This comment is awaiting approval</p>
-                        {% endif %}
-                        {% if user.is_authenticated and comment.author == user %}
-                            <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
-                            <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
-                        {% endif %}
-                    </div>
-                    <!-- Our for loop ends here -->
-                    {% endfor %}
+            <div class="card-body">
+                
+                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+                {% for comment in comments %}
+                <div>
+                    <p>
+                        {{ comment.creator }}
+                        <span>
+                        {{ comment.created_on }}
+                        </span> wrote:
+                    </p>
+                    <p>
+                        {{ comment.comment_text | safe }}
+                        
+                    </p>
+                    
+                </div>
+                <!-- Our for loop ends here -->
+               
+                {% endfor %}
                 </div>
             </div>
         </div>

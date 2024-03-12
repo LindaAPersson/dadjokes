@@ -18,4 +18,4 @@ class CommentAdmin(SummernoteModelAdmin):
     list_display = ['id','creator']
     search_fields = ['id']
     list_filter = ('creator', 'approved')
-    summernote_fields = ('joke_text',)
+    summernote_fields = ('comment_text',)

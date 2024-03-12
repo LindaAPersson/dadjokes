@@ -1,0 +1,18 @@
+{% for comment in comments %}
+               
+    <div>
+        <p>
+        { comment.creator }}
+        <span>
+        {{ comment.created_on }}
+        </span> wrote:
+        </p>
+        <p>
+        {{ comment.comment_text | safe }}
+        {{ comment.joke_text }}
+        </p>
+                    
+    </div>
+                <!-- Our for loop ends here -->
+               
+{% endfor %}

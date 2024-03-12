@@ -3,11 +3,11 @@
 {% block content %}
 
     <body>
-        {% for joke in joke_list %}
-        <h2>{{joke.id}}</h2>
-        <p>{{joke.joke_text | safe}}</p>
-        <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
-        <p>Made: {{joke.created_on}}</p>
+        {% for joke in object_list %}
+            <h2>{{joke.id}}</h2>
+            <p>{{joke.joke_text | safe}}</p>
+            <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
+            <p>Made: {{joke.created_on}}</p>
         {% endfor %}
 
           <!-- Displaying count of comments -->
@@ -28,7 +28,7 @@
             <div class="card-body">
                 
                 <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {% for comment in comments %}
+                {% for comment in comments_list %}
                 <div>
                     <p>
                         {{ comment.creator }}
@@ -37,8 +37,7 @@
                         </span> wrote:
                     </p>
                     <p>
-                        {{ comment.comment_text | safe }}
-                        
+                        {{ comment.id.comment_text | safe }}
                     </p>
                     
                 </div>

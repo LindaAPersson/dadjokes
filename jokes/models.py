@@ -8,7 +8,8 @@ from cloudinary.models import CloudinaryField
 STATUS = ((0, "Draft"), (1, "Published"))
 
 class Joke(models.Model):
-    id = models.AutoField(primary_key=True)
+    
+    
     joke_text = models.TextField()
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="joke_post")
     creator_image = CloudinaryField('image', default='placeholder')

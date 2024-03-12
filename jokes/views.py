@@ -13,15 +13,15 @@ class JokeList(generic.ListView):
 
 
 def showcomments(request):
-        
+      
     queryset = Joke.objects.filter(status=1)
-    post = get_object_or_404(queryset, id=id)
+    post = get_object_or_404(queryset,)
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
 
     return render(
         request,
-        "jokes/jokes_detail.html",  
+        "jokes/jokes.html",  
         {
             "joke": joke,
             "comments": comments,

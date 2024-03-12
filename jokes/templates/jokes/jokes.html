@@ -1,69 +1,70 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block content %}
 
-    <body>
-        {% for joke in object_list %}
-            <h2>{{joke.id}}</h2>
-            <p>{{joke.joke_text | safe}}</p>
-            <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
-            <p>Made: {{joke.created_on}}</p>
-        {% endfor %}
+<body>
+    {% for joke in jokes %}
+        <h2>{{joke.id}}</h2>
+        <p>{{joke.joke_text | safe}}</p>
+        <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
+        <p>Made: {{joke.created_on}}</p>
+    {% endfor %}
 
-          <!-- Displaying count of comments -->
-        <div class="row">
-            <div class="col-12">
-                <strong class="text-secondary">
-                    <i class="far fa-comments"></i> {{ comment_count }}
-                </strong>
-            </div>
-            <div class="col-12">
-            <hr>
-            </div>
+      <!-- Displaying count of comments -->
+    <div class="row">
+        <div class="col-12">
+            <strong class="text-secondary">
+                <i class="far fa-comments"></i> {{ comment_count }}
+            </strong>
         </div>
-        <!-- Displaying Comments -->
-        <div class="row">
+        <div class="col-12">
+        <hr>
+        </div>
+    </div>
+    <!-- Displaying Comments -->
+    <div class="row">
+        <div>
+            <h3>Comments:</h3>
+        <div class="card-body">
+            
+            <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+            {% for comment in comments %}
             <div>
-                <h3>Comments:</h3>
-            <div class="card-body">
+                <p>
+                    {{ comment.creator }}
+                    <span>
+                    {{ comment.created_on }}
+                    </span> wrote:
+                </p>
+                <p>
+                    {{ comment.id.comment_text | safe }}
+                </p>
                 
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {% for comment in comments_list %}
-                <div>
-                    <p>
-                        {{ comment.creator }}
-                        <span>
-                        {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    <p>
-                        {{ comment.id.comment_text | safe }}
-                    </p>
-                    
-                </div>
-                <!-- Our for loop ends here -->
-               
-                {% endfor %}
-                </div>
+            </div>
+            <!-- Our for loop ends here -->
+           
+            {% endfor %}
             </div>
         </div>
+    </div>
 
 
-        <!-- next button -->
-        {% if is_paginated %}
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    {% endif %}
+    <!-- next button -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
 
-        
-    </body>
+    
+</body>
 <!-- jokes.html content ends here -->
 {% endblock %}

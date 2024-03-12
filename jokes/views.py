@@ -4,29 +4,25 @@ from .models import Joke, Comment
 
 # Create your views here.
 
-def joke_list(request):
+class joke_list(generic.ListView):
 
-    jokes = Joke.objects.filter(status=1)
-    return render(
-        request, 
-        'jokes/jokes.html', 
-        {'jokes': jokes}
-        )
+    queryset = Joke.objects.filter(status=1)
+    template_name = "jokes/jokes.html"
+    paginate_by = 1
     
 
 
 def joke_detail(request, joke_id):
-      
-    queryset = Joke.objects.filter(status=1)
-    post = get_object_or_404(queryset, joke_id)
-    comments = post.comments.all().order_by("-created_on")
-    comment_count = post.comments.filter(approved=True).count()
+    
+    joke = get_object_or_404(Joke, id=joke_id)
+    comments = Comment.objects.filter(joke_text=joke, approved=True).order_by("-created_on")
+    comment_count = joke.comments.filter(approved=True).count()
 
     return render(
         request,
         "jokes/jokes.html",  
         {
-            'joke': joke,
+            "joke": joke,
             "comments": comments,
             "comment_count": comment_count, 
         },

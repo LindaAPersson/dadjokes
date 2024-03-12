@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% url 'comments' as jokes_url %}
 {% block content %}
 
 <body>
-    {% for joke in jokes %}
+    {% for joke in joke_list %}
         <h2>{{joke.id}}</h2>
         <p>{{joke.joke_text | safe}}</p>
         <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
         <p>Made: {{joke.created_on}}</p>
     {% endfor %}
 
+    <a href="{% url 'comments' %}">View Details</a>
       <!-- Displaying count of comments -->
     <div class="row">
         <div class="col-12">
@@ -34,16 +35,13 @@
                 <p>
                     {{ comment.creator }}
                     <span>
-                    {{ comment.created_on }}
+                        {{ comment.created_on }}
                     </span> wrote:
                 </p>
                 <p>
-                    {{ comment.id.comment_text | safe }}
+                    {{ comment.comment_text | safe }}
                 </p>
-                
             </div>
-            <!-- Our for loop ends here -->
-           
             {% endfor %}
             </div>
         </div>

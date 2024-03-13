@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+<!--{% extends "base.html" %}
 {% load static %}
-{% url 'comments' as jokes_url %}
 {% block content %}
 
 <body>
+    <p>ttest</p>
     {% for joke in joke_list %}
         <h2>{{joke.id}}</h2>
         <p>{{joke.joke_text | safe}}</p>
@@ -11,9 +11,9 @@
         <p>Made: {{joke.created_on}}</p>
     {% endfor %}
 
-    <a href="#!">View Details</a>
+    <a href="#!">View Details</a>-->
       <!-- Displaying count of comments -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12">
             <strong class="text-secondary">
                 <i class="far fa-comments"></i> {{ comment_count }}
@@ -22,15 +22,15 @@
         <div class="col-12">
         <hr>
         </div>
-    </div>
+    </div>-->
     <!-- Displaying Comments -->
-    <div class="row">
+    <!--<div class="row">
         <div>
             <h3>Comments:</h3>
-        <div class="card-body">
+        <div class="card-body">-->
             
             <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-            {% for comment in comments %}
+            <!-- {% for comment in comments %}
             <div>
                 <p>
                     {{ comment.creator }}
@@ -45,7 +45,7 @@
             {% endfor %}
             </div>
         </div>
-    </div>
+    </div>-->
 
 
     <!-- next button -->
@@ -65,4 +65,4 @@
     
 </body>
 <!-- jokes.html content ends here -->
-{% endblock %}
+{% endblock %} -->

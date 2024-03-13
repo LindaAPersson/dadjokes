@@ -6,48 +6,29 @@
     <body>
         
         {% for joke in joke_list %}
-            <h2># {{joke.id}}</h2>
+            <h2># {{joke.title}}</h2>
             <p>{{joke.joke_text | safe}}</p>
             <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
             <p>Made: {{joke.created_on}}</p>
+            
+        
             <a href="{% url 'jokes_detail' joke.title %}">View Details </a>
-        {% endfor %}
-        
-        
+            
         <!-- Displaying count of comments -->
-        <div class="row">
-            <div class="col-12">
-                <strong class="text-secondary">
-                    <i class="far fa-comments"></i> {{ comment_count }}
-                </strong>
-            </div>
-            <div class="col-12">
-            <hr>
-            </div>
-        </div>
-        <!-- Displaying Comments -->
-        <div class="row">
-            <div>
-                <h3>Comments:</h3>
-            <div>
-                
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {% for comment in comments %}
-                <div>
-                    <p>
-                        {{ comment.creator }}
-                        <span>
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    <p>
-                        {{ comment.comment_text | safe }}
-                    </p>
+            
+            <div class="row">
+                <div class="col-12">
+                    <strong class="text-secondary">
+                        <i class="far fa-comments" href="{% url 'jokes_detail' %}">{{ comment_count }}</i> 
+                    </strong>
                 </div>
-                {% endfor %}
+                <div class="col-12">
+                <hr>
                 </div>
             </div>
-        </div>
+            {% endfor %}
+        
+        
 
 
         <!-- next button -->

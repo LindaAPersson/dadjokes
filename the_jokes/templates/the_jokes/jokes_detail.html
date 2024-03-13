@@ -3,29 +3,52 @@
 
 {% block content %}
 
-{% for joke in joke_list %}
-        <h2>{{joke.id}}</h2>
-        <p>{{joke.joke_text | safe}}</p>
-        <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
-        <p>Made: {{joke.created_on}}</p>
-{% endfor %}
+            <h2># {{joke.title}}</h2>
+            <p>{{joke.joke_text | safe}}</p>
+            <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
+            <p>Made: {{joke.created_on}}</p>
+    
 
-{% for comment in comments %}
-               
-    <div>
-        <p>
-        {{ comment.creator }}
-        <span>
-        {{ comment.created_on }}
-        </span> wrote:
-        </p>
-        <p>
-        {{ comment.comment_text | safe }}
-        {{ comment.joke_text }}
-        </p>
-                    
+<!-- Displaying count of comments -->
+<div class="row">
+    <div class="col-12">
+      <strong class="text-secondary">
+        <i class="far fa-comments"></i> {{ comment_count }}
+      </strong>
     </div>
-                <!-- Our for loop ends here -->
-               
-{% endfor %}
+    <div class="col-12">
+      <hr>
+    </div>
+  </div>
+  <!-- Displaying Comments -->
+  <div class="row">
+    <div class="col-md-8 card mb-4  mt-3 ">
+      <h3>Comments:</h3>
+      <div class="card-body">
+        <!-- We want a for loop inside the empty control tags
+          to iterate through each comment in comments -->
+        {% for comment in comments %}
+        <div class="p-2 comments
+          {% if not comment.approved and comment.creator == user %}
+          faded{% elif not comment.approved %} d-none{% endif %}">
+          <p class="font-weight-bold">
+            {{ comment.creator }}
+            <span class="font-weight-normal">
+              {{ comment.created_on }}
+            </span> wrote:
+          </p>
+          <div id="comment{{ comment.id }}">
+            {{ comment.comment_text | safe }}
+          </div>
+          {% if not comment.approved and comment.creator == user %}
+          <p class="approval">
+            This comment is awaiting approval
+          </p>
+          {% endif %}
+        </div>
+        <!-- Our for loop ends here -->
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 {% endblock %}

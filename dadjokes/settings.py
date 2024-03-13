@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'home',
     'jokes',
     'about',
+    'the_jokes',
 ]
 
 SITE_ID = 1

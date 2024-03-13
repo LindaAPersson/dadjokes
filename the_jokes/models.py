@@ -9,7 +9,7 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 class Joke(models.Model):
 
-    title = models.CharField(max_length=200, default=id)
+    title = models.CharField(max_length=200)
     joke_text = models.TextField()
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="joke_creator")
     creator_image = CloudinaryField('image', default='placeholder')

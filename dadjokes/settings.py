@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'cloudinary_storage',
+    'crispy_forms',
     'django_summernote',
     'cloudinary',
     'home',

@@ -14,16 +14,17 @@ class joke_list(generic.ListView):
 
 
 def add_joke(request):
-    
+    last_joke = Joke.objects.order_by('-id').first()
+    last_title_number = int(last_joke.title) if last_joke else 0
+    next_title = last_title_number + 1 
     
     if request.method == "POST":
         joke_form = JokeForm(data=request.POST)
-        print('1')
+        
         if joke_form.is_valid():
-            print('2')
             joke = joke_form.save(commit=False)
             joke.creator = request.user
-            
+            joke.title = next_title
             joke_form.save()
             messages.add_message(
                 request, messages.SUCCESS,

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <!-- edit joke -->
+    
+    <div>
+        <button class="btn btn-edit" comment_id="{{ joke.id }}">Edit</button>
+            <h2># {{joke.title}}</h2>
+            <p>{{joke.joke_text | safe}}</p>
+            <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
+            <p>Made: {{joke.created_on}}</p>
+        
+        <div>
+          {% if user.is_authenticated %}
+          <h3>Edit joke:</h3>
+          <p>Posting as: {{ user.username }}</p>
+          <form id="commentForm" method="post">
+            {{ joke_form }}
+            {% csrf_token %}
+            <button id="submitButton" type="submit"></a>Submit</button>
+          </form>
+          {% else %}
+          <p>Log in to add a joke </p>
+          {% endif %}
+          
+        </div>
+      </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/jokes.js' %}"></script>
+{% endblock %}

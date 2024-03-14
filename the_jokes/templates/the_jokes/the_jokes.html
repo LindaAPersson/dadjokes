@@ -13,9 +13,10 @@
             
         
             <a href="{% url 'jokes_detail' joke.title %}">View Details </a>
+            <a href="{% url 'joke_edit' joke.title %}">Edit </a>
             
-            {% endfor %}
-        
+        {% endfor %}
+            
         
 
 
@@ -36,5 +37,6 @@
     <a href="{% url 'add_jokes' %}">Add jokes </a>
         
     </body>
+    
 <!-- jokes.html content ends here -->
 {% endblock %}

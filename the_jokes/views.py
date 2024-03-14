@@ -43,10 +43,37 @@ def add_joke(request):
     )
 
 
+def joke_edit(request, title, joke_id):
+    """
+    view to edit comments
+    """
+    queryset = Joke.objects.filter(status=1)
+    joke = get_object_or_404(queryset, pk=joke_id)
+    
+
+    if request.method == "POST":
+
+        queryset = Joke.objects.filter(status=1)
+        joke = get_object_or_404(queryset, title=title)
+        joke_form = JokeForm(data=request.POST, instance=jokes)
+
+        if joke_form.is_valid() and joke.creator == request.user:
+            joke = joke_form.save(commit=False)
+            joke.joke_text = joke
+            joke.approved = False
+            joke.save()
+            messages.add_message(request, messages.SUCCESS, 'Joke Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating joke!')
+    return render(
+        request,
+        "the_jokes/edit_jokes.html", {"joke": joke,})
+    #return HttpResponseRedirect(reverse('jokes_detail', args=[title]))
+
 
 def joke_detail(request, title):
     queryset = Joke.objects.filter(status=1)
-    joke = get_object_or_404(queryset, title=title)
+    joke = get_object_or_404(queryset, pk=joke_id)
     comments = joke.comments_text.all().order_by("-created_on")
     comment_count = joke.comments_text.filter(approved=True).count()
 

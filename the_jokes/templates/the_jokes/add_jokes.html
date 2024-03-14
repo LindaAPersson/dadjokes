@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <!-- Creating New joke -->
+    <div>
+        <div>
+          {% if user.is_authenticated %}
+          <h3>add joke:</h3>
+          <p>Posting as: {{ user.username }}</p>
+          <form method="post">
+            {{ add_joke }}
+            {% csrf_token %}
+            <button type="submit"></a>Submit</button>
+          </form>
+          {% else %}
+          <p>Log in to add a joke </p>
+          {% endif %}
+        </div>
+      </div>
+{% endblock %}

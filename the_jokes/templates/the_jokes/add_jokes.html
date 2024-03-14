@@ -9,7 +9,7 @@
           <h3>add joke:</h3>
           <p>Posting as: {{ user.username }}</p>
           <form method="post">
-            {{ add_joke }}
+            {{ joke_form }}
             {% csrf_token %}
             <button type="submit"></a>Submit</button>
           </form>

@@ -14,28 +14,29 @@ class joke_list(generic.ListView):
 
 
 def add_joke(request):
-    queryset = Joke.objects.all()
-
+    
+    
     if request.method == "POST":
-        add_joke = JokeForm(data=request.POST)
-        if add_joke.is_valid():
-            comment = add_joke.save(commit=False)
-            comment.creator = request.user
+        joke_form = JokeForm(data=request.POST)
+        print('1')
+        if joke_form.is_valid():
+            print('2')
+            joke = joke_form.save(commit=False)
+            joke.creator = request.user
             
-            comment.save()
+            joke_form.save()
             messages.add_message(
                 request, messages.SUCCESS,
                 'Joke submitted and awaiting approval'
             )
 
-    add_joke = JokeForm()
+    joke_form = JokeForm()
 
     return render(
         request,
         "the_jokes/add_jokes.html",
         {
-            
-            "add_joke": add_joke,
+            "joke_form": joke_form,
         },
     )
 

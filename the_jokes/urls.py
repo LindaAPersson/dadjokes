@@ -7,6 +7,7 @@ urlpatterns = [
     path('add_jokes/', views.add_joke, name='add_jokes'),
     path('the_jokes/<title>/edit_joke/', views.joke_edit, name='joke_edit'),
     path('the_jokes/<title>/edit_comment/<int:comment_id>', views.comment_edit, name='comment_edit'),
+    path('the_jokes/<title>/delete_comment/<int:comment_id>', views.comment_delete, name='delete_comment'),
     
     
 ]

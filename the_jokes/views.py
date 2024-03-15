@@ -60,6 +60,7 @@ def joke_edit(request, title):
             
             joke.save()
             messages.add_message(request, messages.SUCCESS, 'Joke Updated but waiting on approval!')
+            
         else:
             messages.add_message(request, messages.ERROR, 'Error updating joke!')
     return render(
@@ -121,5 +122,22 @@ def comment_edit(request, title, comment_id):
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
             messages.add_message(request, messages.ERROR, 'Error updating comment!')
+
+    return HttpResponseRedirect(reverse('jokes_detail', args=[title]))
+
+
+def comment_delete(request, title, comment_id):
+    """
+    view to delete comment
+    """
+    queryset = Joke.objects.filter(status=1)
+    joke = get_object_or_404(queryset, title=title)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.creator == request.user:
+        comment.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('jokes_detail', args=[title]))

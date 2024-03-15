@@ -47,7 +47,7 @@ def joke_edit(request, title):
     """
     view to edit joke
     """
-    queryset = Joke.objects.all()
+    queryset = Joke.objects.filter(status=1)
     joke = get_object_or_404(queryset, title=title)
     edit_joke_form = EditJokeForm(instance=joke)
     
@@ -56,10 +56,10 @@ def joke_edit(request, title):
 
         if edit_joke_form.is_valid() and joke.creator == request.user:
             joke = edit_joke_form.save(commit=False)
-            joke.joke_text = queryset 
-            joke.approved = False
+            joke.status=0
+            
             joke.save()
-            messages.add_message(request, messages.SUCCESS, 'Joke Updated!')
+            messages.add_message(request, messages.SUCCESS, 'Joke Updated but waiting on approval!')
         else:
             messages.add_message(request, messages.ERROR, 'Error updating joke!')
     return render(

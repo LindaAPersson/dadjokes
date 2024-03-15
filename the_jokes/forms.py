@@ -19,4 +19,4 @@ class EditJokeForm(forms.ModelForm):
     
     class Meta:
         model = Joke
-        fields = ('joke_text', )
+        fields = ('joke_text', 'status',)

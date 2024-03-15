@@ -3,7 +3,7 @@ from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Joke, Comment
-from .forms import JokeForm, CommentForm
+from .forms import JokeForm, CommentForm, EditJokeForm
 
 # Create your views here.
 
@@ -47,20 +47,16 @@ def joke_edit(request, title):
     """
     view to edit joke
     """
-    queryset = Joke.objects.filter(status=1)
+    queryset = Joke.objects.all()
     joke = get_object_or_404(queryset, title=title)
-    joke_form = JokeForm(data=request.POST, instance=joke)
+    edit_joke_form = EditJokeForm(instance=joke)
     
-
     if request.method == "POST":
+        edit_joke_form = EditJokeForm(data=request.POST, instance=joke)
 
-        queryset = Joke.objects.filter(status=1)
-        joke = get_object_or_404(queryset, pk=joke_id)
-        joke_form = JokeForm(data=request.POST, instance=jokes)
-
-        if joke_form.is_valid() and joke.creator == request.user:
-            joke = joke_form.save(commit=False)
-            joke.joke_text = joke
+        if edit_joke_form.is_valid() and joke.creator == request.user:
+            joke = edit_joke_form.save(commit=False)
+            joke.joke_text = queryset 
             joke.approved = False
             joke.save()
             messages.add_message(request, messages.SUCCESS, 'Joke Updated!')
@@ -68,13 +64,16 @@ def joke_edit(request, title):
             messages.add_message(request, messages.ERROR, 'Error updating joke!')
     return render(
         request,
-        "the_jokes/edit_jokes.html", {"joke": joke,})
+        "the_jokes/edit_jokes.html", {
+            "joke": joke,
+            "edit_joke_form": edit_joke_form,
+            })
     #return HttpResponseRedirect(reverse('jokes_detail', args=[title]))
 
 
 def joke_detail(request, title):
     queryset = Joke.objects.filter(status=1)
-    joke = get_object_or_404(queryset, pk=joke_id)
+    joke = get_object_or_404(queryset, title=title)
     comments = joke.comments_text.all().order_by("-created_on")
     comment_count = joke.comments_text.filter(approved=True).count()
 

@@ -5,18 +5,18 @@
     <!-- edit joke -->
     
     <div>
-        <button class="btn btn-edit" joke_id="{{ joke.id }}">Edit</button>
+        
             <h2># {{joke.title}}</h2>
-            <p id="joke{{ joke.id }}">{{joke.joke_text | safe}}</p>
+            <p id="joke{{ joke.joke_text }}">{{joke.joke_text | safe}}</p>
             <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
             <p>Made: {{joke.created_on}}</p>
         
         <div>
-          {% if user.is_authenticated %}
+          {% if user.is_authenticated and joke.creator == user %}
           <h3>Edit joke:</h3>
           <p>Posting as: {{ user.username }}</p>
-          <form id="commentForm" method="post">
-            {{ joke_form }}
+          <form id="EditJokeForm" method="post">
+            {{ edit_joke_form }}
             {% csrf_token %}
             <button id="submitButton" type="submit"></a>Submit</button>
           </form>
@@ -26,7 +26,5 @@
           
         </div>
       </div>
-{% endblock %}
-{% block script %}
-    <script src="{% static 'js/jokes.js' %}"></script>
+      
 {% endblock %}

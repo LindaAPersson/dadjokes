@@ -13,3 +13,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('comment_text',)
+
+
+class EditJokeForm(forms.ModelForm):
+    
+    class Meta:
+        model = Joke
+        fields = ('joke_text', )

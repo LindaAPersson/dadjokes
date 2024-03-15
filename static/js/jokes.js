@@ -1,15 +1,21 @@
-const editButtons = document.getElementsByClassName("btn-edit");
-const jokeText = document.getElementById("joke_text");
-const jokeForm = document.getElementById("EditJokeForm");
-const submitButton = document.getElementById("submitButton");
+const deleteModal = document.getElementById("modal2");
+const deleteButtons = document.getElementsByClassName("btn-delete");
+const deleteConfirm = document.getElementById("deleteConfirm");
+
+/**
+ * Geting the deleteing comments model confirm
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems, preventScrolling=true);
+});
 
 
-for (let button of editButtons) {
+for (let button of deleteButtons) {
   button.addEventListener("click", (e) => {
     let jokeId = e.target.getAttribute("joke_id");
-    let jokeContent = document.getElementById(`joke${jokeId}`).innerText;
-    jokeText.value = jokeContent;
-    submitButton.innerText = "Update";
-    jokeForm.setAttribute("action", `edit_joke/${jokeId}`);
+    deleteConfirm.href = `delete_joke/${jokeId}`;
+    deleteModal.show();
   });
 }

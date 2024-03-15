@@ -71,6 +71,21 @@ def joke_edit(request, title):
             })
     #return HttpResponseRedirect(reverse('jokes_detail', args=[title]))
 
+def joke_delete(request, title, joke_id):
+    """
+    view to delete a joke
+    """
+    queryset = Joke.objects.filter(status=1)
+    joke = get_object_or_404(queryset, title=title)
+
+    if joke.creator == request.user:
+        joke.delete()
+        messages.add_message(request, messages.SUCCESS, 'Joke deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('the_jokes_page'))
+
 
 def joke_detail(request, title):
     queryset = Joke.objects.filter(status=1)

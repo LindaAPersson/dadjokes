@@ -43,18 +43,19 @@ def add_joke(request):
     )
 
 
-def joke_edit(request, title, joke_id):
+def joke_edit(request, title):
     """
-    view to edit comments
+    view to edit joke
     """
     queryset = Joke.objects.filter(status=1)
-    joke = get_object_or_404(queryset, pk=joke_id)
+    joke = get_object_or_404(queryset, title=title)
+    joke_form = JokeForm(data=request.POST, instance=joke)
     
 
     if request.method == "POST":
 
         queryset = Joke.objects.filter(status=1)
-        joke = get_object_or_404(queryset, title=title)
+        joke = get_object_or_404(queryset, pk=joke_id)
         joke_form = JokeForm(data=request.POST, instance=jokes)
 
         if joke_form.is_valid() and joke.creator == request.user:

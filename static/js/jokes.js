@@ -1,5 +1,5 @@
 const editButtons = document.getElementsByClassName("btn-edit");
-const jokeText = document.getElementById("id_joke_text");
+const jokeText = document.getElementById("joke_text");
 const jokeForm = document.getElementById("jokeForm");
 const submitButton = document.getElementById("submitButton");
 
@@ -16,9 +16,9 @@ const submitButton = document.getElementById("submitButton");
 for (let button of editButtons) {
   button.addEventListener("click", (e) => {
     let jokeId = e.target.getAttribute("joke_id");
-    let jokeContent = document.getElementById(`joke${joke_id}`).innerText;
+    let jokeContent = document.getElementById(`joke${jokeId}`).innerText;
     jokeText.value = jokeContent;
     submitButton.innerText = "Update";
-    commentForm.setAttribute("action", `edit_joke/${jokeId}`);
+    jokeForm.setAttribute("action", `edit_joke/${jokeId}`);
   });
 }

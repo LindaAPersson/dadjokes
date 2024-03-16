@@ -3,7 +3,7 @@ from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Joke, Comment
-from .forms import JokeForm, CommentForm, EditJokeForm
+from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm
 
 # Create your views here.
 
@@ -13,6 +13,28 @@ class joke_list(generic.ListView):
     template_name = "the_jokes/the_jokes.html"
     paginate_by = 1
 
+def like_joke(request, title):
+    queryset = Joke.objects.filter(status=1)
+    joke = get_object_or_404(queryset, title=title)
+    like_form = LikesForm()
+
+    if request.method == "POST":
+        like_form = LikesForm(data=request.POST.get(joke_id))
+
+        if like_form.is_valid(): 
+            joke = like_form.save(commit=False)
+            joke.likes.add(request.user)
+            like_form.save()
+
+    return render(
+        request,
+        "the_jokes/the_jokes.html",
+        {
+            "like_form": like_form,
+        },
+        
+        HttpResponseRedirect(reverse('the_jokes_page'))
+    )    
 
 def add_joke(request):
     last_joke = Joke.objects.order_by('-id').first()

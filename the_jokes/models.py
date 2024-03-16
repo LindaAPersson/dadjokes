@@ -20,6 +20,9 @@ class Joke(models.Model):
 
     class Meta:
         ordering = ["?"]
+    
+    def total_likes(sefl):
+        return self.likes.count()
 
 
 class Comment(models.Model):

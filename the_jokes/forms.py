@@ -13,7 +13,7 @@ class EditJokeForm(forms.ModelForm):
         model = Joke
         fields = ('joke_text', 'status',)     
 
-class LikesForm(forms.ModelForm)  :
+class LikesForm(forms.ModelForm):
 
     class Meta:
         model = Joke

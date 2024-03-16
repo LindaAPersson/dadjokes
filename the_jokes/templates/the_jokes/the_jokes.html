@@ -14,20 +14,12 @@
         
             <a href="{% url 'jokes_detail' joke.title %}">View comments </a>
             {% if user.is_authenticated and joke.creator == user %}
-            <a href="{% url 'joke_edit' joke.id %}">Edit joke</a>
+            <a href="{% url 'joke_edit' joke.title %}">Edit joke</a>
             {% endif %}
 
-            {% if user.is_authenticated %}
-                <form id="likeForm" method="post">
-                    {{ like_form }}
-                    {% csrf_token %}
-                    <button id="LikeButton" name="joke_id" value="{{ joke.id }} type="submit"></a>Like</button>
-                </form>
-                {% else %}
-                <p>Log in to leave a like</p>
-                
-            {% endif %}
+            
         {% endfor %}
+        
             
         
 

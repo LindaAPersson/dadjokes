@@ -9,7 +9,7 @@ urlpatterns = [
     path('the_jokes/<title>/edit_joke/delete_joke/<int:joke_id>', views.joke_delete, name='joke_delete'),
     path('the_jokes/<title>/edit_comment/<int:comment_id>', views.comment_edit, name='comment_edit'),
     path('the_jokes/<title>/delete_comment/<int:comment_id>', views.comment_delete, name='delete_comment'),
-    path('the_jokes/<title>/like/<int:joke_id>', views.like_joke, name='like_jokes'),
+    path('the_jokes/<title>/', views.like_joke, name='like_jokes'),
     
     
 ]

@@ -12,29 +12,7 @@ class joke_list(generic.ListView):
     queryset = Joke.objects.filter(status=1)
     template_name = "the_jokes/the_jokes.html"
     paginate_by = 1
-
-def like_joke(request, title):
-    queryset = Joke.objects.filter(status=1)
-    joke = get_object_or_404(queryset, title=title)
-    like_form = LikesForm()
-
-    if request.method == "POST":
-        like_form = LikesForm(data=request.POST.get(joke_id))
-
-        if like_form.is_valid(): 
-            joke = like_form.save(commit=False)
-            joke.likes.add(request.user)
-            like_form.save()
-
-    return render(
-        request,
-        "the_jokes/the_jokes.html",
-        {
-            "like_form": like_form,
-        },
-        
-        HttpResponseRedirect(reverse('the_jokes_page'))
-    )    
+       
 
 def add_joke(request):
     last_joke = Joke.objects.order_by('-id').first()
@@ -114,6 +92,9 @@ def joke_detail(request, title):
     joke = get_object_or_404(queryset, title=title)
     comments = joke.comments_text.all().order_by("-created_on")
     comment_count = joke.comments_text.filter(approved=True).count()
+    likes = get_object_or_404(Joke, title=title)
+    total_likes = likes.total_likes()
+    likes_count = total_likes
 
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
@@ -137,8 +118,17 @@ def joke_detail(request, title):
             "comments": comments,
             "comment_count": comment_count,
             "comment_form": comment_form,
+            "likes_count": likes_count
         },
+        
     )
+
+
+def like_joke(request, title, joke_id):
+    joke = get_object_or_404(Joke, title=title)
+    joke.likes.add(request.user)
+    return HttpResponseRedirect(reverse('jokes_detail', args=[title]))
+    
 
 def comment_edit(request, title, comment_id):
     """

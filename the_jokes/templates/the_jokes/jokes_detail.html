@@ -8,12 +8,22 @@
             <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
             <p>Made: {{joke.created_on}}</p>
             
+<!-- Displaying likes -->
+{% if user.is_authenticated %}
+  <form method="post" action="{% url 'like_jokes' joke.title %}">
+    {% csrf_token %}
+    <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart"></i></button> {{ likes_count }}
+  </form>
+  {% else %}
+    <p>Log in to leave a like</p>
+                
+{% endif %}
 
 <!-- Displaying count of comments -->
 <div class="row">
     <div class="col-12">
       <strong class="text-secondary">
-        <i class="far fa-comments"></i> {{ comment_count }}
+        <i class="far fa-comments"></i> {{ comment_count }} 
       </strong>
     </div>
         <div class="col-12">

@@ -10,7 +10,7 @@
             
 <!-- Displaying likes -->
 {% if user.is_authenticated %}
-  <form method="post" action="{% url 'like_jokes' joke.title %}">
+  <form method="post" action="{% url 'like_jokes' joke.title joke.id %}">
     {% csrf_token %}
     <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart"></i></button> {{ likes_count }}
   </form>

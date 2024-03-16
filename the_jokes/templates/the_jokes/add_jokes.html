@@ -8,7 +8,7 @@
           {% if user.is_authenticated %}
           <h3>add joke:</h3>
           <p>Posting as: {{ user.username }}</p>
-          <form method="post">
+          <form method="post" enctype="multipart/form-data">
             {{ joke_form }}
             {% csrf_token %}
             <button type="submit"></a>Submit</button>

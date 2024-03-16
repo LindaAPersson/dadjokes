@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -20,7 +20,7 @@ def add_joke(request):
     next_title = last_title_number + 1 
     
     if request.method == "POST":
-        joke_form = JokeForm(data=request.POST)
+        joke_form = JokeForm(request.POST, request.FILES)
         
         if joke_form.is_valid():
             joke = joke_form.save(commit=False)
@@ -31,6 +31,7 @@ def add_joke(request):
                 request, messages.SUCCESS,
                 'Joke submitted and awaiting approval'
             )
+            return redirect('home')
 
     joke_form = JokeForm()
 

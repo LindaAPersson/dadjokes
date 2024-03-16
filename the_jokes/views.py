@@ -110,6 +110,10 @@ def joke_detail(request, title):
 
     comment_form = CommentForm()
 
+    liked = False
+    if likes.likes.filter(id=request.user.id).exists():
+        liked = True
+
     return render(
         request,
         "the_jokes/jokes_detail.html",
@@ -118,7 +122,8 @@ def joke_detail(request, title):
             "comments": comments,
             "comment_count": comment_count,
             "comment_form": comment_form,
-            "likes_count": likes_count
+            "likes_count": likes_count,
+            "liked": liked,
         },
         
     )
@@ -126,7 +131,14 @@ def joke_detail(request, title):
 
 def like_joke(request, title, joke_id):
     joke = get_object_or_404(Joke, title=title)
-    joke.likes.add(request.user)
+    liked = False
+    if joke.likes.filter(id=request.user.id).exists():
+        joke.likes.remove(request.user)
+        liked = False
+    else:
+        joke.likes.add(request.user)
+        liked = True
+
     return HttpResponseRedirect(reverse('jokes_detail', args=[title]))
     
 

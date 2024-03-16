@@ -12,13 +12,17 @@
 {% if user.is_authenticated %}
   <form method="post" action="{% url 'like_jokes' joke.title joke.id %}">
     {% csrf_token %}
-    <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart"></i></button> {{ likes_count }}
+    {% if liked%}
+      <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart  red darken-2"></i></button> 
+    {% else %}  
+      <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart"></i></button>
+    {% endif %}
   </form>
-  {% else %}
+{% else %}
     <p>Log in to leave a like</p>
-                
+               
 {% endif %}
-
+<p>{{ likes_count }} Likes</p>
 <!-- Displaying count of comments -->
 <div class="row">
     <div class="col-12">

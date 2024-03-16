@@ -13,16 +13,16 @@
   <form method="post" action="{% url 'like_jokes' joke.title joke.id %}">
     {% csrf_token %}
     {% if liked%}
-      <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart  red darken-2"></i></button> 
+      <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart  red darken-2"></i></button> <p>{{ likes_count }} Likes</p>
     {% else %}  
-      <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart"></i></button>
+      <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart"></i></button><p>{{ likes_count }} Likes</p>
     {% endif %}
   </form>
 {% else %}
-    <p>Log in to leave a like</p>
+  <i class="fa-solid fa-heart"></i>{{ likes_count }} Likes
                
 {% endif %}
-<p>{{ likes_count }} Likes</p>
+
 <!-- Displaying count of comments -->
 <div class="row">
     <div class="col-12">

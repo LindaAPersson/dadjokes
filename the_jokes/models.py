@@ -19,7 +19,7 @@ class Joke(models.Model):
 
 
     class Meta:
-        ordering = ["?"]
+        ordering = ["created_on"]
     
     def total_likes(self):
         return self.likes.count()

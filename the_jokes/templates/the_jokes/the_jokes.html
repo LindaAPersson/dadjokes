@@ -8,7 +8,15 @@
         {% for joke in joke_list %}
             <h2># {{joke.title}}</h2>
             <p>{{joke.joke_text | safe}}</p>
-            <p><span>{{joke.creator_image}}</span></span>Author: {{joke.creator}}</p>
+
+            {% if "placeholder" in joke.creator_image.url %}
+                <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
+                {% else %}
+                <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+            {% endif %}
+            
+            
+            </span>Author: {{joke.creator}}</p>
             <p>Made: {{joke.created_on}}</p>
             
         

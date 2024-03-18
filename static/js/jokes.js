@@ -19,3 +19,8 @@ for (let button of deleteButtons) {
     deleteModal.show();
   });
 }
+
+/**
+ * toast function by materilize
+ */
+M.toast({html: 'I am a toast!'})

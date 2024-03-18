@@ -16,18 +16,21 @@
 <p>Made: {{joke.created_on}}</p>
             
 <!-- Displaying likes -->
+
 {% if user.is_authenticated %}
   <form method="post" action="{% url 'like_jokes' joke.title joke.id %}">
     {% csrf_token %}
-    {% if liked%}
-      <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart  red darken-2"></i></button> <p>{{ likes_count }} Likes</p>
-    {% else %}  
-      <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit"><i class="fa-solid fa-heart"></i></button><p>{{ likes_count }} Likes</p>
-    {% endif %}
+    <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit" class="heart-button">
+      {% if liked %}
+      <i class="fa-solid fa-heart like"></i>
+      {% else %}
+        <i class="fa-regular fa-heart"></i>
+      {% endif %}
+    </button>
+    <span>{{ likes_count }} Likes</span>
   </form>
 {% else %}
-  <i class="fa-solid fa-heart"></i>{{ likes_count }} Likes
-               
+  <i class="far fa-heart"></i> {{ likes_count }} Likes
 {% endif %}
 
 
@@ -35,23 +38,23 @@
 <ul class="collapsible">
   <li>
     <div class="collapsible-header"><i class="far fa-comments"></i>{{ comment_count }} Comments</div>
-    <div class="collapsible-body"><span>
+    <div class="collapsible-body"><span class="card">
       {% for comment in comments %}
             <strong>{{ comment.creator }}</strong>:
             <div id="comment{{ comment.id }}">
               {{ comment.comment_text | safe }}
             </div>
-            <p class="small-text">test {{ comment.created_on }}</p> 
-
+            <p class="small-text">{{ comment.created_on }}</p> 
             {% if not comment.approved and comment.creator == user %}
               <p class="approval">
                   This comment is awaiting approval
               </p>
             {% endif %}
             {% if user.is_authenticated and comment.creator == user %}
-              <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
-              <button data-target="modal1" class="btn modal-trigger btn-delete" comment_id="{{ comment.id }}">Delete</button>
+              <button class="btn  orange lighten-1 btn-edit" comment_id="{{ comment.id }}">Edit</button>
+              <button data-target="modal1" class="btn deep-orange modal-trigger btn-delete" comment_id="{{ comment.id }}">Delete</button>
             {% endif %}
+            <hr>
         {% endfor %}
       </span></div>
       </li>

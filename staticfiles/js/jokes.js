@@ -19,3 +19,12 @@ for (let button of deleteButtons) {
     deleteModal.show();
   });
 }
+
+
+/**
+ * Materlize drop down for categories
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  var instances = M.Dropdown.init(elems);
+});

@@ -26,12 +26,34 @@ main {
     display: none;
 }
 
-img.creator_image {
+.creator_image {
     height: 10vh;
     width: 10vw;
 }
 
-#small-text {
+.small-text {
     font-size: x-small;
-    color: blueviolet;
+    color: rgb(94, 93, 96);
+}
+
+.approval {
+    color: rgb(207, 30, 101);
+}
+
+.heart-button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    color: inherit;
+}
+
+.fa-heart.like {
+    font-size: x-large;
+    color: rgb(199, 28, 28);
+}
+.fa-heart {
+    font-size: x-large;
+    
 }

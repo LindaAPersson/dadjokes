@@ -35,7 +35,8 @@ def add_joke(request):
     last_joke = Joke.objects.order_by('-id').first()
     last_title_number = int(last_joke.title) if last_joke else 0
     next_title = last_title_number + 1 
-    
+    category = Category.objects.all()
+
     if request.method == "POST":
         joke_form = JokeForm(request.POST, request.FILES)
         
@@ -44,9 +45,10 @@ def add_joke(request):
             joke.creator = request.user
             joke.title = next_title
             joke_form.save()
-            
+            messages.add_message(request, messages.SUCCESS, 'Joke Updated but waiting on approval!')
             return redirect('home')
-
+        else:
+            messages.add_message(request, messages.ERROR, 'Error adding joke!')
     joke_form = JokeForm()
 
     return render(
@@ -54,6 +56,7 @@ def add_joke(request):
         "the_jokes/add_jokes.html",
         {
             "joke_form": joke_form,
+            "category": category
         },
     )
 

@@ -44,3 +44,12 @@ for (let button of deleteButtons) {
     deleteModal.show();
   });
 }
+
+
+/**
+ * comments dropdown to show comments
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.collapsible');
+  var instances = M.Collapsible.init(elems);
+});

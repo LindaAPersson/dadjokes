@@ -20,11 +20,6 @@ for (let button of deleteButtons) {
   });
 }
 
-/**
- * toast function by materilize
- */
-M.toast({html: 'I am a toast!'})
-
 
 /**
  * Materlize drop down for categories

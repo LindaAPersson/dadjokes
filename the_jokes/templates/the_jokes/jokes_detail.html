@@ -3,15 +3,17 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-            <h2># {{joke.title}}</h2>
-            <p>{{joke.joke_text | safe}}</p>
-            {% if "placeholder" in joke.creator_image.url %}
-                <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
-                {% else %}
-                <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-            {% endif %}
-            </span>Author: {{joke.creator}}</p>
-            <p>Made: {{joke.created_on}}</p>
+            
+
+<h4># {{joke.title}}</h4>
+<p>{{joke.joke_text | safe}}</p>
+{% if "placeholder" in joke.creator_image.url %}
+    <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
+    {% else %}
+    <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+{% endif %}
+</span>Author: {{joke.creator}}</p>
+<p>Made: {{joke.created_on}}</p>
             
 <!-- Displaying likes -->
 {% if user.is_authenticated %}
@@ -28,51 +30,37 @@
                
 {% endif %}
 
-<!-- Displaying count of comments -->
-<div class="row">
-    <div class="col-12">
-      <strong class="text-secondary">
-        <i class="far fa-comments"></i> {{ comment_count }} 
-      </strong>
-    </div>
-        <div class="col-12">
-        <hr>
-        </div>
-    </div>
-  <!-- Displaying Comments -->
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-        <h3>Comments:</h3>
-        <div class="card-body">
-            <!-- We want a for loop inside the empty control tags
-            to iterate through each comment in comments -->
-            {% for comment in comments %}
-              <div class="p-2 comments
-              {% if not comment.approved and comment.creator == user %}
-              faded{% elif not comment.approved %} d-none{% endif %}">
-              <p class="font-weight-bold">
-                  {{ comment.creator }}
-                  <span class="font-weight-normal">
-                  {{ comment.created_on }}
-                  </span> wrote:
-              </p>
-              <div id="comment{{ comment.id }}">
-                  {{ comment.comment_text | safe }}
-              </div>
-              {% if not comment.approved and comment.creator == user %}
+
+  <!-- Displaying Comments and count of comments-->
+<ul class="collapsible">
+  <li>
+    <div class="collapsible-header"><i class="far fa-comments"></i>{{ comment_count }} Comments</div>
+    <div class="collapsible-body"><span>
+      {% for comment in comments %}
+            <strong>{{ comment.creator }}</strong>:
+            <div id="comment{{ comment.id }}">
+              {{ comment.comment_text | safe }}
+            </div>
+            <p class="small-text">test {{ comment.created_on }}</p> 
+
+            {% if not comment.approved and comment.creator == user %}
               <p class="approval">
                   This comment is awaiting approval
               </p>
-              {% endif %}
-              {% if user.is_authenticated and comment.creator == user %}
+            {% endif %}
+            {% if user.is_authenticated and comment.creator == user %}
               <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
               <button data-target="modal1" class="btn modal-trigger btn-delete" comment_id="{{ comment.id }}">Delete</button>
-              {% endif %}
-              </div>
+            {% endif %}
+        {% endfor %}
+      </span></div>
+      </li>
+    </ul>
+
+    
+            
             <!-- Our for loop ends here -->
-            {% endfor %}
-        </div>
-    </div>
+            
     <!-- Creating New Comments -->
     <div>
         <div>

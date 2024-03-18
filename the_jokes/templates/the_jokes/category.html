@@ -20,7 +20,7 @@
 
         {% for joke in jokes %}
         {{ joke.category }}
-        
+
             <h2># {{joke.title}}</h2>
             <p>{{joke.joke_text | safe}}</p>
 
@@ -63,6 +63,7 @@
     
     <a href="{% url 'add_jokes' %}">Add jokes </a>
         
+
     </body>
     
 <!-- jokes.html content ends here -->

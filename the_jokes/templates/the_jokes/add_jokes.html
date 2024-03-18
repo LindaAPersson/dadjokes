@@ -11,12 +11,16 @@
           <form method="post" enctype="multipart/form-data">
             {{ joke_form }}
             {% csrf_token %}
-            <button type="submit" onclick="M.toast({html: 'Joke submitted and awaiting approval'})" class="btn"></a>Submit</button>
+            <button type="submit" "></a>Submit</button>
           </form>
+          
           {% else %}
           <p>Log in to add a joke </p>
           {% endif %}
-          
+
+          {% for category in categorys %}
+            {{category.name}}test
+          {%endfor%}
         </div>
       </div>
 {% endblock %}

@@ -5,7 +5,7 @@ class JokeForm(forms.ModelForm):
     
     class Meta:
         model = Joke
-        fields = ('joke_text', 'creator_image', )
+        fields = ('joke_text', 'creator_image', 'category', )
 
 class EditJokeForm(forms.ModelForm):
     

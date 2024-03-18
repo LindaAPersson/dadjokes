@@ -24,3 +24,12 @@ for (let button of deleteButtons) {
  * toast function by materilize
  */
 M.toast({html: 'I am a toast!'})
+
+
+/**
+ * Materlize drop down for categories
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  var instances = M.Dropdown.init(elems);
+});

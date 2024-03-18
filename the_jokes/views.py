@@ -13,6 +13,23 @@ class joke_list(generic.ListView):
     template_name = "the_jokes/the_jokes.html"
     paginate_by = 1
        
+def category(request, name):
+    
+    try:
+        category = Category.objects.get(name=name)
+        jokes = Joke.objects.filter(status=1, category=category)
+        return render(request, 'category.html',
+        {
+            'jokes': jokes,
+            'category': category
+        })
+    except:
+        messages.add_message(
+                request, messages.SUCCESS,
+                "That category dosen't excist"
+            )
+        return redirect('home')
+
 
 def add_joke(request):
     last_joke = Joke.objects.order_by('-id').first()

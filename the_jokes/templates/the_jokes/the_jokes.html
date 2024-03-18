@@ -12,8 +12,9 @@
             <li><a href="{% url 'the_jokes_page' %}">All</a></li>
             <li class="divider" tabindex="-1"></li>
             <li><a href="{% url 'category' 'classics' %}">Classics</a></li>
+            
             <li class="divider" tabindex="-1"></li>
-            <li><a href="#!">three</a></li>
+            <li><a href="{% url 'category' 'knock_knock' %}">Knock-Knock</a></li>
             
         </ul>
 
@@ -21,6 +22,7 @@
         {% for joke in joke_list %}
             <h2># {{joke.title}}</h2>
             <p>{{joke.joke_text | safe}}</p>
+            <p>{{ joke.category | safe }}</p>
 
             {% if "placeholder" in joke.creator_image.url %}
                 <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">

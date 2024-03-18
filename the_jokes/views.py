@@ -18,7 +18,7 @@ def category(request, name):
     try:
         category = Category.objects.get(name=name)
         jokes = Joke.objects.filter(status=1, category=category)
-        return render(request, 'category.html',
+        return render(request, 'the_jokes/category.html',
         {
             'jokes': jokes,
             'category': category

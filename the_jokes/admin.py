@@ -6,7 +6,7 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(Joke)
 class JokeAdmin(SummernoteModelAdmin):
 
-    list_display = ('title', 'creator', 'status')
+    list_display = ('title', 'creator', 'status', 'category')
     search_fields = ['title']
     list_filter = ('creator', 'status')
     summernote_fields = ('joke_text',)
@@ -22,6 +22,6 @@ class CommentAdmin(SummernoteModelAdmin):
 
 
 @admin.register(Category)
-class Category(SummernoteModelAdmin):
+class Category(admin.ModelAdmin):
     list_display = ['name', 'id']
     summernote_fields = ('name',)

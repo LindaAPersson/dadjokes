@@ -4,85 +4,83 @@
 {% block content %}
 
             
+<div class="row">
+  <div class="col s12 m7">
+    <div class="card">
+      <h4># {{joke.title}}</h4>
+      <p>{{joke.joke_text | safe}}</p>
+        {% if "placeholder" in joke.creator_image.url %}
+            <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
+            {% else %}
+            <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+        {% endif %}
+      </span>Author: {{joke.creator}}</p>
+      <p class="small-text">Made: {{joke.created_on}}</p>
+                    
+  <!-- Displaying likes -->
 
-<h4># {{joke.title}}</h4>
-<p>{{joke.joke_text | safe}}</p>
-{% if "placeholder" in joke.creator_image.url %}
-    <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
-    {% else %}
-    <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-{% endif %}
-</span>Author: {{joke.creator}}</p>
-<p>Made: {{joke.created_on}}</p>
-            
-<!-- Displaying likes -->
-
-{% if user.is_authenticated %}
-  <form method="post" action="{% url 'like_jokes' joke.title joke.id %}">
-    {% csrf_token %}
-    <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit" class="heart-button">
-      {% if liked %}
-      <i class="fa-solid fa-heart like"></i>
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'like_jokes' joke.title joke.id %}">
+          {% csrf_token %}
+          <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit" class="heart-button">
+            {% if liked %}
+              <i class="fa-solid fa-heart like"></i>
+            {% else %}
+              <i class="fa-regular fa-heart"></i>
+            {% endif %}
+          </button>
+          <span>{{ likes_count }} Likes</span>
+        </form>
       {% else %}
-        <i class="fa-regular fa-heart"></i>
+        <i class="far fa-heart"></i> {{ likes_count }} Likes
       {% endif %}
-    </button>
-    <span>{{ likes_count }} Likes</span>
-  </form>
-{% else %}
-  <i class="far fa-heart"></i> {{ likes_count }} Likes
-{% endif %}
-
 
   <!-- Displaying Comments and count of comments-->
-<ul class="collapsible">
-  <li>
-    <div class="collapsible-header"><i class="far fa-comments"></i>{{ comment_count }} Comments</div>
-    <div class="collapsible-body"><span class="card">
-      {% for comment in comments %}
-            <strong>{{ comment.creator }}</strong>:
-            <div id="comment{{ comment.id }}">
-              {{ comment.comment_text | safe }}
-            </div>
-            <p class="small-text">{{ comment.created_on }}</p> 
-            {% if not comment.approved and comment.creator == user %}
-              <p class="approval">
-                  This comment is awaiting approval
-              </p>
-            {% endif %}
-            {% if user.is_authenticated and comment.creator == user %}
-              <button class="btn  orange lighten-1 btn-edit" comment_id="{{ comment.id }}">Edit</button>
-              <button data-target="modal1" class="btn deep-orange modal-trigger btn-delete" comment_id="{{ comment.id }}">Delete</button>
-            {% endif %}
-            <hr>
-        {% endfor %}
-      </span></div>
-      </li>
-    </ul>
 
-    
-            
-            <!-- Our for loop ends here -->
-            
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header"><i class="far fa-comments"></i>{{ comment_count }} Comments</div>
+          <div class="collapsible-body">
+            <span>
+            {% for comment in comments %}
+              <strong>{{ comment.creator }}</strong>:
+              <div id="comment{{ comment.id }}">{{ comment.comment_text | safe }}</div>
+              <p class="small-text">{{ comment.created_on }}</p> 
+                {% if not comment.approved and comment.creator == user %}
+                  <p class="approval">This comment is awaiting approval</p>
+                {% endif %}
+                {% if user.is_authenticated and comment.creator == user %}
+                  <button class="btn  orange lighten-1 btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                  <button data-target="modal1" class="btn deep-orange modal-trigger btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                {% endif %}
+              <hr>
+            {% endfor %}
+            </span>
+          </div>
+        </li>
+      </ul>
+         
     <!-- Creating New Comments -->
-    <div>
+
+      <div>
         <div>
           {% if user.is_authenticated %}
-          <h3>Leave a comment:</h3>
-          <p>Posting as: {{ user.username }}</p>
-          <form id="commentForm" method="post">
-            {{ comment_form }}
-            {% csrf_token %}
-            <button id="submitButton" type="submit"></a>Submit</button>
-          </form>
-          {% else %}
-          <p>Log in to leave a comment</p>
-          {% endif %}
-
-          
+            <h4>Leave a comment:</h4>
+            <p>Posting as: {{ user.username }}</p>
+            <form id="commentForm" method="post">
+              {{ comment_form }}
+              {% csrf_token %}
+              <button id="submitButton" type="submit"></a>Submit</button>
+            </form>
+              {% else %}
+                <p>Log in to leave a comment</p>
+              {% endif %}
         </div>
       </div>
+    </div>        
+  </div>
 </div>
+
 <!-- Delete confirmation modal -->
 <div id="modal1" class="modal">
   <div class="modal-content">
@@ -93,7 +91,6 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Close</button>
     <a id="deleteConfirm" href="#" class="btn btn-danger modal-close waves-effect waves-green btn-flat">Delete</a>
-    
   </div>
 </div>
 

@@ -26,8 +26,12 @@ main {
     display: none;
 }
 
+.card {
+    padding: 20px;
+}
+
 .creator_image {
-    height: 10vh;
+    height: 10px;
     width: 10vw;
 }
 

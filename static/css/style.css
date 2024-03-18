@@ -8,8 +8,11 @@ body {
 
 main {
     flex: 1 0 auto;
+    padding: 10px;
     
 }
+
+
 
 #bg-img {
     background: url(../images/hat-591973_1920.jpg) no-repeat center/cover;
@@ -27,7 +30,7 @@ main {
 }
 
 .card {
-    padding: 20px;
+    padding: 10px;
 }
 
 .creator_image {

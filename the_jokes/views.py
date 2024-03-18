@@ -12,6 +12,7 @@ class joke_list(generic.ListView):
     queryset = Joke.objects.filter(status=1)
     template_name = "the_jokes/the_jokes.html"
     paginate_by = 1
+
        
 def category(request, name):
     
@@ -77,7 +78,7 @@ def joke_edit(request, title):
             joke.status=0
             joke.save()
             messages.add_message(request, messages.SUCCESS, 'Joke Updated but waiting on approval!')
-            
+            return redirect('home')
         else:
             messages.add_message(request, messages.ERROR, 'Error updating joke!')
     return render(

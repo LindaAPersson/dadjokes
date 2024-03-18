@@ -3,7 +3,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-            
+<!-- add jokes button -->
+<div class="row">
+  <div class="col s2 m7">
+    <a class="btn-floating btn-large waves-effect waves-light deep-orange accent-1" href="{% url 'add_jokes' %}"><i class="material-icons">add jokes</i></a>
+  </div>
+</div>
+
+
 <div class="row">
   <div class="col s12 m7">
     <div class="card">
@@ -50,33 +57,35 @@
                   <p class="approval">This comment is awaiting approval</p>
                 {% endif %}
                 {% if user.is_authenticated and comment.creator == user %}
-                  <button class="btn  orange lighten-1 btn-edit" comment_id="{{ comment.id }}">Edit</button>
-                  <button data-target="modal1" class="btn deep-orange modal-trigger btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                  <button class="btn-small  orange lighten-1 btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                  <button data-target="modal1" class="btn-small deep-orange modal-trigger btn-delete" comment_id="{{ comment.id }}">Delete</button>
                 {% endif %}
               <hr>
             {% endfor %}
             </span>
           </div>
         </li>
-      </ul>
-         
-    <!-- Creating New Comments -->
-
-      <div>
-        <div>
-          {% if user.is_authenticated %}
-            <h4>Leave a comment:</h4>
-            <p>Posting as: {{ user.username }}</p>
-            <form id="commentForm" method="post">
-              {{ comment_form }}
-              {% csrf_token %}
-              <button id="submitButton" type="submit"></a>Submit</button>
-            </form>
+        <li>
+          <div class="collapsible-header"><i class="fa-solid fa-pen"></i>Leave a comment</div>
+          <div class="collapsible-body">
+          <span>
+            {% if user.is_authenticated %}
+              <h6>Leave a comment:</h6>
+              <p>Posting as: {{ user.username }}</p>
+              <form id="commentForm" method="post">
+                {{ comment_form }}
+                {% csrf_token %}
+                <button id="submitButton" type="submit"></a>Submit</button>
+              </form>
               {% else %}
                 <p>Log in to leave a comment</p>
               {% endif %}
-        </div>
-      </div>
+          </span>
+        </li>
+      </ul>
+         
+    <!-- Creating New Comments -->
+      
     </div>        
   </div>
 </div>

@@ -3,66 +3,58 @@
 
 {% block content %}
 
-    <body>
-        <!-- Dropdown Trigger -->
-        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+<body>
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card">
 
-        <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="{% url 'the_jokes_page' %}">All</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="{% url 'category' 'classics' %}">Classics</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="{% url 'category' 'knock_knock' %}">Knock-Knock</a></li>
-            
-        </ul>
+                <!-- Dropdown Trigger -->
+                <a class='dropdown-trigger btn deep-orange accent-1' href='#' data-target='dropdown1'>Categories!</a>
 
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a href="{% url 'the_jokes_page' %}">All</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a href="{% url 'category' 'classics' %}">Classics</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a href="{% url 'category' 'knock_knock' %}">Knock-Knock</a></li>
+                </ul>
 
-        {% for joke in joke_list %}
-            <h2># {{joke.title}}</h2>
-            <p>{{joke.joke_text | safe}}</p>
-            <p>{{ joke.category | safe }}</p>
+                {% for joke in joke_list %}
+                    <h4># {{joke.title}}</h4>
+                    <p>{{joke.joke_text | safe}}</p>
 
-            {% if "placeholder" in joke.creator_image.url %}
-                <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
-                {% else %}
-                <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-            {% endif %}
-            
-            
-            </span>Author: {{joke.creator}}</p>
-            <p>Made: {{joke.created_on}}</p>
-            
-        
-            <a href="{% url 'jokes_detail' joke.title %}">View comments </a>
-            {% if user.is_authenticated and joke.creator == user %}
-            <a href="{% url 'joke_edit' joke.title %}">Edit joke</a>
-            {% endif %}
+                    {% if "placeholder" in joke.creator_image.url %}
+                        <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
+                    {% else %}
+                        <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+                {% endif %}
+                    </span>Author: {{joke.creator}}</p>
+                    <p class="small-text">Category: {{ joke.category | safe }}</p>
+                    <p class="small-text">Made: {{joke.created_on}}</p>
 
-            
-        {% endfor %}
-        
-            
-        
-
+                <a href="{% url 'jokes_detail' joke.title %}">View comments </a>
+                {% if user.is_authenticated and joke.creator == user %}
+                    <a href="{% url 'joke_edit' joke.title %}">Edit joke</a>
+                {% endif %}
+                {% endfor %}
 
         <!-- next button -->
-        {% if is_paginated %}
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
+                {% if is_paginated %}
+                <ul class="pagination justify-content-center deep-orange accent-1">
                 {% if page_obj.has_previous %}
-                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link left-align deep-orange accent-1">&laquo; PREV </a></li>
                 {% endif %}
                 {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link  deep-orange accent-1"> NEXT &raquo;</a></li>
                 {% endif %}
-            </ul>
-        </nav>
-    {% endif %}
-    
-    <a href="{% url 'add_jokes' %}">Add jokes </a>
-        
-    </body>
+                </ul>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</body>
     
 <!-- jokes.html content ends here -->
 {% endblock %}

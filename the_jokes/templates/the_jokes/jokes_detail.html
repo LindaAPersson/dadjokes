@@ -3,106 +3,108 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<!-- add jokes button -->
-<div class="row">
-  <div class="col s2 m7">
-    <a class="btn-floating btn-large waves-effect waves-light deep-orange accent-1" href="{% url 'add_jokes' %}"><i class="material-icons">add jokes</i></a>
+<body id="bg-img-pages" class="responsive-img">
+  <!-- add jokes button -->
+  <div class="row">
+    <div class="col s2 m7">
+      <a class="btn-floating btn-large waves-effect waves-light deep-orange accent-1" href="{% url 'add_jokes' %}"><i
+          class="material-icons">add jokes</i>Add Joke</a>
+    </div>
   </div>
-</div>
-
-
-<div class="row">
-  <div class="col s12 m7">
-    <div class="card">
-      <h4># {{joke.title}}</h4>
-      <p>{{joke.joke_text | safe}}</p>
+  
+  <div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <h4># {{joke.title}}</h4>
+        <p>{{joke.joke_text | safe}}</p>
         {% if "placeholder" in joke.creator_image.url %}
-            <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
-            {% else %}
-            <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+        <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
+        {% else %}
+        <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
         {% endif %}
-      </span>Author: {{joke.creator}}</p>
-      <p class="small-text">Made: {{joke.created_on}}</p>
-                    
-  <!-- Displaying likes -->
+        </span>Author: {{joke.creator}}</p>
+        <p class="small-text">Made: {{joke.created_on}}</p>
 
-      {% if user.is_authenticated %}
+        <!-- Displaying likes -->
+
+        {% if user.is_authenticated %}
         <form method="post" action="{% url 'like_jokes' joke.title joke.id %}">
           {% csrf_token %}
           <button id="LikeButton" name="joke_id" value="{{ joke.id }}" type="submit" class="heart-button">
             {% if liked %}
-              <i class="fa-solid fa-heart like"></i>
+            <i class="fa-solid fa-heart like"></i>
             {% else %}
-              <i class="fa-regular fa-heart"></i>
+            <i class="fa-regular fa-heart"></i>
             {% endif %}
           </button>
           <span>{{ likes_count }} Likes</span>
         </form>
-      {% else %}
+        {% else %}
         <i class="far fa-heart"></i> {{ likes_count }} Likes
-      {% endif %}
+        {% endif %}
 
-  <!-- Displaying Comments and count of comments-->
+        <!-- Displaying Comments and count of comments-->
 
-      <ul class="collapsible">
-        <li>
-          <div class="collapsible-header"><i class="far fa-comments"></i>{{ comment_count }} Comments</div>
-          <div class="collapsible-body">
-            <span>
-            {% for comment in comments %}
-              <strong>{{ comment.creator }}</strong>:
-              <div id="comment{{ comment.id }}">{{ comment.comment_text | safe }}</div>
-              <p class="small-text">{{ comment.created_on }}</p> 
+        <ul class="collapsible">
+          <li>
+            <div class="collapsible-header"><i class="far fa-comments"></i>{{ comment_count }} Comments</div>
+            <div class="collapsible-body">
+              <span>
+                {% for comment in comments %}
+                <strong>{{ comment.creator }}</strong>:
+                <div id="comment{{ comment.id }}">{{ comment.comment_text | safe }}</div>
+                <p class="small-text">{{ comment.created_on }}</p>
                 {% if not comment.approved and comment.creator == user %}
-                  <p class="approval">This comment is awaiting approval</p>
+                <p class="approval">This comment is awaiting approval</p>
                 {% endif %}
                 {% if user.is_authenticated and comment.creator == user %}
-                  <button class="btn-small  orange lighten-1 btn-edit" comment_id="{{ comment.id }}">Edit</button>
-                  <button data-target="modal1" class="btn-small deep-orange modal-trigger btn-delete" comment_id="{{ comment.id }}">Delete</button>
+                <button class="btn-small  orange lighten-1 btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                <button data-target="modal1" class="btn-small deep-orange modal-trigger btn-delete"
+                  comment_id="{{ comment.id }}">Delete</button>
                 {% endif %}
-              <hr>
-            {% endfor %}
-            </span>
-          </div>
-        </li>
-        <li>
-          <div class="collapsible-header"><i class="fa-solid fa-pen"></i>Leave a comment</div>
-          <div class="collapsible-body">
-          <span>
-            {% if user.is_authenticated %}
-              <h6>Leave a comment:</h6>
-              <p>Posting as: {{ user.username }}</p>
-              <form id="commentForm" method="post">
-                {{ comment_form }}
-                {% csrf_token %}
-                <button id="submitButton" type="submit"></a>Submit</button>
-              </form>
-              {% else %}
+                <hr>
+                {% endfor %}
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="fa-solid fa-pen"></i>Leave a comment</div>
+            <div class="collapsible-body">
+              <span>
+                {% if user.is_authenticated %}
+                <h6>Leave a comment:</h6>
+                <p>Posting as: {{ user.username }}</p>
+                <form id="commentForm" method="post">
+                  {{ comment_form }}
+                  {% csrf_token %}
+                  <button id="submitButton" type="submit"></a>Submit</button>
+                </form>
+                {% else %}
                 <p>Log in to leave a comment</p>
-              {% endif %}
-          </span>
-        </li>
-      </ul>
-         
-    <!-- Creating New Comments -->
-      
-    </div>        
-  </div>
-</div>
+                {% endif %}
+              </span>
+          </li>
+        </ul>
 
-<!-- Delete confirmation modal -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Delete comment?</h4>
-    <p>Are you sure you want to delete your comment?
-      This action cannot be undone.</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Close</button>
-    <a id="deleteConfirm" href="#" class="btn btn-danger modal-close waves-effect waves-green btn-flat">Delete</a>
-  </div>
-</div>
+        <!-- Creating New Comments -->
 
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation modal -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Delete comment?</h4>
+      <p>Are you sure you want to delete your comment?
+        This action cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <a id="deleteConfirm" href="#" class="btn btn-danger modal-close waves-effect waves-green btn-flat">Delete</a>
+    </div>
+  </div>
+</body>
 
 {% endblock %}
 {% block extras %}

@@ -12,10 +12,13 @@ main {
     
 }
 
-
-
 #bg-img {
     background: url(../images/hat-591973_1920.jpg) no-repeat center/cover;
+    height: 100vh;
+}
+
+#bg-img-pages {
+    background: url(../images/wood-2045380_1920.jpg) no-repeat center/cover;
     height: 100vh;
 }
 

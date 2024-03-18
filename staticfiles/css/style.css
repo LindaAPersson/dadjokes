@@ -8,11 +8,18 @@ body {
 
 main {
     flex: 1 0 auto;
+    padding: 10px;
     
 }
 
+
 #bg-img {
     background: url(../images/hat-591973_1920.jpg) no-repeat center/cover;
+    height: 100vh;
+}
+
+#bg-img-pages {
+    background: url(../images/wood-2045380_1920.jpg) no-repeat center/cover;
     height: 100vh;
 }
 
@@ -26,12 +33,38 @@ main {
     display: none;
 }
 
-img.creator_image {
-    height: 10vh;
+.card {
+    padding: 10px;
+}
+
+.creator_image {
+    height: 10px;
     width: 10vw;
 }
 
-#small-text {
+.small-text {
     font-size: x-small;
-    color: blueviolet;
+    color: rgb(94, 93, 96);
+}
+
+.approval {
+    color: rgb(207, 30, 101);
+}
+
+.heart-button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    color: inherit;
+}
+
+.fa-heart.like {
+    font-size: x-large;
+    color: rgb(199, 28, 28);
+}
+.fa-heart {
+    font-size: x-large;
+    
 }

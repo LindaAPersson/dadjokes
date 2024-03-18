@@ -7,8 +7,11 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
 
-
+    def __str__(self):
+        return self.name 
 
 class Joke(models.Model):
 
@@ -19,6 +22,7 @@ class Joke(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, blank=True, related_name='joke_likes') 
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=2)
 
 
     class Meta:

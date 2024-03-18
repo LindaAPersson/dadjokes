@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import Joke, Comment
+from .models import Joke, Comment, Category
 from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm
 
 # Create your views here.

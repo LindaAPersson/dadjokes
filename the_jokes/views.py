@@ -68,10 +68,11 @@ def joke_edit(request, title):
     """
     queryset = Joke.objects.filter(status=1)
     joke = get_object_or_404(queryset, title=title)
+    print(joke)
     edit_joke_form = EditJokeForm(instance=joke)
     
     if request.method == "POST":
-        edit_joke_form = EditJokeForm(data=request.POST, instance=joke)
+        edit_joke_form = EditJokeForm(request.POST, request.FILES)
 
         if edit_joke_form.is_valid() and joke.creator == request.user:
             joke = edit_joke_form.save(commit=False)

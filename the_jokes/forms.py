@@ -12,7 +12,7 @@ class EditJokeForm(forms.ModelForm):
     
     class Meta:
         model = Joke
-        fields = ('joke_text', 'status',)     
+        fields = ('joke_text', 'creator_image',)     
 
 class LikesForm(forms.ModelForm):
 

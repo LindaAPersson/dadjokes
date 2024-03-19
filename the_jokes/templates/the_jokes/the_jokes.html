@@ -7,8 +7,7 @@
     <!-- add jokes button -->
     <div class="row">
         <div class="col s2 m7">
-        <a class="btn-floating btn-large waves-effect waves-light deep-orange accent-1" href="{% url 'add_jokes' %}"><i
-            class="material-icons">add jokes</i>Add Joke</a>
+        <a class="btn tooltipped deep-orange accent-1" data-position="right" data-tooltip="Add your own joke!" href="{% url 'add_jokes' %}">+</a>   
         </div>
     </div>
     <div class="row">
@@ -37,29 +36,28 @@
                         <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
                     {% endif %}
                     </span>Author: {{joke.creator}}</p>
-                    <p class="small-text">Category: {{ joke.category | safe }}</p>
-                    <p class="small-text">Made: {{joke.created_on}}</p>
+                    <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
 
-                    <a href="{% url 'jokes_detail' joke.title %}">View comments </a>
-                    {% if user.is_authenticated and joke.creator == user %}
-                        <a href="{% url 'joke_edit' joke.title %}">Edit joke</a>
-                    {% endif %}
-                    <hr>
+                    <span><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i class="far fa-comments"></i></a></span>
+                    <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
+
+                    
+                  
                 {% endfor %}
                 
 
         <!-- next button -->
+
                 {% if is_paginated %}
-                <ul class="pagination justify-content-center deep-orange accent-1">
-                {% if page_obj.has_previous %}
-                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link left-align deep-orange accent-1">&laquo; PREV </a></li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link  deep-orange accent-1"> NEXT &raquo;</a></li>
-                {% endif %}
-                </ul>
-                {% endif %}
-                
+                <ul class="pagination center-align">
+                    {% if page_obj.has_previous %}
+                    <li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+                    {% endif %}
+                    {% endif %}
+                  </ul>
             </div>
         </div>
     </div>

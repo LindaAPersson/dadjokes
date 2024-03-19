@@ -37,10 +37,11 @@
                     {% endif %}
                     </span>Author: {{joke.creator}}</p>
                     <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
-
+                    
                     <span><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i class="far fa-comments"></i></a></span>
+                    {% if user.is_authenticated and joke.creator == user %}
                     <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
-
+                    {% endif %}
                     
                   
                 {% endfor %}

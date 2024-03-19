@@ -6,26 +6,24 @@
 <!-- Creating New joke -->
 
 <body id="bg-img-pages" class="responsive-img">
-  <div>
-    <div>
+  <div class="row">
+    <div class="card">
       {% if user.is_authenticated %}
-      <h3>add joke:</h3>
+      <h4>Add joke:</h4>
       <p>Posting as: {{ user.username }}</p>
       <form method="post" enctype="multipart/form-data">
         {{ joke_form }}
         {% csrf_token %}
+        <div class="input-field"></div>
         <button type="submit" "></a>Submit</button>
-          </form>
-          
-          {% else %}
+      </form>
+        {% else %}
           <p>Log in to add a joke </p>
-          {% endif %}
+        {% endif %}
 
-          {% for category in categorys %}
-            {{category.name}}test
-          {%endfor%}
-        </div>
-      </div>
+          
+    </div>
+  </div>
 </body>
 {% endblock %}
 {% block script %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<body id="bg-img-pages" class="responsive-img">
+    <div class="row">
+        <div class="card">
+            <h4>Contact us!</h4>
+            <form method="post" enctype="multipart/form-data">
+                {{ contact_form }}
+                {% csrf_token %}
+                <button type="submit" class="btn-small deep-orange accent-1">Submit</button>
+            </form>     
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+{% block script %}
+    <script src=" {% static 'js/jokes.js' %}"></script>
+{% endblock %}

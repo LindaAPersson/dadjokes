@@ -1,6 +1,7 @@
 {% load static %}
 {% url 'home' as home_url %}
 {% url 'the_jokes_page' as the_jokes_url %}
+{% url 'about' as about_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -35,7 +36,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'the_jokes_page' %}">Jokes</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{% url 'about' %}">Contact</a></li>
     <!-- Login logout register-->
                 {% if user.is_authenticated %}
                 <li class="nav-item">

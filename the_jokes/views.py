@@ -7,7 +7,7 @@ from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm
 
 # Create your views here.
 
-class joke_list(generic.ListView):
+class JokeList(generic.ListView):
 
     queryset = Joke.objects.filter(status=1)
     template_name = "the_jokes/the_jokes.html"

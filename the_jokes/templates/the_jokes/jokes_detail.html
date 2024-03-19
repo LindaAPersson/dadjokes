@@ -23,6 +23,7 @@
         <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
         {% endif %}
         </span>Author: {{joke.creator}}</p>
+        <p class="small-text">Category: {{ joke.category | safe }}</p>
         <p class="small-text">Made: {{joke.created_on}}</p>
 
         <!-- Displaying likes -->
@@ -42,8 +43,22 @@
         {% else %}
         <i class="far fa-heart"></i> {{ likes_count }} Likes
         {% endif %}
-
+        <hr>
         <!-- Displaying Comments and count of comments-->
+
+
+        {% if user.is_authenticated %}
+        <h6><i class="fa-solid fa-pen"></i> Leave a comment:</h6>
+        <p class="small-text">Posting as: {{ user.username }}</p>
+        <form id="commentForm" method="post">
+          {{ comment_form }}
+          {% csrf_token %}
+          <button id="submitButton" type="submit"></a>Submit</button>
+        </form>
+
+        {% else %}
+        <p>Log in to leave a comment</p>
+        {% endif %}
 
         <ul class="collapsible">
           <li>
@@ -51,6 +66,7 @@
             <div class="collapsible-body">
               <span>
                 {% for comment in comments %}
+                {% if comment.approved %}
                 <strong>{{ comment.creator }}</strong>:
                 <div id="comment{{ comment.id }}">{{ comment.comment_text | safe }}</div>
                 <p class="small-text">{{ comment.created_on }}</p>
@@ -58,35 +74,22 @@
                 <p class="approval">This comment is awaiting approval</p>
                 {% endif %}
                 {% if user.is_authenticated and comment.creator == user %}
-                <button class="btn-small  orange lighten-1 btn-edit" comment_id="{{ comment.id }}">Edit</button>
+                <button class="btn btn-edit btn-small orange lighten-1" comment_id="{{ comment.id }}">Edit</button>
                 <button data-target="modal1" class="btn-small deep-orange modal-trigger btn-delete"
                   comment_id="{{ comment.id }}">Delete</button>
+                {% endif %}
                 {% endif %}
                 <hr>
                 {% endfor %}
               </span>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header"><i class="fa-solid fa-pen"></i>Leave a comment</div>
-            <div class="collapsible-body">
-              <span>
-                {% if user.is_authenticated %}
-                <h6>Leave a comment:</h6>
-                <p>Posting as: {{ user.username }}</p>
-                <form id="commentForm" method="post">
-                  {{ comment_form }}
-                  {% csrf_token %}
-                  <button id="submitButton" type="submit"></a>Submit</button>
-                </form>
-                {% else %}
-                <p>Log in to leave a comment</p>
-                {% endif %}
-              </span>
-          </li>
-        </ul>
       </div>
+      </li>
+      <li>
+
+      </li>
+      </ul>
     </div>
+  </div>
   </div>
 
   <!-- Delete confirmation modal -->
@@ -97,7 +100,7 @@
         This action cannot be undone.</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn orange lighten-1 modal-close">Close</button>
       <a id="deleteConfirm" href="#" class="btn btn-danger modal-close waves-effect waves-green btn-flat">Delete</a>
     </div>
   </div>

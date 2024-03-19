@@ -4,11 +4,19 @@ from .models import Joke, Comment
 
 # Create your views here.
 
-class joke_list(generic.ListView):
+def joke_list(request):
 
     queryset = Joke.objects.filter(status=1)
-    template_name = "jokes/jokes.html"
-    paginate_by = 1
+
+    return render(
+        request,
+        "jokes/jokes.html",
+        {
+            "joke": joke,
+             
+        }
+    )
+
     
 
 

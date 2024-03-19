@@ -35,16 +35,18 @@
                         <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
                     {% else %}
                         <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-                {% endif %}
+                    {% endif %}
                     </span>Author: {{joke.creator}}</p>
                     <p class="small-text">Category: {{ joke.category | safe }}</p>
                     <p class="small-text">Made: {{joke.created_on}}</p>
 
-                <a href="{% url 'jokes_detail' joke.title %}">View comments </a>
-                {% if user.is_authenticated and joke.creator == user %}
-                    <a href="{% url 'joke_edit' joke.title %}">Edit joke</a>
-                {% endif %}
+                    <a href="{% url 'jokes_detail' joke.title %}">View comments </a>
+                    {% if user.is_authenticated and joke.creator == user %}
+                        <a href="{% url 'joke_edit' joke.title %}">Edit joke</a>
+                    {% endif %}
+                    <hr>
                 {% endfor %}
+                
 
         <!-- next button -->
                 {% if is_paginated %}

@@ -72,22 +72,22 @@
 
 <!-- navbar mobile -->
     <ul class="sidenav deep-orange accent-1" id="mobile-demo">
-        <li class="brand-logo">DADJOKES</li>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'the_jokes_page' %}">Jokes</a></li>
-        <li><a href="#">About</a></li>
+        <li class="brand-logo white-text">DADJOKES</li>
+        <li><a href="{% url 'home' %}" class="white-text">Home</a></li>
+        <li><a href="{% url 'the_jokes_page' %}" class="white-text">Jokes</a></li>
+        <li><a href="{% url 'about' %}" class="white-text">Contact</a></li>
     <!-- Login logout register-->
         {% if user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+            <a class="nav-link {% if request.path == logout_url %}active{% endif %} white-text" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
-            <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                href="{% url 'account_signup' %}">Register</a>
+            <a class="nav-link {% if request.path == signup_url %}active{% endif %} white-text" aria-current="page"
+                href="{% url 'account_signup' %}" >Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+            <a class="nav-link {% if request.path == login_url %}active{% endif %} white-text" aria-current="page" href="{% url 'account_login' %}">Login</a>
         </li>
         {% endif %}
 

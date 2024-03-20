@@ -5,18 +5,20 @@
 
 <body id="bg-img-pages" class="responsive-img">
     <div class="row">
-        <div class="card">
-            <h4>Contact us!</h4>
-            <form method="post" enctype="multipart/form-data">
-                {{ contact_form }}
-                {% csrf_token %}
-                <button type="submit" class="btn-small deep-orange accent-1">Submit</button>
-            </form>     
+        <div class="col s12 m8 offset-m2">
+            <div class="card">
+                <h4>Contact us!</h4>
+                <form method="post" enctype="multipart/form-data">
+                    {{ contact_form }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn-small deep-orange accent-1">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
 
 {% endblock %}
 {% block script %}
-    <script src=" {% static 'js/jokes.js' %}"></script>
+<script src=" {% static 'js/jokes.js' %}"></script>
 {% endblock %}

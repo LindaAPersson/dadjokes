@@ -25,11 +25,12 @@
                     <li class="divider" tabindex="-1"></li>
                     <li><a href="{% url 'category' 'knock_knock' %}" class="white-text">Knock-Knock</a></li>
                 </ul>
-
+            
                 {% for joke in joke_list %}
+                
                     <h4># {{joke.title}}</h4>
                     <p>{{joke.joke_text | safe}}</p>
-
+                
                     {% if "placeholder" in joke.creator_image.url %}
                         <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
                     {% else %}
@@ -42,12 +43,12 @@
                     {% if user.is_authenticated and joke.creator == user %}
                     <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
                     {% endif %}
-                    
+                 
                   
                 {% endfor %}
-                
+            
 
-        <!-- next button -->
+                <!-- next button -->
 
                 {% if is_paginated %}
                 <ul class="pagination center-align">

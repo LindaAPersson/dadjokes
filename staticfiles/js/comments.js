@@ -41,7 +41,7 @@ for (let button of deleteButtons) {
   button.addEventListener("click", (e) => {
     let commentId = e.target.getAttribute("comment_id");
     deleteConfirm.href = `delete_comment/${commentId}`;
-    deleteModal.show();
+    
   });
 }
 
@@ -52,4 +52,13 @@ for (let button of deleteButtons) {
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.collapsible');
   var instances = M.Collapsible.init(elems);
+});
+
+
+/**
+ * Materlize tooltip, "comments above the buttons"
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.tooltipped');
+  var instances = M.Tooltip.init(elems);
 });

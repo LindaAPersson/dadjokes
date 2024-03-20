@@ -98,3 +98,9 @@ main {
 .form_buttons {
     padding-top: 10px;
 }
+
+@media screen and (min-width: 1200px) {
+    #jokes_large {
+        
+    }
+}

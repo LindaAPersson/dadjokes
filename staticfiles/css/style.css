@@ -12,45 +12,62 @@ main {
     
 }
 
+#nav-sticky{
+    position: sticky;
+    top: 0;
+}
 
+/* Backgrund img on index.html */
 #bg-img {
     background: url(../images/hat-591973_1920.jpg) no-repeat center/cover;
     height: 100vh;
 }
 
+/* Background img on all other pages */
 #bg-img-pages {
-    background: url(../images/wood-2045380_1920.jpg) no-repeat center/cover;
+    background: url(../images/wood-2045380_1920.jpg) center/cover;
     height: 100vh;
 }
 
+
 .social-media {
     display: flex;
-    align-items: center;
+    justify-content: center;
     margin: 10px;
+    list-style: none;
+}
+
+.social-media li {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #hide {
     display: none;
 }
-
+/* Generall card on all pages */
 .card {
     padding: 10px;
 }
 
+/* creator image */
 .creator_image {
     height: 10px;
     width: 10vw;
 }
 
+/* Makes text small (used on datestamp) */
 .small-text {
     font-size: x-small;
     color: rgb(94, 93, 96);
 }
 
+/* Comment waiting on. approval */
 .approval {
     color: rgb(207, 30, 101);
 }
 
+/* Like button */
 .heart-button {
     border: none;
     background: none;
@@ -67,4 +84,23 @@ main {
 .fa-heart {
     font-size: x-large;
     
+}
+
+/* Django messages */
+.alert {
+    display: none;
+}
+
+.page-link {
+    color: white;
+}
+
+.form_buttons {
+    padding-top: 10px;
+}
+
+@media screen and (min-width: 1200px) {
+    #jokes_large {
+        
+    }
 }

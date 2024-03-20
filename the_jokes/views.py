@@ -72,9 +72,10 @@ def joke_edit(request, title):
     edit_joke_form = EditJokeForm(instance=joke)
     
     if request.method == "POST":
-        edit_joke_form = EditJokeForm(request.POST, request.FILES)
+        edit_joke_form = EditJokeForm(request.POST, request.FILES, instance=joke)
 
         if edit_joke_form.is_valid() and joke.creator == request.user:
+            joke.creator_id = request.user.id
             joke = edit_joke_form.save(commit=False)
             joke.status=0
             joke.save()

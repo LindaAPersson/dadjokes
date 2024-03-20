@@ -9,13 +9,14 @@
     <div class="card">
       <h4># {{joke.title}}</h4>
       <p id="joke{{ joke.joke_text }}">{{ joke.joke_text | safe }}</p>
-      <p><span> 
-        {% if "placeholder" in joke.creator_image.url %}
-        <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
-        {% else %}
-        <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-        {% endif %}</span>
-      </span>Author: {{joke.creator}}</p>
+      <p><span>
+          {% if "placeholder" in joke.creator_image.url %}
+          <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
+            alt="placeholder">
+          {% else %}
+          <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+          {% endif %}</span>
+        </span>Author: {{joke.creator}}</p>
       <p>Made: {{joke.created_on}}</p>
 
       {% if user.is_authenticated and joke.creator == user %}

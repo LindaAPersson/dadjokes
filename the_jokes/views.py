@@ -19,11 +19,13 @@ def category(request, name):
     try:
         category = Category.objects.get(name=name)
         jokes = Joke.objects.filter(status=1, category=category)
+        categories = Category.objects.all()
         return render(request, 'the_jokes/category.html',
-        {
-            'jokes': jokes,
-            'category': category
-        })
+                      {
+                        'jokes': jokes,
+                         'category': category, 
+                         'categories': categories
+                      })
         
     except:
         messages.add_message(
@@ -116,6 +118,7 @@ def joke_detail(request, title):
     likes = get_object_or_404(Joke, title=title)
     total_likes = likes.total_likes()
     likes_count = total_likes
+
 
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)

@@ -18,6 +18,12 @@
                 <a class='dropdown-trigger btn deep-orange accent-1' href='#' data-target='dropdown1'>Categories!</a>
 
                 <!-- Dropdown Structure -->
+                <select name="category" id="category">
+                {% for cat in category %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+                </select>
+
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a href="{% url 'the_jokes_page' %}">All</a></li>
                     <li class="divider" tabindex="-1"></li>

@@ -30,7 +30,7 @@
 <body>
     <!-- navbar desktop -->
     <nav>
-        <div class="nav-wrapper deep-orange accent-1">
+        <div class="nav-wrapper nav-sticky deep-orange accent-1">
             <a href="{% url 'home' %}" class="brand-logo">DADJOKES</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
@@ -124,6 +124,14 @@
             </div>
         </div>
     </footer>
+<!-- materlize toasts (alert messages) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% for message in messages %}
+                M.toast({html: '{{ message }}', classes: '{{ message.tags }}'});
+            {% endfor %}
+        });
+    </script>
 
     <!--Materialize JS-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>

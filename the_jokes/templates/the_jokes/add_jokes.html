@@ -7,23 +7,27 @@
 
 <body id="bg-img-pages" class="responsive-img">
   <div class="row">
-    <div class="card">
-      {% if user.is_authenticated %}
-      <h4>Add joke:</h4>
-      <p>Posting as: {{ user.username }}</p>
-      <form method="post" enctype="multipart/form-data">
-        {{ joke_form }}
-        {% csrf_token %}
-        <div class="input-field"></div>
-        <button type="submit" class="btn-small  deep-orange accent-1"></a>Submit</button>
-      </form>
+    <div class="col s12 m8 offset-m2">
+      <div class="card">
+        {% if user.is_authenticated %}
+        <h4>Add joke:</h4>
+        <p>Posting as: {{ user.username }}</p>
+        <form method="post" enctype="multipart/form-data">
+          {{ joke_form }}
+          {% csrf_token %}
+          <div class="input-field"></div>
+          <button type="submit" class="btn-small  deep-orange accent-1"></a>Submit</button>
+        </form>
         {% else %}
-          <p>Log in to add a joke </p>
+        <p>Log in to add a joke </p>
         {% endif %}
+      </div>
     </div>
   </div>
 </body>
+
+
 {% endblock %}
 {% block script %}
 <script src=" {% static 'js/jokes.js' %}"></script>
-          {% endblock %}
+{% endblock %}

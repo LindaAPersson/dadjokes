@@ -46,7 +46,7 @@ def add_joke(request):
             joke.creator = request.user
             joke.title = next_title
             joke_form.save()
-            messages.add_message(request, messages.SUCCESS, 'Joke Updated but waiting on approval!')
+            messages.add_message(request, messages.SUCCESS, 'Joke commited but waiting on approval!')
             return redirect('home')
         else:
             messages.add_message(request, messages.ERROR, 'Error adding joke!')

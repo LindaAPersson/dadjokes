@@ -6,33 +6,38 @@
 
 <body id="bg-img-pages" class="responsive-img">
   <div class="row">
-    <div class="card">
-      <h4># {{joke.title}}</h4>
-      <p id="joke{{ joke.joke_text }}">{{ joke.joke_text | safe }}</p>
-      <p><span>
-          {% if "placeholder" in joke.creator_image.url %}
-          <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
-            alt="placeholder">
-          {% else %}
-          <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-          {% endif %}</span>
-        </span>Author: {{joke.creator}}</p>
-      <p>Made: {{joke.created_on}}</p>
+    <div class="col s12 m8 offset-m2">
+      <div class="card">
+        <h4># {{joke.title}}</h4>
+        <p id="joke{{ joke.joke_text }}">{{ joke.joke_text | safe }}</p>
+        <p><span>
+            {% if "placeholder" in joke.creator_image.url %}
+            <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
+              alt="placeholder">
+            {% else %}
+            <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+            {% endif %}</span>
+          </span>Author: {{joke.creator}}</p>
+        <p>Made: {{joke.created_on}}</p>
 
-      {% if user.is_authenticated and joke.creator == user %}
-      <h4>Edit joke:</h4>
-      <p>Posting as: {{ user.username }}</p>
-      <form id="EditJokeForm" method="post" enctype="multipart/form-data">
-        {{ edit_joke_form }}
-        {% csrf_token %}
-        <button id="submitButton" type="submit" class="btn-small  orange lighten-1 btn-edit"></a>Edit</button>
-        <button data-target="modal2" class="btn-small deep-orange modal-trigger btn-delete" joke_id="{{ joke.id }}">Delete</button>
-      </form>
-      {% else %}
-      <p>Log in to add a joke </p>
+        {% if user.is_authenticated and joke.creator == user %}
+        <h4>Edit joke:</h4>
+        <p>Posting as: {{ user.username }}</p>
+        <form id="EditJokeForm" method="post" enctype="multipart/form-data">
+          {{ edit_joke_form }}
+          {% csrf_token %}
+          <br>
+          <div class="form_buttons">
+          <button id="submitButton" type="submit" class="btn-small  orange lighten-1 btn-edit"></a>Edit</button>
+          <button data-target="modal2" class="btn-small deep-orange modal-trigger btn-delete"
+            joke_id="{{ joke.id }}">Delete</button>
+          </div>
+        </form>
+        {% else %}
+        <p>Log in to add a joke </p>
 
-      {% endif %}
-
+        {% endif %}
+      </div>
     </div>
   </div>
 

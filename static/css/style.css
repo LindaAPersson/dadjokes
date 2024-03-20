@@ -11,6 +11,12 @@ main {
     padding: 10px;
     
 }
+
+#nav-sticky{
+    position: sticky;
+    top: 0;
+}
+
 /* Backgrund img on index.html */
 #bg-img {
     background: url(../images/hat-591973_1920.jpg) no-repeat center/cover;
@@ -19,7 +25,7 @@ main {
 
 /* Background img on all other pages */
 #bg-img-pages {
-    background: url(../images/wood-2045380_1920.jpg) no-repeat center/cover;
+    background: url(../images/wood-2045380_1920.jpg) center/cover;
     height: 100vh;
 }
 
@@ -81,11 +87,14 @@ main {
 }
 
 /* Django messages */
-.message {
-    color: white;
-
+.alert {
+    display: none;
 }
 
 .page-link {
     color: white;
+}
+
+.form_buttons {
+    padding-top: 10px;
 }

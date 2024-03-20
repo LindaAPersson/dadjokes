@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.FormSelect.init(elems,);
 });
 
+/**
+ * Materlize tooltip, "comments above the buttons"
+ */
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.tooltipped');
   var instances = M.Tooltip.init(elems);

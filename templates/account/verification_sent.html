@@ -1,12 +1,23 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Verify Your Email Address" %}{% endblock head_title %}
 
 {% block content %}
-    <h1>{% trans "Verify Your Email Address" %}</h1>
 
-    <p>{% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}</p>
+<body id="bg-img-pages" class="responsive-img">
+    <div class="row">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <div class="card">
+                <h1>{% trans "Verify Your Email Address" %}</h1>
 
+                <p>{% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize
+                    the signup process. If you do not see the verification email in your main inbox, check your spam
+                    folder. Please contact us if you do not receive the verification email within a few minutes.{%
+                    endblocktrans %}</p>
+            </div>
+        </div>
+    </div>
+</body>
 {% endblock content %}

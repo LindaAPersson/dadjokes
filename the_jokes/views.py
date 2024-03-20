@@ -12,6 +12,11 @@ class JokeList(generic.ListView):
     queryset = Joke.objects.filter(status=1)
     template_name = "the_jokes/the_jokes.html"
     paginate_by = 1
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
        
 def category(request, name):
@@ -20,13 +25,14 @@ def category(request, name):
         category = Category.objects.get(name=name)
         jokes = Joke.objects.filter(status=1, category=category)
         categories = Category.objects.all()
-        return render(request, 'the_jokes/category.html',
-                      {
-                        'jokes': jokes,
-                         'category': category, 
-                         'categories': categories
-                      })
-        
+        return render(
+            request, 
+            'the_jokes/category.html',
+            {
+                'jokes': jokes,
+                'category': category, 
+                'categories': categories
+            })    
     except:
         messages.add_message(
                 request, messages.SUCCESS,

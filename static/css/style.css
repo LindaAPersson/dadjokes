@@ -17,6 +17,10 @@ main {
     top: 0;
 }
 
+.nav-wrapper {
+    padding-left: 10px;
+}
+
 /* Backgrund img on index.html */
 #bg-img {
     background: url(../images/hat-591973_1920.jpg) no-repeat center/cover;

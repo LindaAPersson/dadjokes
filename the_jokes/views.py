@@ -19,22 +19,18 @@ def category(request, name):
     try:
         category = Category.objects.get(name=name)
         jokes = Joke.objects.filter(status=1, category=category)
-        render(request, 'the_jokes/category.html',
+        return render(request, 'the_jokes/category.html',
         {
             'jokes': jokes,
             'category': category
         })
-        render(request, 'the_jokes/the_jokes.html',
-        {
-            'category': category
-        })
-        return HttpResponse(combined_content)
+        
     except:
         messages.add_message(
                 request, messages.SUCCESS,
                 "That category dosen't excist"
             )
-        return redirect('home')
+        return redirect('the_jokes_page')
 
 
 def add_joke(request):

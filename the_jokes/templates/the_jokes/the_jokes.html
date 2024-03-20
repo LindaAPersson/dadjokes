@@ -16,20 +16,14 @@
 
                 <!-- Dropdown Trigger -->
                 <a class='dropdown-trigger btn deep-orange accent-1' href='#' data-target='dropdown1'>Categories!</a>
-
+                
                 <!-- Dropdown Structure -->
-                <select name="category" id="category">
-                {% for cat in category %}
-                    <option value="{{ category.id }}">{{ category.name }}</option>
-                {% endfor %}
-                </select>
-
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="{% url 'the_jokes_page' %}">All</a></li>
+                <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
+                    <li><a href="{% url 'the_jokes_page' %}" class="white-text">All</a></li>
                     <li class="divider" tabindex="-1"></li>
-                    <li><a href="{% url 'category' 'classics' %}">Classics</a></li>
+                    <li><a href="{% url 'category' 'classics' %}" class="white-text">Classics</a></li>
                     <li class="divider" tabindex="-1"></li>
-                    <li><a href="{% url 'category' 'knock_knock' %}">Knock-Knock</a></li>
+                    <li><a href="{% url 'category' 'knock_knock' %}" class="white-text">Knock-Knock</a></li>
                 </ul>
 
                 {% for joke in joke_list %}

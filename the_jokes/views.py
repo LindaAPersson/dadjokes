@@ -7,16 +7,13 @@ from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm
 
 # Create your views here.
 
-class JokeList(generic.ListView):
+
+def JokeList(request):
 
     queryset = Joke.objects.filter(status=1)
-    template_name = "the_jokes/the_jokes.html"
-    paginate_by = 1
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        return context
+    return render(request, "the_jokes/the_jokes.html", {
+        'queryset': queryset
+    })
 
        
 def category(request, name):

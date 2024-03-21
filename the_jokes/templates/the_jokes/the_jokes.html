@@ -26,7 +26,7 @@
                     {% endfor %}
                 </ul>
             
-                {% for joke in joke_list %}
+                {% for joke in queryset %}
                 
                     <h4># {{joke.title}}</h4>
                     <p>{{joke.joke_text | safe}}</p>
@@ -43,9 +43,10 @@
                     {% if user.is_authenticated and joke.creator == user %}
                     <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
                     {% endif %}
-                 
+                    <hr>
+                {% endfor %} 
                   
-                {% endfor %}
+                
             
 
                 <!-- next button -->

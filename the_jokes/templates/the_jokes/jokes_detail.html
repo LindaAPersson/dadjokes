@@ -11,9 +11,18 @@
     </div>
   </div>
 
+  
+
+
+
+
+
+
+
   <div class="row">
     <div class="col s12 m8 offset-m2">
       <div class="card">
+        
         <h4># {{joke.title}}</h4>
         <p>{{joke.joke_text | safe}}</p>
         {% if "placeholder" in joke.creator_image.url %}
@@ -23,6 +32,8 @@
         {% endif %}
         </span>Author: {{joke.creator}}</p>
         <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
+
+        
 
         <!-- Displaying likes -->
 

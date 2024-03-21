@@ -44,6 +44,33 @@
                     <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
                     {% endif %}
                     <hr>
+
+                    <h5 class="card-title">Avg rating:
+                        <span class="fa fa-star {% if joke.average_rating > 0 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if joke.average_rating > 1 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if joke.average_rating > 2 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if joke.average_rating > 3 %} checked {% endif %}"></span>
+                        <span class="fa fa-star {% if joke.average_rating > 4 %} checked {% endif %}"></span>
+                    </h5>
+                    <ul class="btn btn-light list-inline rating-list">
+                        <li class="rate-star" data-rating="5" data-joke-id="{{ joke.id }}">
+                            <i class="fa fa-star {% if joke.user_rating > 4 %} checked {% endif %}" title="Rate 5"></i>
+                        </li>
+                        <li class="rate-star" data-rating="4" data-joke-id="{{ joke.id }}">
+                            <i class="fa fa-star {% if joke.user_rating > 3 %} checked {% endif %}" title="Rate 4"></i>
+                        </li>
+                        <li class="rate-star" data-rating="3" data-joke-id="{{ joke.id }}">
+                            <i class="fa fa-star {% if joke.user_rating > 2 %} checked {% endif %}" title="Rate 3"></i>
+                        </li>
+                        <li class="rate-star" data-rating="2" data-joke-id="{{ joke.id }}">
+                            <i class="fa fa-star {% if joke.user_rating > 1 %} checked {% endif %}" title="Rate 2"></i>
+                        </li>
+                        <li class="rate-star" data-rating="1" data-joke-id="{{ joke.id }}">
+                            <i class="fa fa-star {% if joke.user_rating > 0 %} checked {% endif %}" title="Rate 1"></i>
+                        </li>
+                    </ul>
+
+
                 {% endfor %} 
                   
                 
@@ -65,7 +92,20 @@
         </div>
     </div>
 </body>
-    
+<script>
+    const rate = (rating, joke_id) => {
+        fetch(`/rate/${joke_id}/${rating}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(rest => {
+            window.location.reload();
+            // you may want to update the rating here
+            // to simplify stuff, I just reload the page
+        })
+    }
+</script>    
 <!-- jokes.html content ends here -->
 {% endblock %}
 {% block script %}

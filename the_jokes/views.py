@@ -8,13 +8,10 @@ from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm
 # Create your views here.
 
 def JokeList(request):
-    
     queryset = Joke.objects.filter(status=1)
     
     for joke in queryset:
-       
-        rating = Rating.objects.filter(joke=joke, creator=request.user.id).first()
-        
+        rating = Rating.objects.filter(joke=joke, creator=request.user).first()
         joke.user_rating = rating.rating if rating else 0
         
     categories = Category.objects.all()
@@ -22,17 +19,16 @@ def JokeList(request):
     return render(request, "the_jokes/the_jokes.html", {
         'queryset': queryset,
         'categories': categories,
+        'rating': rating,
     })
 
-def rate(request, title, rating: int):
+def rate(request, title, rating):
     
-    joke = Joke.objects.get(title=title)
+    joke = Joke.objects.get(id=joke_id)
+    Rating.objects.filter(joke=joke, creator=request.user).delete()
+    joke.rating_set.create(creator=request.user, rating=rating)
     
-    Rating.objects.filter(joke=joke, creator=request.user.id).delete()
-   
-    Rating.objects.create(joke=joke, creator=request.user, rating=rating)
-    
-    return redirect('the_jokes_page')
+    return render(request,'the_jokes_page')
        
 def category(request, name):
     

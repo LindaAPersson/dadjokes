@@ -52,23 +52,27 @@ document.querySelectorAll('.rate-star').forEach(star => {
   star.addEventListener('click', function() {
       const rating = parseInt(this.getAttribute('data-rating'));
       const jokeId = parseInt(this.getAttribute('data-joke-id'));
+      console.log(`Rating: ${rating}, Joke ID: ${jokeId}`);
       rate(rating, jokeId);
   });
 });
 
-
-const rate = (rating, jokeId) => {
-  fetch(`/rate/${jokeId}/${rating}/`, {
+const rate = (user_rating, jokeId) => {
+  console.log('Sending rating request...');
+  fetch(`/rate/${jokeId}/${user_rating}/`, {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json'
       }
   }).then(response => {
-    if (response.status === 200) {
-        window.location.reload();
-    } else {
-        console.error('Failed to rate joke:', response.statusText);
-    }
-}).catch(error => {
-    console.error('Error rating joke:', error);
-  })};
+      console.log('Response received:', response);
+      if (response.status === 200) {
+          console.log('Rating successful, reloading page...');
+          window.location.reload();
+      } else {
+          console.error('Failed to rate joke:', response.statusText);
+      }
+  }).catch(error => {
+      console.error('Error rating joke:', error);
+  });
+};

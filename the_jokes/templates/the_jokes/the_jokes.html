@@ -45,28 +45,22 @@
                     {% endif %}
                     
 
-                    <h5 class="card-title">Avg rating:
-                        <span class="fa fa-star {% if joke.average_rating > 0 %} checked {% endif %}"></span>
-                        <span class="fa fa-star {% if joke.average_rating > 1 %} checked {% endif %}"></span>
-                        <span class="fa fa-star {% if joke.average_rating > 2 %} checked {% endif %}"></span>
-                        <span class="fa fa-star {% if joke.average_rating > 3 %} checked {% endif %}"></span>
-                        <span class="fa fa-star {% if joke.average_rating > 4 %} checked {% endif %}"></span>
-                    </h5>
+                    <h5 class="card-title">Avg rating:{{ average_rating }}</h5>
                     {% if user.is_authenticated %}
                     <ul class="btn btn-light list-inline rating-list">
-                        <li class="rate-star" data-rating="5" data-joke-id="{{ joke.id }}">
-                            <i class="fa fa-star {% if joke.user_rating > 4 %} checked {% endif %}" title="Rate 5"></i>
+                        <li onclick="rate(5, {{ joke.id }})">
+                            <i class="fa fa-star {% if joke.user_rating > 4 %} checked {% endif %}" title="Rate 5"></i></li>
                         </li>
-                        <li class="rate-star" data-rating="4" data-joke-id="{{ joke.id }}">
+                        <li class="rate-star" data-rating="4" data-joke-id="{{ joke.title  }}">
                             <i class="fa fa-star {% if joke.user_rating > 3 %} checked {% endif %}" title="Rate 4"></i>
                         </li>
-                        <li class="rate-star" data-rating="3" data-joke-id="{{ joke.id }}">
+                        <li class="rate-star" data-rating="3" data-joke-id="{{ joke.title }}">
                             <i class="fa fa-star {% if joke.user_rating > 2 %} checked {% endif %}" title="Rate 3"></i>
                         </li>
-                        <li class="rate-star" data-rating="2" data-joke-id="{{ joke.id }}">
+                        <li class="rate-star" data-rating="2" data-joke-id="{{ joke.title  }}">
                             <i class="fa fa-star {% if joke.user_rating > 1 %} checked {% endif %}" title="Rate 2"></i>
                         </li>
-                        <li class="rate-star" data-rating="1" data-joke-id="{{ joke.id }}">
+                        <li class="rate-star" data-rating="1" data-joke-id="{{ joke.title }}">
                             <i class="fa fa-star {% if joke.user_rating > 0 %} checked {% endif %}" title="Rate 1"></i>
                         </li>
                     </ul>
@@ -93,7 +87,7 @@
         </div>
     </div>
 </body>
-  
+
 <!-- jokes.html content ends here -->
 {% endblock %}
 {% block script %}

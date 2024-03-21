@@ -11,6 +11,6 @@ urlpatterns = [
     path('the_jokes/<title>/delete_comment/<int:comment_id>', views.comment_delete, name='delete_comment'),
     path('the_jokes/<title>/<int:joke_id>', views.like_joke, name='like_jokes'),
     path('category/<str:name>', views.category, name='category'),
-    path('rate/<title>/<int:rating>/', views.rate, name ='rate')
+    path('rate/<joke_id>/<int:user_rating>/', views.rate, name ='rate')
     
 ]

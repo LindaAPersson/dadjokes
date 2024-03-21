@@ -33,13 +33,19 @@ class Joke(models.Model):
     def total_likes(self):
         return self.likes.count()
     
-    def average_rating(self) -> float:
-        return Rating.objects.filter(post=self).aggregate(Avg("ratings"))["rating__avg"] or 0
+    def average_rating(self):
+
+        rate = Rating.objects.filter(rating=self).aggregate(avarage=Avg('ratings'))
+        avg=0
+        if rate["avarage"] is not None:
+            avg=float(rate["avarage"])
+        return avg
 
 class Rating(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rating_creator")
     joke = models.ForeignKey(Joke, on_delete=models.CASCADE, related_name="rating_joke")
     rating = models.IntegerField(default=0)
+
 
 class Comment(models.Model):
     joke_text = models.ForeignKey(Joke, on_delete=models.CASCADE, related_name="comments_text")

@@ -8,30 +8,30 @@ from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm
 # Create your views here.
 
 def JokeList(request):
-    print("Entering JokeList view")  # Print statement to indicate the start of the view
+    
     queryset = Joke.objects.filter(status=1)
-    print("Queryset:", queryset)  # Print the queryset to verify it contains the expected data
+    
     for joke in queryset:
-        print("Processing joke:", joke)  # Print statement to indicate processing of each joke
-        rating = Rating.objects.filter(joke=joke, creator=request.user).first()
-        print("Rating:", rating)  # Print the rating to verify it's retrieved correctly
+       
+        rating = Rating.objects.filter(joke=joke, creator=request.user.id).first()
+        
         joke.user_rating = rating.rating if rating else 0
-        print("User rating for joke:", joke.user_rating)  # Print the user rating for the joke
+        
     categories = Category.objects.all()
-    print("Categories:", categories)  # Print the categories to verify they are retrieved correctly
+   
     return render(request, "the_jokes/the_jokes.html", {
         'queryset': queryset,
         'categories': categories,
     })
 
 def rate(request, title, rating: int):
-    print("Entering rate view")  # Print statement to indicate the start of the view
+    
     joke = Joke.objects.get(title=title)
-    print("Joke:", joke)  # Print the joke to verify it's retrieved correctly
-    Rating.objects.filter(title=title, user=request.user).delete()
-    print("Existing rating deleted")  # Print statement to indicate deletion of existing rating
-    joke.jokerating_set.create(user=request.user, rating=rating)
-    print("New rating created")  # Print statement to indicate creation of new rating
+    
+    Rating.objects.filter(joke=joke, creator=request.user.id).delete()
+   
+    Rating.objects.create(joke=joke, creator=request.user, rating=rating)
+    
     return redirect('the_jokes_page')
        
 def category(request, name):

@@ -34,7 +34,7 @@ class Joke(models.Model):
         return self.likes.count()
     
     def average_rating(self) -> float:
-        return Rating.objects.filter(post=self).aggregate(Avg("rating"))["rating__avg"] or 0
+        return Rating.objects.filter(post=self).aggregate(Avg("ratings"))["rating__avg"] or 0
 
 class Rating(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rating_creator")

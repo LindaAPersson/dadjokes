@@ -20,6 +20,8 @@
 
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
+                    <li><a href="{% url 'the_jokes_page' %}" class="white-text">all jokes</a></li>
+                    <li class="divider" tabindex="-1"></li>
                     {% for cat in categories %}
                     <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
                     <li class="divider" tabindex="-1"></li>

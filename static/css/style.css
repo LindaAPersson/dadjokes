@@ -56,7 +56,6 @@ main {
 
 /* creator image */
 .creator_image {
-    
     width: 10vw;
 }
 
@@ -104,10 +103,9 @@ main {
 }
 
 @media screen and (min-width: 1200px) {
-    
 
     /* creator image */
     .creator_image {
-    width: 5vw;
+        width: 5vw;
     }
 }

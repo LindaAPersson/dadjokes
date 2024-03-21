@@ -21,9 +21,9 @@
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
                     {% for cat in categories %}
-                    <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    {% endfor %}
+                        <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                    {% endfor%}
                 </ul>
             
                 {% for joke in queryset %}
@@ -32,9 +32,9 @@
                     <p>{{joke.joke_text | safe}}</p>
                 
                     {% if "placeholder" in joke.creator_image.url %}
-                        <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image" alt="placeholder">
+                        <img src="{% static 'images/placeholder.jpg' %}" class="circle responsive-img creator_image" alt="placeholder">
                     {% else %}
-                        <img src="{{ joke.creator_image.url }}" class="circle creator_image">
+                        <img src="{{ joke.creator_image.url }}" class="circle responsive-img creator_image">
                     {% endif %}
                     </span>Author: {{joke.creator}}</p>
                     <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>

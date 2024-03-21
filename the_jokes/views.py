@@ -7,13 +7,14 @@ from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm
 
 # Create your views here.
 
-
 def JokeList(request):
 
     queryset = Joke.objects.filter(status=1)
+    categories = Category.objects.all()
     return render(request, "the_jokes/the_jokes.html", {
-        'queryset': queryset
-    })
+        'queryset': queryset,
+        'categories': categories,
+    }) 
 
        
 def category(request, name):
@@ -37,6 +38,7 @@ def category(request, name):
             )
         return redirect('the_jokes_page')
 
+      
 
 def add_joke(request):
     last_joke = Joke.objects.order_by('-id').first()

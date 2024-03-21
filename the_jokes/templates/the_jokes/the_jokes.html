@@ -7,82 +7,72 @@
     <!-- add jokes button -->
     <div class="row">
         <div class="col s2 m7 l6 offset-l3">
-        <a class="btn tooltipped deep-orange accent-1" data-position="right" data-tooltip="Add your own joke!" href="{% url 'add_jokes' %}">+</a>   
+            <a class="btn tooltipped deep-orange accent-1" data-position="right" data-tooltip="Add your own joke!"
+                href="{% url 'add_jokes' %}">+</a>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
             <div class="card">
 
                 <!-- Dropdown Trigger -->
                 <a class='dropdown-trigger btn deep-orange accent-1' href="#" data-target='dropdown1'>Categories!</a>
-                
+
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
                     {% for cat in categories %}
-                        <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
-                        <li class="divider" tabindex="-1"></li>
+                    <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
+                    <li class="divider" tabindex="-1"></li>
                     {% endfor%}
                 </ul>
-            
-                {% for joke in queryset %}
-                
-                    <h4># {{joke.title}}</h4>
-                    <p>{{joke.joke_text | safe}}</p>
-                
-                    {% if "placeholder" in joke.creator_image.url %}
-                        <img src="{% static 'images/placeholder.jpg' %}" class="circle responsive-img creator_image" alt="placeholder">
-                    {% else %}
-                        <img src="{{ joke.creator_image.url }}" class="circle responsive-img creator_image">
-                    {% endif %}
-                    </span>Author: {{joke.creator}}</p>
-                    <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
-                    
-                    <span><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i class="far fa-comments"></i></a></span>
-                    {% if user.is_authenticated and joke.creator == user %}
-                    <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
-                    {% endif %}
-                    
 
-                    <h5 class="card-title">Avg rating:{{ average_rating }}</h5>
-                    {% if user.is_authenticated %}
-                    <ul class="btn btn-light list-inline rating-list">
-                        <li onclick="rate(5, {{ joke.id }})">
-                            <i class="fa fa-star {% if joke.user_rating > 4 %} checked {% endif %}" title="Rate 5"></i></li>
-                        </li>
-                        <li class="rate-star" data-rating="4" data-joke-id="{{ joke.title  }}">
-                            <i class="fa fa-star {% if joke.user_rating > 3 %} checked {% endif %}" title="Rate 4"></i>
-                        </li>
-                        <li class="rate-star" data-rating="3" data-joke-id="{{ joke.title }}">
-                            <i class="fa fa-star {% if joke.user_rating > 2 %} checked {% endif %}" title="Rate 3"></i>
-                        </li>
-                        <li class="rate-star" data-rating="2" data-joke-id="{{ joke.title  }}">
-                            <i class="fa fa-star {% if joke.user_rating > 1 %} checked {% endif %}" title="Rate 2"></i>
-                        </li>
-                        <li class="rate-star" data-rating="1" data-joke-id="{{ joke.title }}">
-                            <i class="fa fa-star {% if joke.user_rating > 0 %} checked {% endif %}" title="Rate 1"></i>
-                        </li>
-                    </ul>
-                    {% endif %}
-                    <hr>
-                {% endfor %} 
-                
-                
-            
+                {% for joke in queryset %}
+
+                <h4># {{joke.title}}</h4>
+                <p>{{joke.joke_text | safe}}</p>
+
+                {% if "placeholder" in joke.creator_image.url %}
+                <img src="{% static 'images/placeholder.jpg' %}" class="circle responsive-img creator_image"
+                    alt="placeholder">
+                {% else %}
+                <img src="{{ joke.creator_image.url }}" class="circle responsive-img creator_image">
+                {% endif %}
+                </span>Author: {{joke.creator}}</p>
+                <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
+
+                <span><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="View comments!"
+                        href="{% url 'jokes_detail' joke.title %}"><i class="far fa-comments"></i></a></span>
+                {% if user.is_authenticated and joke.creator == user %}
+                <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!"
+                        href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
+                {% endif %}
+                <h5 class="card-title">Avg rating: {{ joke.average_rating }}</h5>
+                <form method="post" action="{% url 'rate' joke.id %}">
+                    {% csrf_token %}
+                    <input type="number" name="rating" min="1" max="5" required>
+                    <button type="submit">Rate</button>
+                </form>
+                <hr>
+                {% endfor %}
+
+
+
 
                 <!-- next button -->
 
                 {% if is_paginated %}
                 <ul class="pagination center-align">
                     {% if page_obj.has_previous %}
-                    <li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i
+                                class="material-icons">chevron_left</i></a></li>
                     {% endif %}
                     {% if page_obj.has_next %}
-                    <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i
+                                class="material-icons">chevron_right</i></a></li>
                     {% endif %}
                     {% endif %}
-                  </ul>
+                </ul>
             </div>
         </div>
     </div>

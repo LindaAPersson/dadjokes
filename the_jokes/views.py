@@ -3,33 +3,38 @@ from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Joke, Comment, Category, Rating
-from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm
+from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm, RateForm
 
 # Create your views here.
 
 def JokeList(request):
-    queryset = Joke.objects.filter(status=1)
-    
-    for joke in queryset:
-        rating = Rating.objects.filter(joke=joke, creator=request.user).first()
-        joke.user_rating = rating.rating if rating else 0
-        
+    queryset = Joke.objects.filter(status=1)     
     categories = Category.objects.all()
+
+    for joke in queryset:
+        joke.average_rating = joke.average_rating()
    
     return render(request, "the_jokes/the_jokes.html", {
         'queryset': queryset,
         'categories': categories,
-        'rating': rating,
+        
+        
     })
 
-def rate(request, title, rating):
-    
-    joke = Joke.objects.get(id=joke_id)
-    Rating.objects.filter(joke=joke, creator=request.user).delete()
-    joke.rating_set.create(creator=request.user, rating=rating)
-    
-    return render(request,'the_jokes_page')
-       
+def rate(request, title):
+    joke = get_object_or_404(Joke, title=title)
+
+    if request.method == 'POST':
+        joke = get_object_or_404(Joke, title=title)
+        rating_value = int(request.POST.get('rating'))  
+        rating, created = Rating.objects.get_or_create(creator=request.user, joke=joke)
+        rating.rating = rating_value
+        rating.save()
+        return HttpResponseRedirect(reverse('the_jokes_page')) 
+    else:
+        messages.add_message(request, messages.ERROR, 'Error adding rating!')
+        return HttpResponseRedirect(reverse('the_jokes_page'))
+
 def category(request, name):
     
     try:
@@ -155,7 +160,7 @@ def joke_detail(request, title):
     liked = False
     if likes.likes.filter(id=request.user.id).exists():
         liked = True
-
+        
     return render(
         request,
         "the_jokes/jokes_detail.html",

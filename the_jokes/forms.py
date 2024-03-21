@@ -1,4 +1,4 @@
-from .models import Comment, Joke, Category
+from .models import Comment, Joke, Category, Rating
 from django import forms
 
 class JokeForm(forms.ModelForm):
@@ -24,6 +24,11 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('comment_text',)
+
+class RateForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ('rating',)
 
 
 

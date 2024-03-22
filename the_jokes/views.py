@@ -47,27 +47,25 @@ def rate(request, title):
         return HttpResponseRedirect(reverse('the_jokes_page'))
 
 def category(request, name):
+    categories = Category.objects.all()
     age_form = AgeForm(request.GET or None)
-    jokes_found = True  # Default to True assuming jokes are found
     
     if age_form.is_valid():
         age_approved = age_form.cleaned_data.get('age_approved')
-        category_id = request.GET.get('category')
-
-        if age_approved:
-            queryset = queryset.filter(age_approved=True)
+        category = Category.objects.get(name=name)
         
-        if category_id:
-            queryset = queryset.filter(category_id=category_id)
+        jokes = Joke.objects.filter(status=1, category=category)
+        
+        if age_approved:
+            jokes = jokes.filter(age_approved=True)
+    else:
+        category = Category.objects.get(name=name)
+        jokes = Joke.objects.filter(status=1, category=category)
     
     try:
         category = Category.objects.get(name=name)
-        jokes = Joke.objects.filter(status=1, category=category)
-        
-        if not jokes:
-            jokes_found = False
-        
-        categories = Category.objects.all()
+        categories = Category.objects.all()  
+
         return render(
             request, 
             'the_jokes/category.html',
@@ -75,15 +73,14 @@ def category(request, name):
                 'jokes': jokes,
                 'category': category, 
                 'categories': categories,
-                'age_form': age_form,
-                'jokes_found': jokes_found  # Pass the flag to the template
+                'age_form': age_form
             })    
-    except:
+    except Category.DoesNotExist:
         messages.add_message(
                 request, messages.SUCCESS,
                 "That category doesn't exist"
             )
-        return redirect('category')
+        return redirect('the_jokes_page')
 
       
 

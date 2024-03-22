@@ -29,7 +29,10 @@
                 </ul>
 
                 <!-- Age approved switch -->
-                <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get">
+                <form id="filterForm" action="{% url 'category' category.name %}" method="get">
+                    <!-- Hidden input field to store the selected category ID -->
+                    <input type="hidden" name="category" value="{{ category.id }}">
+                
                     <div class="switch">
                         <label>
                             <span>All jokes</span>
@@ -40,7 +43,8 @@
                     </div>
                     {% csrf_token %}
                 </form>
-                {% if jokes_found %}
+
+                {% if jokes %}
                     {% for joke in jokes %}
                     <!-- Age approved lable -->
 
@@ -74,7 +78,7 @@
                     <hr>
                     {% endfor %}
                 {% else %}
-                <p>No jokes found.</p>
+                    <p>No jokes available.</p>
                 {% endif %}
 
                 <!-- next button -->

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Joke, Comment, Category
+from .models import Joke, Comment, Category, Rating
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
@@ -25,3 +25,8 @@ class CommentAdmin(SummernoteModelAdmin):
 class Category(admin.ModelAdmin):
     list_display = ['name', 'id']
     summernote_fields = ('name',)
+
+
+@admin.register(Rating)
+class RatingAdmin(admin.ModelAdmin):
+    list_display = ['creator', 'joke']

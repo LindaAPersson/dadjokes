@@ -47,12 +47,15 @@
                 <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!"
                         href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
                 {% endif %}
-                <h5 class="card-title">Avg rating: {{ joke.average_rating }}</h5>
-                <form method="post" action="{% url 'rate' joke.id %}">
+                <p>Avg rating: {{ joke.average_rating }}<p>
+                    {% if user.is_authenticated %}
+                <form method="post" action="{% url 'rate' joke.title %}">
+                    
                     {% csrf_token %}
                     <input type="number" name="rating" min="1" max="5" required>
                     <button type="submit">Rate</button>
                 </form>
+                {% endif %}
                 <hr>
                 {% endfor %}
 

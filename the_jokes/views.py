@@ -22,10 +22,11 @@ def JokeList(request):
     })
 
 def rate(request, title):
-    joke = get_object_or_404(Joke, title=title)
+    queryset = Joke.objects.filter(status=1)
+    joke = get_object_or_404(queryset, title=title)
 
     if request.method == 'POST':
-        joke = get_object_or_404(Joke, title=title)
+        joke = get_object_or_404(queryset, title=title)
         rating_value = int(request.POST.get('rating'))  
         rating, created = Rating.objects.get_or_create(creator=request.user, joke=joke)
         rating.rating = rating_value

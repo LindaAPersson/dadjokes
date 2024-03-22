@@ -98,6 +98,11 @@ main {
     color: white;
 }
 
+/* joke box */
+.joke_box {
+    border: solid rgb(125, 123, 123);
+    padding: 5px;
+}
 .form_buttons {
     padding-top: 10px;
 }
@@ -113,6 +118,25 @@ main {
     width: 10vw;
 }
 
+/* age approvel */
+.age_green {
+    background: rgb(73, 155, 120);
+}
+
+.age_red {
+    background: rgb(198, 141, 141);
+}
+
+.age_box {
+    border: solid rgb(125, 123, 123);
+    padding: 5px;
+}
+
+/* label box */
+.label_box {
+    border: solid rgb(125, 123, 123);
+    padding: 5px;
+}
 
 @media screen and (min-width: 1200px) {
 

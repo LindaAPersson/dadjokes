@@ -27,7 +27,7 @@
                     {% endfor%}
                 </ul>
             <!-- Age approved switch -->
-                <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get">
+                <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get" class="age_box">
                     <div class="switch">
                     <label>
                         <span>All jokes</span>
@@ -40,7 +40,7 @@
                 </form>
 
                 <!-- labels -->
-                <form method="get">
+                <form method="get" class="label_box">
                     <p>Filter by Label:</p>
                     {% for label in labels %}
                     <label>
@@ -52,16 +52,17 @@
                     <input type="hidden" name="age_approved" value="{{ request.GET.age_approved }}">
                 </form>
 
+                <div class="joke_box">
+                <!-- agelabels -->
                 {% if queryset %}
                 {% for joke in queryset %}
                 {% if joke.age_approved %}
-                <span class="badge green">Age Approved</span>
+                <span class="badge age_green">Age Approved</span>
                 {% else %}
-                <span class="badge red">Not Age Approved</span>
+                <span class="badge age_red">Not Age Approved</span>
                 {% endif %}
 
-
-
+                <!-- the joke -->
                 <h4># {{joke.title}}</h4>
                 <p>{{joke.joke_text | safe}}</p>
 
@@ -101,7 +102,7 @@
                 {% else %}
                     <p>No jokes available.</p>
                 {% endif %}
-
+            </div>
 
 
 

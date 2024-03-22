@@ -27,16 +27,18 @@
                     {% endfor%}
                 </ul>
 
-                <form action="{% url 'the_jokes_page' %}" method="get">
-                    
+                <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get">
+                    <div class="switch">
                     <label>
+                        <span>All jokes</span>
                         {{ age_form.age_approved }}
-                        <span>Age Approved Jokes Only</span>
+                        <span class="lever" onchange="applyFilter(this)"></span>
+                        <span>Age approved jokes</span>
                     </label>
-                    {% csrf_token %}
-                    <button type="submit">Apply Filter</button>
-                
                     
+                    
+                </div>
+                {% csrf_token %}
                 </form>
 
 
@@ -109,7 +111,14 @@
         </div>
     </div>
 </body>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ageApprovedSwitch = document.getElementById('id_age_approved');
+        ageApprovedSwitch.addEventListener('change', function() {
+            document.getElementById("filterForm").submit();
+        });
+    });
+</script>
 <!-- jokes.html content ends here -->
 {% endblock %}
 {% block script %}

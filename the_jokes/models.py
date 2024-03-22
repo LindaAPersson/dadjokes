@@ -8,6 +8,10 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+class Label(models.Model):
+    label_name = models.CharField(max_length=100)
+
+    
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -26,6 +30,7 @@ class Joke(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=2)
     ratings = models.ManyToManyField(User, through='Rating', related_name='rated_jokes')
     age_approved = models.BooleanField(default=False)
+    labels = models.ManyToManyField(Label, blank=True)
 
 
     class Meta:
@@ -52,3 +57,4 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ["created_on"]
+

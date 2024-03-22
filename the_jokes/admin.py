@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Joke, Comment, Category, Rating
+from .models import Joke, Comment, Category, Rating, Label
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
@@ -30,3 +30,7 @@ class Category(admin.ModelAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     list_display = ['creator', 'joke']
+
+@admin.register(Label)
+class LabelAdmin(admin.ModelAdmin):
+    list_display = ['label_name']

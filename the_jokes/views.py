@@ -2,23 +2,28 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from .models import Joke, Comment, Category, Rating
+from .models import Joke, Comment, Category, Rating, Label
 from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm, RateForm, AgeForm
 
 # Create your views here.
 
 def JokeList(request):
-    
-    queryset = Joke.objects.filter(status=1)     
+    queryset = Joke.objects.filter(status=1)
     categories = Category.objects.all()
     age_form = AgeForm(request.GET or None)
+    labels = Label.objects.all()
     
-    
+
     if age_form.is_valid():
         age_approved = age_form.cleaned_data.get('age_approved')
         if age_approved:
             queryset = queryset.filter(age_approved=True)
-        
+    
+
+    selected_labels = request.GET.getlist('label_name')
+    if selected_labels:
+        queryset = queryset.filter(labels__label_name__in=selected_labels)
+    
 
     for joke in queryset:
         joke.average_rating = joke.average_rating()
@@ -26,8 +31,8 @@ def JokeList(request):
     return render(request, "the_jokes/the_jokes.html", {
         'queryset': queryset,
         'categories': categories,
-        'age_form': age_form,     
-           
+        'age_form': age_form,
+        'labels': labels     
     })
 
 

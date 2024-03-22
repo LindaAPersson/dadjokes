@@ -30,7 +30,6 @@
 
                 <!-- Age approved switch -->
                 <form id="filterForm" action="{% url 'category' category.name %}" method="get">
-                    <!-- Hidden input field to store the selected category ID -->
                     <input type="hidden" name="category" value="{{ category.id }}">
                 
                     <div class="switch">
@@ -43,6 +42,8 @@
                     </div>
                     {% csrf_token %}
                 </form>
+
+                
 
                 {% if jokes %}
                     {% for joke in jokes %}
@@ -77,6 +78,7 @@
                     {% endif %}
                     <hr>
                     {% endfor %}
+                    
                 {% else %}
                     <p>No jokes available.</p>
                 {% endif %}

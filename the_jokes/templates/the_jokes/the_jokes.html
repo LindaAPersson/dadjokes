@@ -39,7 +39,19 @@
                 {% csrf_token %}
                 </form>
 
+                <!-- labels -->
+                <form method="get">
+                    <p>Filter by Label:</p>
+                    {% for label in labels %}
+                    <label>
+                        <input type="radio" name="label_name" value="{{ label.label_name }}"/>
+                        <span>{{ label.label_name }}</span>   
+                    </label>
+                    {% endfor %}
+                    <button type="submit">Apply Filter</button>
+                </form>
 
+                {% if queryset %}
                 {% for joke in queryset %}
                 {% if joke.age_approved %}
                 <span class="badge green">Age Approved</span>
@@ -85,6 +97,9 @@
                 </div>
                 <hr>
                 {% endfor %}
+                {% else %}
+                    <p>No jokes available.</p>
+                {% endif %}
 
 
 

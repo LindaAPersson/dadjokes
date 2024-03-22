@@ -5,7 +5,8 @@ class JokeForm(forms.ModelForm):
 
     class Meta:
         model = Joke
-        fields = ('joke_text', 'creator_image', 'category', )
+        fields = ('joke_text', 'creator_image', 'category', 'age_approved')
+        widgets = {'age_approved': forms.CheckboxInput(attrs={'class': 'filled-in'})}
     
 
 class EditJokeForm(forms.ModelForm):

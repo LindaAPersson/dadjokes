@@ -25,6 +25,7 @@ class Joke(models.Model):
     likes = models.ManyToManyField(User, blank=True, related_name='joke_likes') 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=2)
     ratings = models.ManyToManyField(User, through='Rating', related_name='rated_jokes')
+    age_approved = models.BooleanField(default=False)
 
 
     class Meta:

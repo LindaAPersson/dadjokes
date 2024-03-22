@@ -26,8 +26,14 @@
                     <li class="divider" tabindex="-1"></li>
                     {% endfor%}
                 </ul>
-
                 {% for joke in queryset %}
+                {% if joke.age_approved %}
+                <span class="badge green">Age Approved</span>
+            {% else %}
+                <span class="badge red">Not Age Approved</span>
+            {% endif %}
+
+                
 
                 <h4># {{joke.title}}</h4>
                 <p>{{joke.joke_text | safe}}</p>

@@ -32,6 +32,11 @@
         {% endif %}
         </span>Author: {{joke.creator}}</p>
         <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
+        {% if joke.age_approved %}
+                <span class="badge green">Age Approved</span>
+            {% else %}
+                <span class="badge red">Not Age Approved</span>
+            {% endif %}
 
         
 

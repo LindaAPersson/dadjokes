@@ -26,14 +26,30 @@
                     <li class="divider" tabindex="-1"></li>
                     {% endfor%}
                 </ul>
+
+                <form action="{% url 'the_jokes_page' %}" method="get">
+                    
+                    <label>
+                        {{ age_form.age_approved }}
+                        <span>Age Approved Jokes Only</span>
+                    </label>
+                    {% csrf_token %}
+                    <button type="submit">Apply Filter</button>
+                
+                    
+                </form>
+
+
+
+
                 {% for joke in queryset %}
                 {% if joke.age_approved %}
                 <span class="badge green">Age Approved</span>
-            {% else %}
+                {% else %}
                 <span class="badge red">Not Age Approved</span>
-            {% endif %}
+                {% endif %}
 
-                
+
 
                 <h4># {{joke.title}}</h4>
                 <p>{{joke.joke_text | safe}}</p>
@@ -48,24 +64,27 @@
                 <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
 
                 <div class="row jokes_interact_btn">
-                <div class="col s4 left-align"><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="View comments!"
-                        href="{% url 'jokes_detail' joke.title %}"><i class="far fa-comments"></i></a></div>
-                {% if user.is_authenticated and joke.creator == user %}
-                <div class="col s4"><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="Edit joke!"
-                        href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></div>
-                {% endif %}
-                <div class="col s4 right-align">
-                    <p>Avg rating: {{ joke.average_rating }}<p>
-                    {% if user.is_authenticated %}
-                    <form method="post" action="{% url 'rate' joke.title %}" class="rate_look center-align">
-                    {% csrf_token %}
-                    <input type="number" name="rating" min="1" max="5" required>
-                    <button type="submit" class="btn-small deep-orange accent-1">Rate</button>
-                    </form>
-                </div>
+                    <div class="col s4 left-align"><a class="btn tooltipped deep-orange accent-1" data-position="top"
+                            data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i
+                                class="far fa-comments"></i></a></div>
+                    {% if user.is_authenticated and joke.creator == user %}
+                    <div class="col s4"><a class="btn tooltipped deep-orange accent-1" data-position="top"
+                            data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
+                                class="fa-solid fa-pen"></i></a></div>
+                    {% endif %}
+                    <div class="col s4 right-align">
+                        <p>Avg rating: {{ joke.average_rating }}
+                        <p>
+                            {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'rate' joke.title %}" class="rate_look center-align">
+                            {% csrf_token %}
+                            <input type="number" name="rating" min="1" max="5" required>
+                            <button type="submit" class="btn-small deep-orange accent-1">Rate</button>
+                        </form>
+                    </div>
 
-                {% endif %}
-            </div>
+                    {% endif %}
+                </div>
                 <hr>
                 {% endfor %}
 

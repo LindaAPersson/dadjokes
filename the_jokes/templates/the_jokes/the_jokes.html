@@ -49,6 +49,7 @@
                     </label>
                     {% endfor %}
                     <button type="submit">Apply Filter</button>
+                    <input type="hidden" name="age_approved" value="{{ request.GET.age_approved }}">
                 </form>
 
                 {% if queryset %}

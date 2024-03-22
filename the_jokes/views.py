@@ -12,10 +12,12 @@ def JokeList(request):
     categories = Category.objects.all()
     age_form = AgeForm(request.GET or None)
     labels = Label.objects.all()
-    
+    age_approved = queryset.filter(age_approved=True)
 
     if age_form.is_valid():
         age_approved = age_form.cleaned_data.get('age_approved')
+        
+
         if age_approved:
             queryset = queryset.filter(age_approved=True)
     
@@ -24,6 +26,8 @@ def JokeList(request):
     if selected_labels:
         queryset = queryset.filter(labels__label_name__in=selected_labels)
     
+    if age_approved and selected_labels:
+        queryset = queryset.filter(age_approved=True, labels__label_name__in=selected_labels)
 
     for joke in queryset:
         joke.average_rating = joke.average_rating()

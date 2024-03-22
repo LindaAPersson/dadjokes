@@ -16,17 +16,17 @@
         <div class="col s12 m8 offset-m2 l6 offset-l3">
             <div class="card">
 
-                <!-- Dropdown Trigger -->
+                <!-- Dropdown Trigger Categories-->
                 <a class='dropdown-trigger btn deep-orange accent-1' href="#" data-target='dropdown1'>Categories!</a>
 
-                <!-- Dropdown Structure -->
+                <!-- Dropdown Structure Categories-->
                 <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
                     {% for cat in categories %}
                     <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
                     <li class="divider" tabindex="-1"></li>
                     {% endfor%}
                 </ul>
-
+            <!-- Age approved switch -->
                 <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get">
                     <div class="switch">
                     <label>
@@ -34,14 +34,10 @@
                         {{ age_form.age_approved }}
                         <span class="lever" onchange="applyFilter(this)"></span>
                         <span>Age approved jokes</span>
-                    </label>
-                    
-                    
+                    </label>                   
                 </div>
                 {% csrf_token %}
                 </form>
-
-
 
 
                 {% for joke in queryset %}
@@ -111,14 +107,7 @@
         </div>
     </div>
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const ageApprovedSwitch = document.getElementById('id_age_approved');
-        ageApprovedSwitch.addEventListener('change', function() {
-            document.getElementById("filterForm").submit();
-        });
-    });
-</script>
+
 <!-- jokes.html content ends here -->
 {% endblock %}
 {% block script %}

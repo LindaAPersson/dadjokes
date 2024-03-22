@@ -28,29 +28,54 @@
                     {% endfor %}
                 </ul>
 
-                {% for joke in jokes %}
-                <h5>{{ joke.category }}</h5>
+                <!-- Age approved switch -->
+                <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get">
+                    <div class="switch">
+                        <label>
+                            <span>All jokes</span>
+                            {{ age_form.age_approved }}
+                            <span class="lever" onchange="applyFilter(this)"></span>
+                            <span>Age approved jokes</span>
+                        </label>
+                    </div>
+                    {% csrf_token %}
+                </form>
+                {% if jokes_found %}
+                    {% for joke in jokes %}
+                    <!-- Age approved lable -->
 
-                <h4># {{joke.title}}</h4>
-                <p>{{joke.joke_text | safe}}</p>
+                        {% if joke.age_approved %}
+                        <span class="badge green">Age Approved</span>
+                        {% else %}
+                        <span class="badge red">Not Age Approved</span>
+                        {% endif %}
 
-                {% if "placeholder" in joke.creator_image.url %}
-                <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
-                    alt="placeholder">
-                {% else %}
-                <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-                {% endif %}
-                </span>Author: {{joke.creator}}</p>
-                <p class="small-text">Category: {{ joke.category | safe }}</p>
-                <p class="small-text">Made: {{joke.created_on}}</p>
-                <span><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="View comments!"
+
+                    <h5>{{ joke.category }}</h5>
+
+                    <h4># {{joke.title}}</h4>
+                    <p>{{joke.joke_text | safe}}</p>
+
+                    {% if "placeholder" in joke.creator_image.url %}
+                        <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
+                            alt="placeholder">
+                    {% else %}
+                        <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+                    {% endif %}
+                    </span>Author: {{joke.creator}}</p>
+                    <p class="small-text">Category: {{ joke.category | safe }}</p>
+                    <p class="small-text">Made: {{joke.created_on}}</p>
+                    <span><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="View comments!"
                         href="{% url 'jokes_detail' joke.title %}"><i class="far fa-comments"></i></a></span>
-                {% if user.is_authenticated and joke.creator == user %}
-                <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!"
-                        href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
+                    {% if user.is_authenticated and joke.creator == user %}
+                        <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!"
+                            href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
+                    {% endif %}
+                    <hr>
+                    {% endfor %}
+                {% else %}
+                <p>No jokes found.</p>
                 {% endif %}
-                <hr>
-                {% endfor %}
 
                 <!-- next button -->
                 {% if is_paginated %}

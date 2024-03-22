@@ -44,3 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.tooltipped');
   var instances = M.Tooltip.init(elems);
 });
+
+
+/**
+ * Materlize switch for age approved
+ */
+document.addEventListener('DOMContentLoaded', function () {
+  const ageApprovedSwitch = document.getElementById('id_age_approved');
+  ageApprovedSwitch.addEventListener('change', function () {
+    document.getElementById("filterForm").submit();
+  });
+});

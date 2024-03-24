@@ -15,94 +15,111 @@
     <div class="row">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
             <div class="card">
+                
+                    <div class="filter_box">
+                        <p>Filter by:</p>
+                        <div class="col s6">
+                            <div class="category_box">
+                                <!-- Dropdown Trigger Categories-->
+                                <a class='dropdown-trigger black-text' href="#"
+                                    data-target='dropdown1'>Categories  <i class="fa-solid fa-bars"></i></a>
 
-                <!-- Dropdown Trigger Categories-->
-                <a class='dropdown-trigger btn deep-orange accent-1' href="#" data-target='dropdown1'>Categories!</a>
-
-                <!-- Dropdown Structure Categories-->
-                <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
-                    {% for cat in categories %}
-                    <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    {% endfor%}
-                </ul>
-            <!-- Age approved switch -->
-                <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get" class="age_box">
-                    <div class="switch">
-                    <label>
-                        <span>All jokes</span>
-                        {{ age_form.age_approved }}
-                        <span class="lever" onchange="applyFilter(this)"></span>
-                        <span>Age approved jokes</span>
-                    </label>                   
-                </div>
-                {% csrf_token %}
-                </form>
-
-                <!-- labels -->
-                <form method="get" class="label_box">
-                    <p>Filter by Label:</p>
-                    {% for label in labels %}
-                    <label>
-                        <input type="radio" name="label_name" value="{{ label.label_name }}"/>
-                        <span>{{ label.label_name }}</span>   
-                    </label>
-                    {% endfor %}
-                    <button type="submit">Apply Filter</button>
-                    <input type="hidden" name="age_approved" value="{{ request.GET.age_approved }}">
-                </form>
-
-                <div class="joke_box">
-                <!-- agelabels -->
-                {% if queryset %}
-                {% for joke in queryset %}
-                {% if joke.age_approved %}
-                <span class="badge age_green">Age Approved</span>
-                {% else %}
-                <span class="badge age_red">Not Age Approved</span>
-                {% endif %}
-
-                <!-- the joke -->
-                <h4># {{joke.title}}</h4>
-                <p>{{joke.joke_text | safe}}</p>
-
-                {% if "placeholder" in joke.creator_image.url %}
-                <img src="{% static 'images/placeholder.jpg' %}" class="circle responsive-img creator_image"
-                    alt="placeholder">
-                {% else %}
-                <img src="{{ joke.creator_image.url }}" class="circle responsive-img creator_image">
-                {% endif %}
-                </span>Author: {{joke.creator}}</p>
-                <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
-
-                <div class="row jokes_interact_btn">
-                    <div class="col s4 left-align"><a class="btn tooltipped deep-orange accent-1" data-position="top"
-                            data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i
-                                class="far fa-comments"></i></a></div>
-                    {% if user.is_authenticated and joke.creator == user %}
-                    <div class="col s4"><a class="btn tooltipped deep-orange accent-1" data-position="top"
-                            data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
-                                class="fa-solid fa-pen"></i></a></div>
-                    {% endif %}
-                    <div class="col s4 right-align">
-                        <p>Avg rating: {{ joke.average_rating }}
-                        <p>
-                            {% if user.is_authenticated %}
-                        <form method="post" action="{% url 'rate' joke.title %}" class="rate_look center-align">
-                            {% csrf_token %}
-                            <input type="number" name="rating" min="1" max="5" required>
-                            <button type="submit" class="btn-small deep-orange accent-1">Rate</button>
-                        </form>
+                                <!-- Dropdown Structure Categories-->
+                                <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
+                                    {% for cat in categories %}
+                                    <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a>
+                                    </li>
+                                    <li class="divider" tabindex="-1"></li>
+                                    {% endfor%}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <!-- Age approved switch -->
+                            <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get" class="age_box">
+                                <div class="switch">
+                                    <span>Age:</span>
+                                    <label>
+                                        <span></span>
+                                        {{ age_form.age_approved }}
+                                        <span class="lever" onchange="applyFilter(this)"></span>
+                                        <span></span>
+                                    </label>
+                                </div>
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                        <div class="col s12">
+                            <!-- labels -->
+                            <form method="get" class="label_box">
+                                <span>Labels:</span>
+                                <br>
+                                {% for label in labels %}
+                                <label>
+                                    <input type="radio" class="custom-radio" name="label_name" value="{{ label.label_name }}" />
+                                    <span>{{ label.label_name }}</span>
+                                </label>
+                                {% endfor %}
+                                <br>
+                                <button type="submit" class="label-btn btn-small deep-orange accent-1">Apply Filter</button>
+                                <input type="hidden" name="age_approved" value="{{ request.GET.age_approved }}">
+                            </form>
+                        </div>
                     </div>
+                
+            
+            
+                <div class="joke_box">
+                    <!-- agelabels -->
+                    {% if queryset %}
+                    {% for joke in queryset %}
+                    {% if joke.age_approved %}
+                    <span class="badge age_green">Age Approved</span>
+                    {% else %}
+                    <span class="badge age_red">Not Age Approved</span>
+                    {% endif %}
 
+                    <!-- the joke -->
+                    <h4># {{joke.title}}</h4>
+                    <p>{{joke.joke_text | safe}}</p>
+
+                    {% if "placeholder" in joke.creator_image.url %}
+                    <img src="{% static 'images/placeholder.jpg' %}" class="circle responsive-img creator_image"
+                        alt="placeholder">
+                    {% else %}
+                    <img src="{{ joke.creator_image.url }}" class="circle responsive-img creator_image">
+                    {% endif %}
+                    </span>Author: {{joke.creator}}</p>
+                    <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.created_on}}</p>
+
+                    <div class="row jokes_interact_btn">
+                        <div class="col s4 left-align"><a class="btn tooltipped deep-orange accent-1"
+                                data-position="top" data-tooltip="View comments!"
+                                href="{% url 'jokes_detail' joke.title %}"><i class="far fa-comments"></i></a></div>
+                        {% if user.is_authenticated and joke.creator == user %}
+                        <div class="col s4"><a class="btn tooltipped deep-orange accent-1" data-position="top"
+                                data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
+                                    class="fa-solid fa-pen"></i></a></div>
+                        {% endif %}
+                        <div class="col s4 right-align">
+                            <p>Avg rating: {{ joke.average_rating }}
+                            <p>
+                                {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'rate' joke.title %}" class="rate_look center-align">
+                                {% csrf_token %}
+                                <input type="number" name="rating" min="1" max="5" required>
+                                <button type="submit" class="btn-small deep-orange accent-1">Rate</button>
+                            </form>
+                        </div>
+
+                        {% endif %}
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    {% else %}
+                    <p>No jokes available.</p>
                     {% endif %}
                 </div>
-                <hr>
-                {% endfor %}
-                {% else %}
-                    <p>No jokes available.</p>
-                {% endif %}
-            </div>
 
 
 

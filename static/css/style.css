@@ -100,8 +100,7 @@ main {
 
 /* joke box */
 .joke_box {
-    border: solid rgb(125, 123, 123);
-    padding: 5px;
+    padding: 10px;
 }
 .form_buttons {
     padding-top: 10px;
@@ -128,15 +127,45 @@ main {
 }
 
 .age_box {
-    border: solid rgb(125, 123, 123);
+    background-color: #FEECE2;
     padding: 5px;
+    height: 5vh;
+    
+}
+
+.age_box .switch label input[type="checkbox"]:checked + .lever {
+    background-color: #ff9e80;
+}
+.age_box .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #ff9e80;
+
 }
 
 /* label box */
 .label_box {
-    border: solid rgb(125, 123, 123);
+    background-color: #FEECE2;
     padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
+
+.label-btn {
+    margin-top: 5px;
+}
+
+.custom-radio[type="radio"]:checked + span:after,
+.custom-radio[type="radio"].with-gap:checked + span:after {
+    background-color: #ff9e80;
+    border: #ff9e80;
+}
+
+/* category box */
+.category_box{
+    background-color: #FEECE2;
+    padding: 5px;
+    height: 5vh;
+}
+
 
 @media screen and (min-width: 1200px) {
 

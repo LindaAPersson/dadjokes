@@ -39,10 +39,10 @@
                         <form id="filterForm" action="{% url 'the_jokes_page' %}" method="get" class="age_box">
                             <div class="switch">
                                 <span>Age:</span>
-                                <label>                                    
+                                <label>
                                     {{ age_form.age_approved }}
                                     <span class="lever" onchange="applyFilter(this)"></span>
-                                    
+
                                 </label>
                             </div>
                             {% csrf_token %}
@@ -100,13 +100,13 @@
                         <div class="col s4"><a class="btn tooltipped deep-orange accent-1" data-position="top"
                                 data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
                                     class="fa-solid fa-pen"></i></a></div>
-                                    {% else %}
-                                    <div class="col s4 edit-space"></div>
-                                    {% endif %}
-                        
-    
-    <div class="col s4 rate_box">
-        
+                        {% else %}
+                        <div class="col s4 edit-space"></div>
+                        {% endif %}
+
+
+                        <div class="col s4 rate_box">
+
                             <p class="avg-rate">Score: {{ joke.average_rating }}</p>
                             {% if user.is_authenticated %}
                             <form method="post" action="{% url 'rate' joke.title %}" class="rate_look center-align">
@@ -124,29 +124,31 @@
                             </form>
                             {% endif %}
                         </div>
-                            
+
                     </div>
                     <hr>
                     {% endfor %}
                     {% else %}
                     <p>No jokes available.</p>
-                    {% endif %}                    
+                    {% endif %}
                 </div>
 
                 <!-- next button -->
 
-                
+
                 <ul class="pagination center-align">
                     {% if queryset.has_previous %}
                     <li class="{% if not queryset.has_previous %}disabled{% endif %}">
                         <a href="?page={{ queryset.previous_page_number }}">
-                            <i class="material-icons">chevron_left</i></a></li>
+                            <i class="material-icons">chevron_left</i></a>
+                    </li>
                     {% endif %}
                     {% if queryset.has_next %}
-                    <li class="{% if not queryset.has_next %}disabled{% endif %}"><a href="?page={{ queryset.next_page_number }}"><i
-                                class="material-icons">chevron_right</i></a></li>
+                    <li class="{% if not queryset.has_next %}disabled{% endif %}"><a
+                            href="?page={{ queryset.next_page_number }}"><i class="material-icons">chevron_right</i></a>
+                    </li>
                     {% endif %}
-                    
+
                 </ul>
             </div>
         </div>

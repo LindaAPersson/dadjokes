@@ -214,10 +214,19 @@ main {
 .head_category{
     margin-bottom: 10px;
 }
+
+
+
 @media screen and (min-width: 1200px) {
 
     /* creator image */
     .creator_image {
         width: 5vw;
+    }
+
+    .rate_box {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
     }
 }

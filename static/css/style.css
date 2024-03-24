@@ -159,6 +159,8 @@ main {
     width: 25vw;
 }
 
+
+
 /* age approvel */
 .age_green {
     background: rgb(73, 155, 120);
@@ -208,7 +210,10 @@ main {
     height: 5vh;
 }
 
-
+/* category page, spece between joke and filter */
+.head_category{
+    margin-bottom: 10px;
+}
 @media screen and (min-width: 1200px) {
 
     /* creator image */

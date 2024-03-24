@@ -15,88 +15,101 @@
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card">
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-trigger btn deep-orange accent-1' href='#' data-target='dropdown1'>Categories!</a>
+                <div class="filter_box">
+                    <p>Filter by:</p>
+                    <div class="col s6">
+                        <div class="category_box">
+                            <!-- Dropdown Trigger Categories-->
+                            <a class='dropdown-trigger black-text' href="#" data-target='dropdown1'>Categories <i
+                                    class="fa-solid fa-bars"></i></a>
 
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
-                    <li><a href="{% url 'the_jokes_page' %}" class="white-text">all jokes</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    {% for cat in categories %}
-                    <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    {% endfor %}
-                </ul>
-
-                <!-- Age approved switch -->
-                <form id="filterForm" action="{% url 'category' category.name %}" method="get">
-                    <input type="hidden" name="category" value="{{ category.id }}">
-                
-                    <div class="switch">
-                        <label>
-                            <span>All jokes</span>
-                            {{ age_form.age_approved }}
-                            <span class="lever" onchange="applyFilter(this)"></span>
-                            <span>Age approved jokes</span>
-                        </label>
+                            <!-- Dropdown Structure -->
+                            <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
+                                <li><a href="{% url 'the_jokes_page' %}" class="white-text">all jokes</a></li>
+                                <li class="divider" tabindex="-1"></li>
+                                {% for cat in categories %}
+                                <li><a href="{% url 'category' cat.name %}" class="white-text">{{ cat.name }}</a></li>
+                                <li class="divider" tabindex="-1"></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
-                    {% csrf_token %}
-                </form>
-
-                
-
-                {% if jokes %}
-                    {% for joke in jokes %}
-                    <!-- Age approved lable -->
-
-                        {% if joke.age_approved %}
-                        <span class="badge green">Age Approved</span>
-                        {% else %}
-                        <span class="badge red">Not Age Approved</span>
-                        {% endif %}
-
-
-                    <h5>{{ joke.category }}</h5>
-
-                    <h4># {{joke.title}}</h4>
-                    <p>{{joke.joke_text | safe}}</p>
-
-                    {% if "placeholder" in joke.creator_image.url %}
-                        <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
-                            alt="placeholder">
-                    {% else %}
-                        <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-                    {% endif %}
-                    </span>Author: {{joke.creator}}</p>
-                    <p class="small-text">Category: {{ joke.category | safe }}</p>
-                    <p class="small-text">Made: {{joke.created_on}}</p>
-                    <span><a class="btn tooltipped deep-orange accent-1" data-position="top" data-tooltip="View comments!"
-                        href="{% url 'jokes_detail' joke.title %}"><i class="far fa-comments"></i></a></span>
-                    {% if user.is_authenticated and joke.creator == user %}
-                        <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top" data-tooltip="Edit joke!"
-                            href="{% url 'joke_edit' joke.title %}"><i class="fa-solid fa-pen"></i></a></span>
-                    {% endif %}
-                    <hr>
-                    {% endfor %}
+                    <div class="col s6 head_category">
+                        <!-- Age approved switch -->
+                        <form id="filterForm" action="{% url 'category' category.name %}" method="get" class="age_box">
+                            <input type="hidden" name="category" value="{{ category.id }}">
+                            <div class="switch">
+                                <label>
+                                    <span>Age:</span>
+                                    {{ age_form.age_approved }}
+                                    <span class="lever" onchange="applyFilter(this)"></span>
+                                </label>
+                            </div>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+<br>
                     
-                {% else %}
-                    <p>No jokes available.</p>
-                {% endif %}
+                            
+                                {% if jokes %}
+                                {% for joke in jokes %}
+                                <!-- Age approved lable -->
+                                {% if joke.age_approved %}
+                                <span class="badge age_green">Age Approved</span>
+                                {% else %}
+                                <span class="badge age_red">Not Age Approved</span>
+                                {% endif %}
 
-                <!-- next button -->
-                {% if is_paginated %}
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        {% if page_obj.has_previous %}
-                        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-                        {% endif %}
-                        {% if page_obj.has_next %}
-                        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-                {% endif %}
+                                <!-- The jokes -->
+                                <h5>{{ joke.category }}</h5>
+                            
+                            <h4># {{joke.title}}</h4>
+                            <p>{{joke.joke_text | safe}}</p>
+                            {% if "placeholder" in joke.creator_image.url %}
+                            <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
+                                alt="placeholder">
+                            {% else %}
+                            <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+                            {% endif %}
+                            </span>Author: {{joke.creator}}</p>
+                            <p class="small-text">Category: {{ joke.category | safe }}</p>
+                            <p class="small-text">Made: {{joke.formatted_timestamp}}</p>
+                            <span><a class="btn tooltipped deep-orange accent-1" data-position="top"
+                                    data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i
+                                        class="far fa-comments"></i></a></span>
+                            {% if user.is_authenticated and joke.creator == user %}
+                            <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top"
+                                    data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
+                                        class="fa-solid fa-pen"></i></a></span>
+                            {% endif %}
+                            <hr>
+                            {% endfor %}
 
+                            {% else %}
+                            <p>No jokes available.</p>
+                            {% endif %}
+
+
+                            <!-- next button -->
+                            {% if is_paginated %}
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+                                    {% if page_obj.has_previous %}
+                                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;
+                                            PREV
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                    {% if page_obj.has_next %}
+                                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT
+                                            &raquo;</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                       
+                </div>
             </div>
         </div>
     </div>

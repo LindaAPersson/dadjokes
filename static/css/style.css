@@ -112,9 +112,51 @@ main {
     align-items: flex-end;
 }
 
+/* rate the. jokes */
+.rate_box {
+    display: flex;
+    flex-wrap: wrap;
+}
 .rate_look{
-    border: solid rgb(125, 123, 123);
-    width: 10vw;
+    background-color: #FEECE2;
+    
+}
+
+.avg-rate{
+    background-color: #FEECE2;
+    font-weight: bold;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.info-circle {
+    position: relative;
+    display: inline-block;
+}
+
+.info-icon {
+    cursor: pointer;
+    padding-left: 3px;
+}
+
+.info-content {
+    position: absolute;
+    top: -50px; 
+    left: 20px; 
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+.info-circle:hover .info-content {
+    display: block;
+}
+
+/* to add space when edit button not displayed */
+.edit-space {
+    width: 25vw;
 }
 
 /* age approvel */

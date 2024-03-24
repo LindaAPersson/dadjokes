@@ -42,6 +42,9 @@ class Joke(models.Model):
     def average_rating(self):
         return Rating.objects.filter(joke=self).aggregate(Avg('rating'))['rating__avg'] or 0
 
+    def formatted_timestamp(self):
+        return self.created_on.strftime("%Y-%m-%d")
+
 class Rating(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="rating_creator")
     joke = models.ForeignKey(Joke, on_delete=models.CASCADE, related_name="rating_joke")

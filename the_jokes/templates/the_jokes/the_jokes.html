@@ -101,7 +101,7 @@
                                 data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
                                     class="fa-solid fa-pen"></i></a></div>
                                     {% else %}
-                                    <div class="edit-space"></div>
+                                    <div class="col s4 edit-space"></div>
                                     {% endif %}
                         
     
@@ -130,25 +130,23 @@
                     {% endfor %}
                     {% else %}
                     <p>No jokes available.</p>
-                    {% endif %}
-                    
+                    {% endif %}                    
                 </div>
-
-
 
                 <!-- next button -->
 
-                {% if is_paginated %}
+                
                 <ul class="pagination center-align">
-                    {% if page_obj.has_previous %}
-                    <li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i
-                                class="material-icons">chevron_left</i></a></li>
+                    {% if queryset.has_previous %}
+                    <li class="{% if not queryset.has_previous %}disabled{% endif %}">
+                        <a href="?page={{ queryset.previous_page_number }}">
+                            <i class="material-icons">chevron_left</i></a></li>
                     {% endif %}
-                    {% if page_obj.has_next %}
-                    <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i
+                    {% if queryset.has_next %}
+                    <li class="{% if not queryset.has_next %}disabled{% endif %}"><a href="?page={{ queryset.next_page_number }}"><i
                                 class="material-icons">chevron_right</i></a></li>
                     {% endif %}
-                    {% endif %}
+                    
                 </ul>
             </div>
         </div>

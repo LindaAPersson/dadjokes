@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Joke, Comment, Category, Rating, Label
 from .forms import JokeForm, CommentForm, EditJokeForm, LikesForm, RateForm, AgeForm
 
@@ -28,6 +29,16 @@ def JokeList(request):
     
     if age_approved and selected_labels:
         queryset = queryset.filter(age_approved=True, labels__label_name__in=selected_labels)
+
+    paginator = Paginator(queryset, 10)
+
+    page = request.GET.get('page')
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
 
     for joke in queryset:
         joke.average_rating = joke.average_rating()
@@ -70,6 +81,16 @@ def category(request, name):
     else:
         category = Category.objects.get(name=name)
         jokes = Joke.objects.filter(status=1, category=category)
+
+    paginator = Paginator(jokes, 10)
+    page_number = request.GET.get('page')
+    try:
+        jokes = paginator.page(page_number)
+    except PageNotAnInteger:
+        jokes = paginator.page(1)
+    except EmptyPage:
+        jokes = paginator.page(paginator.num_pages)
+
     
     try:
         category = Category.objects.get(name=name)

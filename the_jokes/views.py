@@ -189,6 +189,8 @@ def joke_detail(request, title):
                 request, messages.SUCCESS,
                 'Comment submitted and awaiting approval'
             )
+        else:
+            messages.add_message(request, messages.ERROR, 'Error creating comment!')
 
     comment_form = CommentForm()
 

@@ -285,3 +285,10 @@ def comment_delete(request, title, comment_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('jokes_detail', args=[title]))
+
+
+def custom_404_view(request, exception):
+    """
+    Custom handler for 404 (Page Not Found) errors.
+    """
+    return render(request, '404.html', status=404)

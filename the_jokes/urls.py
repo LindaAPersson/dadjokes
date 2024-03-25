@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+from django.conf.urls import handler404
 
 urlpatterns = [
     path('the_jokes/', views.JokeList, name='the_jokes_page'),
@@ -14,3 +15,4 @@ urlpatterns = [
     path('rate/<title>/', views.rate, name ='rate')
     
 ]
+handler404 = views.custom_404_view

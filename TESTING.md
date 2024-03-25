@@ -374,3 +374,79 @@ Mobile
 
 ## Feature Testing
 
+| Page          | User Action   | Expected Result  | Notes            |
+|---------------|---------------|------------------|------------------|
+| Home Page     |               |                  |                  |
+|               | Click on Logo | Redirect to Home Page | PASS        |
+|               | Click on Sign Up button | Redirect to login page | PASS |
+|               | Click on logout | Redirect to logout page | PASS |
+|               | Click on register | Redirect to register page | PASS |
+|               | Click on Contact | Move to contact page | PASS |
+|               | Click on jokes | Redirect to jokes page | PASS |
+|               | Click on jokes link in card | Redirect to jokes page | PASS |
+|               | Click on links in footer | Redirect to socalmedia platforms | PASS |
+| Home Page (Logged In - User)  |                 |          |  |
+|               | After Login | Sign Up button is now logout button | PASS |
+|               | After Login | Register button hides | PASS |
+|               | After Login | Users name is displayed | PASS |
+| Contact Page  |                 |          |  |
+|               | Enter info in cantact form | contact form info sends to adminpanel | PASS |
+| Sign Up Page  |                  |                  |                  |
+|               | Enter invalid email | Field will only accept email address format | PASS |
+|               | Enter valid email | No error | PASS |
+|               | Email field left empty | Email is optional | PASS |
+|               | Type invalid password | Must contain atleast 8 char | PASS |
+|               | Type valid password | No error | PASS |
+|               | Type password again (different) | Password must be the same | PASS |
+|               | Click Sign Up with empty form | Fill in the form fields | PASS |
+|               | Click Sign In if you have an account | Redirect to Login page | PASS |
+|               | Fill all the form fields | Account created, alert message that you Signed in | PASS |
+| Login Page  |                  |                  |                  |
+|               | Click on Sign Up, if you don't have an account | Redirect to Sign Up page | PASS |
+|               | Try invalid username | Username is not correct | PASS |
+|               | Try invalid password | Password is not correct | PASS |
+|               | Valid password and username | Logs in, message that you signed in | PASS |
+|               | Click Sign In with empty form | Fill in the form fields | PASS |
+| Logout Page  |                  |                  |                  |
+|               | Click on Sign Out button | Sign user out, message that user signed out | PASS |
+| 404 Error Page |  |    |    |
+|               | Type in URL that does not exists | Custom 404 Error page is displayed | PASS |
+|               | Click on Take Me Home button | Redirect to Home page | PASS |
+| 500 Error Page |  |    |    |
+|               | Admin raise exception in views.py | Custom 500 Error page is displayed, local development testing | PASS |
+|               | Click on Go to Homepage button | Redirect to Home page | PASS |
+| Admin Panel |  |    |    |
+|               | CRUD functionality | Working as expected | PASS |
+| Jokes Page  |                  |                  |                  |
+|               | Read all jokes | Working as expected | PASS |
+|               | Filter jokes on category | Working as expected | PASS |
+|               | Filter jokes on age approval | Working as expected | PASS |
+|               | Filter jokes on labels| Working as expected | PASS |
+|               | See avrage score on each joke | Working as expected | PASS |
+|               | Click on comments symbol | Redirect to jokes_detail | PASS |
+| Jokes Page (loged in - user)  |                  |                  |                  |
+|               | Rate each joke | Working as expected | PASS |
+|               | Click on edit on their own joke | Redirect to edit_joke | PASS |
+| Jokes Detail  |                  |                  |                  |
+|               | See joke likes | Working as expected | PASS |
+|               | See joke comments | Working as expected | PASS |
+| Jokes Detail (loged in - user) |                  |                  |                  |
+|               | like jokes | Working as expected | PASS |
+|               | Comment on jokes | Working as expected | PASS |
+|               | Edit ther own comment | Working as expected | PASS |
+| Category  |                  |                  |                  |
+|               | See all jokes in that category | Working as expected | PASS |
+|               | See joke comments | Working as expected | PASS |
+|               | Filter jokes on age approval | Working as expected | PASS |
+|               | Click on comments symbol | Redirect to jokes_detail | PASS |
+| Add jokes  |                  |                  |                  |
+|               | Tries to add joke | Messaege 'login to add joke' | PASS |
+| Add jokes (loged in - user)  |                  |                  |                  |
+|               | Add and submit jokes | Message 'waiting on approval'| PASS |
+| Edit jokes  |                  |                  |                  |
+|               | Tries to edit joke | Messaege 'you can only edit your own jokes' | PASS |
+| Edit jokes (loged in - user)  |                  |                  |                  |
+|               | Edit the joke | Message 'waiting on approval'| PASS |
+|               | Delet the joke | confirm delet message | PASS |
+
+

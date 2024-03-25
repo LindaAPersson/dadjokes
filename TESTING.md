@@ -269,3 +269,108 @@ I utilized Materialize for styling and effects, so much of the JavaScript code i
 </details>
 
 ## Lighthouse Report
+
+Under every category, there are two screenshots provided: one tailored for desktop viewing and another optimized for mobile devices. This dual presentation ensures that users can visualize the interface across different screen sizes, enhancing their understanding of the layout and design responsiveness. 
+
+<details>
+<summary> Home
+</summary>
+Desktop
+
+![home_desktop](documentation/lighthouse_report/home_desktop.png)
+Mobile
+![home_mobile](documentation/lighthouse_report/home_mobile.png)
+</details>
+
+<details>
+<summary> Jokes
+</summary>
+Desktop
+
+![jokes_desktop](documentation/lighthouse_report/jokes_desktop.png)
+Mobile
+![jokes_mobile](documentation/lighthouse_report/jokes_mobile.png)
+</details>
+
+<details>
+<summary> Jokes detail
+</summary>
+Desktop
+
+![jokesdetail_desktop](documentation/lighthouse_report/jokedetail_desktop.png)
+Mobile
+![jokesdetail_mobile](documentation/lighthouse_report/jokedetail_mobile.png)
+</details>
+
+<details>
+<summary> Add Jokes
+</summary>
+Desktop
+
+![add_desktop](documentation/lighthouse_report/add_desktop.png)
+Mobile
+![add_mobile](documentation/lighthouse_report/add_mobile.png)
+</details>
+
+<details>
+<summary> Edit Jokes
+</summary>
+Desktop
+
+![edit_desktop](documentation/lighthouse_report/edit_desktop.png)
+Mobile
+![edit_mobile](documentation/lighthouse_report/edit_mobile.png)
+</details>
+
+<details>
+<summary> Category
+</summary>
+Desktop
+
+![category_desktop](documentation/lighthouse_report/category_desktop.png)
+Mobile
+![category_mobile](documentation/lighthouse_report/category_mobile.png)
+</details>
+
+<details>
+<summary> Contact
+</summary>
+Desktop
+
+![contact_desktop](documentation/lighthouse_report/contact_desktop.png)
+Mobile
+![contact_mobile](documentation/lighthouse_report/contact_mobile.png)
+</details>
+
+<details>
+<summary> Login
+</summary>
+Desktop
+
+![login_desktop](documentation/lighthouse_report/login_desktop.png)
+Mobile
+![login_mobile](documentation/lighthouse_report/login_mobile.png)
+</details>
+
+<details>
+<summary> Logout
+</summary>
+Desktop
+
+![logout_desktop](documentation/lighthouse_report/logout_desktop.png)
+Mobile
+![logout_mobile](documentation/lighthouse_report/logout_mobile.png)
+</details>
+
+<details>
+<summary> Register
+</summary>
+Desktop
+
+![sigup_desktop](documentation/lighthouse_report/signup_desktop.png)
+Mobile
+![sigup_mobile](documentation/lighthouse_report/sigup_mobile.png)
+</details>
+
+## Feature Testing
+

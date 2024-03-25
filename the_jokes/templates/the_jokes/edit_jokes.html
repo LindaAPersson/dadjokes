@@ -16,7 +16,7 @@
             <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
               alt="placeholder">
             {% else %}
-            <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+            <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img" alt="persenal_image">
             {% endif %}</span>
           </span>Author: {{joke.creator}}</p>
         <p>Made: {{joke.created_on}}</p>

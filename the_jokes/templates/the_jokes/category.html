@@ -39,7 +39,7 @@
                         <form id="filterForm" action="{% url 'category' category.name %}" method="get" class="age_box">
                             <input type="hidden" name="category" value="{{ category.id }}">
                             <div class="switch">
-                                <label>
+                                <label for="age_approved">
                                     <span>Age:</span>
                                     {{ age_form.age_approved }}
                                     <span class="lever" onchange="applyFilter(this)"></span>
@@ -67,7 +67,7 @@
                     <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
                         alt="placeholder">
                     {% else %}
-                    <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+                    <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img" alt="persenal_image">
                     {% endif %}
                     </span>Author: {{joke.creator}}</p>
                     <p class="small-text">Category: {{ joke.category | safe }}</p>

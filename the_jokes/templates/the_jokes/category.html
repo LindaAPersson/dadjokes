@@ -23,7 +23,7 @@
                             <a class='dropdown-trigger black-text' href="#" data-target='dropdown1'>Categories <i
                                     class="fa-solid fa-bars"></i></a>
 
-                            <!-- Dropdown Structure -->
+                            <!-- Dropdown Categories Structure -->
                             <ul id='dropdown1' class='dropdown-content deep-orange accent-1'>
                                 <li><a href="{% url 'the_jokes_page' %}" class="white-text">all jokes</a></li>
                                 <li class="divider" tabindex="-1"></li>
@@ -48,68 +48,64 @@
                             {% csrf_token %}
                         </form>
                     </div>
-<br>
-                    
-                            
-                                {% if jokes %}
-                                {% for joke in jokes %}
-                                <!-- Age approved lable -->
-                                {% if joke.age_approved %}
-                                <span class="badge age_green">Age Approved</span>
-                                {% else %}
-                                <span class="badge age_red">Not Age Approved</span>
-                                {% endif %}
+                    <br>
 
-                                <!-- The jokes -->
-                                <h5>{{ joke.category }}</h5>
-                            
-                            <h4># {{joke.title}}</h4>
-                            <p>{{joke.joke_text | safe}}</p>
-                            {% if "placeholder" in joke.creator_image.url %}
-                            <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
-                                alt="placeholder">
-                            {% else %}
-                            <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
-                            {% endif %}
-                            </span>Author: {{joke.creator}}</p>
-                            <p class="small-text">Category: {{ joke.category | safe }}</p>
-                            <p class="small-text">Made: {{joke.formatted_timestamp}}</p>
-                            <span><a class="btn tooltipped deep-orange accent-1" data-position="top"
-                                    data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i
-                                        class="far fa-comments"></i></a></span>
-                            {% if user.is_authenticated and joke.creator == user %}
-                            <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top"
-                                    data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
-                                        class="fa-solid fa-pen"></i></a></span>
-                            {% endif %}
-                            <hr>
-                            {% endfor %}
+                    <!-- Age approved lable -->
+                    {% if jokes %}
+                    {% for joke in jokes %}
+                    {% if joke.age_approved %}
+                    <span class="badge age_green">Age Approved</span>
+                    {% else %}
+                    <span class="badge age_red">Not Age Approved</span>
+                    {% endif %}
 
-                            {% else %}
-                            <p>No jokes available.</p>
-                            {% endif %}
+                    <!-- The jokes -->
+                    <h5>{{ joke.category }}</h5>
+                    <h4># {{joke.title}}</h4>
+                    <p>{{joke.joke_text | safe}}</p>
+                    {% if "placeholder" in joke.creator_image.url %}
+                    <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
+                        alt="placeholder">
+                    {% else %}
+                    <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+                    {% endif %}
+                    </span>Author: {{joke.creator}}</p>
+                    <p class="small-text">Category: {{ joke.category | safe }}</p>
+                    <p class="small-text">Made: {{joke.formatted_timestamp}}</p>
+                    <span><a class="btn tooltipped deep-orange accent-1" data-position="top"
+                            data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i
+                                class="far fa-comments"></i></a></span>
+                    {% if user.is_authenticated and joke.creator == user %}
+                    <span><a class="btn tooltipped deep-orange accent-1 right" data-position="top"
+                            data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
+                                class="fa-solid fa-pen"></i></a></span>
+                    {% endif %}
+                    <hr>
+                    {% endfor %}
+                    {% else %}
+                    <p>No jokes available.</p>
+                    {% endif %}
 
-
-                            <ul class="pagination center-align">
-                                {% if queryset.has_previous %}
-                                <li class="{% if not queryset.has_previous %}disabled{% endif %}">
-                                    <a href="?page={{ queryset.previous_page_number }}">
-                                        <i class="material-icons">chevron_left</i></a></li>
-                                {% endif %}
-                                {% if queryset.has_next %}
-                                <li class="{% if not queryset.has_next %}disabled{% endif %}"><a href="?page={{ queryset.next_page_number }}"><i
-                                            class="material-icons">chevron_right</i></a></li>
-                                {% endif %}
-                                
-                            </ul>
-                       
+                    <!-- Pagination -->
+                    <ul class="pagination center-align">
+                        {% if queryset.has_previous %}
+                        <li class="{% if not queryset.has_previous %}disabled{% endif %}">
+                            <a href="?page={{ queryset.previous_page_number }}">
+                                <i class="material-icons">chevron_left</i></a>
+                        </li>
+                        {% endif %}
+                        {% if queryset.has_next %}
+                        <li class="{% if not queryset.has_next %}disabled{% endif %}"><a
+                                href="?page={{ queryset.next_page_number }}"><i
+                                    class="material-icons">chevron_right</i></a></li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </body>
 
-<!-- jokes.html content ends here -->
 {% endblock %}
 {% block script %}
 <script src="{% static 'js/jokes.js' %}"></script>

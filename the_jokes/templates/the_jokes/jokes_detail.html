@@ -7,14 +7,15 @@
   <!-- add jokes button -->
   <div class="row">
     <div class="col s2 m7 l6 offset-l3">
-      <a class="btn tooltipped deep-orange accent-1" data-position="right" data-tooltip="Add your own joke!" href="{% url 'add_jokes' %}">+</a>  
+      <a class="btn tooltipped deep-orange accent-1" data-position="right" data-tooltip="Add your own joke!"
+        href="{% url 'add_jokes' %}">+</a>
     </div>
   </div>
 
   <div class="row">
     <div class="col s12 m8 offset-m2 l6 offset-l3">
       <div class="card">
-        
+        <!-- The joke -->
         <h4># {{joke.title}}</h4>
         <p>{{joke.joke_text | safe}}</p>
         {% if "placeholder" in joke.creator_image.url %}
@@ -25,15 +26,12 @@
         </span>Author: {{joke.creator}}</p>
         <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.formatted_timestamp}}</p>
         {% if joke.age_approved %}
-                <span class="badge age_green">Age Approved</span>
-            {% else %}
-                <span class="badge age_red">Not Age Approved</span>
-            {% endif %}
+        <span class="badge age_green">Age Approved</span>
+        {% else %}
+        <span class="badge age_red">Not Age Approved</span>
+        {% endif %}
 
-        
-
-        <!-- Displaying likes -->
-
+        <!-- Displaying likes and likes count-->
         {% if user.is_authenticated %}
         <form method="post" action="{% url 'like_jokes' joke.title joke.id %}">
           {% csrf_token %}
@@ -50,8 +48,8 @@
         <i class="far fa-heart"></i> {{ likes_count }} Likes
         {% endif %}
         <hr>
-        <!-- Displaying Comments and count of comments-->
 
+        <!-- Add comments-->
         {% if user.is_authenticated %}
         <h6><i class="fa-solid fa-pen"></i> Leave a comment:</h6>
         <p class="small-text">Posting as: {{ user.username }}</p>
@@ -60,11 +58,11 @@
           {% csrf_token %}
           <button id="submitButton" type="submit" class="btn-small deep-orange accent-1"></a>Submit</button>
         </form>
-
         {% else %}
         <p>Log in to leave a comment</p>
         {% endif %}
 
+        <!-- Displaying Comments and count of comments-->
         <ul class="collapsible">
           <li>
             <div class="collapsible-header"><i class="far fa-comments"></i>{{ comment_count }} Comments</div>
@@ -87,14 +85,11 @@
                 <hr>
                 {% endfor %}
               </span>
+            </div>
+          </li>
+        </ul>
       </div>
-      </li>
-      <li>
-
-      </li>
-      </ul>
     </div>
-  </div>
   </div>
 
   <!-- Delete confirmation modal -->
@@ -110,8 +105,6 @@
     </div>
   </div>
 </body>
-
-
 
 {% endblock %}
 {% block extras %}

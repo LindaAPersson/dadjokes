@@ -15,7 +15,6 @@
     <div class="row">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
             <div class="card">
-
                 <div class="filter_box">
                     <p>Filter by:</p>
                     <div class="col s6">
@@ -42,14 +41,13 @@
                                 <label>
                                     {{ age_form.age_approved }}
                                     <span class="lever" onchange="applyFilter(this)"></span>
-
                                 </label>
                             </div>
                             {% csrf_token %}
                         </form>
                     </div>
                     <div class="col s12">
-                        <!-- labels -->
+                        <!-- Filter by labels-->
                         <form method="get" class="label_box">
                             <span>Labels:</span>
                             <br>
@@ -67,10 +65,8 @@
                     </div>
                 </div>
 
-
-
                 <div class="joke_box">
-                    <!-- agelabels -->
+                    <!-- age badge -->
                     {% if queryset %}
                     {% for joke in queryset %}
                     {% if joke.age_approved %}
@@ -82,7 +78,6 @@
                     <!-- the joke -->
                     <h4># {{joke.title}}</h4>
                     <p>{{joke.joke_text | safe}}</p>
-
                     {% if "placeholder" in joke.creator_image.url %}
                     <img src="{% static 'images/placeholder.jpg' %}" class="circle responsive-img creator_image"
                         alt="placeholder">
@@ -91,11 +86,12 @@
                     {% endif %}
                     </span>Author: {{joke.creator}}</p>
                     <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.formatted_timestamp}}</p>
-
                     <div class="row jokes_interact_btn">
+                        <!-- Comment the jokes -->
                         <div class="col s4"><a class="btn tooltipped deep-orange accent-1" data-position="top"
                                 data-tooltip="View comments!" href="{% url 'jokes_detail' joke.title %}"><i
                                     class="far fa-comments"></i></a></div>
+                        <!-- edit the jokes -->
                         {% if user.is_authenticated and joke.creator == user %}
                         <div class="col s4"><a class="btn tooltipped deep-orange accent-1" data-position="top"
                                 data-tooltip="Edit joke!" href="{% url 'joke_edit' joke.title %}"><i
@@ -103,15 +99,12 @@
                         {% else %}
                         <div class="col s4 edit-space"></div>
                         {% endif %}
-
-
+                        <!-- Rate the jokes -->
                         <div class="col s4 rate_box">
-
                             <p class="avg-rate">Score: {{ joke.average_rating }}</p>
                             {% if user.is_authenticated %}
                             <form method="post" action="{% url 'rate' joke.title %}" class="rate_look center-align">
                                 {% csrf_token %}
-
                                 <input type="number" name="rating" min="1" max="5" required>
                                 <button type="submit" class="btn-small deep-orange accent-1">Rate</button>
                                 <div class="info-circle">
@@ -124,7 +117,6 @@
                             </form>
                             {% endif %}
                         </div>
-
                     </div>
                     <hr>
                     {% endfor %}
@@ -134,8 +126,6 @@
                 </div>
 
                 <!-- next button -->
-
-
                 <ul class="pagination center-align">
                     {% if queryset.has_previous %}
                     <li class="{% if not queryset.has_previous %}disabled{% endif %}">
@@ -148,14 +138,12 @@
                             href="?page={{ queryset.next_page_number }}"><i class="material-icons">chevron_right</i></a>
                     </li>
                     {% endif %}
-
                 </ul>
             </div>
         </div>
     </div>
 </body>
 
-<!-- jokes.html content ends here -->
 {% endblock %}
 {% block script %}
 <script src="{% static 'js/jokes.js' %}"></script>

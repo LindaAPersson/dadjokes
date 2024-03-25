@@ -7,11 +7,9 @@
 {% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    
-
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -23,12 +21,13 @@
 
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection">
+
     <!--Faveicon-->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
-    <title>DadJokes</title>
 
+    <title>DadJokes</title>
 </head>
 
 <body>
@@ -83,25 +82,21 @@
                 href="{% url 'account_login' %}">Login</a>
         </li>
         {% endif %}
-
     </ul>
 
     <main>
         <!-- inlog/logout confirmation -->
-
         {% if user.is_authenticated %}
         <p class="right-align white-text">You are logged in as {{ user }}</p>
         {% else %}
         <p class="right-align white-text">You are not logged in</p>
         {% endif %}
 
-
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
     </main>
-
-
+    <!-- Footer -->
     <footer class="page-footer deep-orange accent-1">
         <div class="container">
             <div class="row">
@@ -121,8 +116,14 @@
             </div>
         </div>
     </footer>
-    
-
+    <!-- script for materialize messages -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            {% for message in messages %}
+            M.toast({ html: '{{ message }}', classes: '{{ message.tags }}' });
+            {% endfor %}
+        });
+    </script>
     <!--Materialize JS-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
     <!--Custom JS-->
@@ -135,5 +136,4 @@
     {% block script %}
     {% endblock %}
 </body>
-
 </html>

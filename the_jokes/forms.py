@@ -1,8 +1,10 @@
 from .models import Comment, Joke, Category, Rating
 from django import forms
 
+
 # add jokes
 class JokeForm(forms.ModelForm):
+    
 
     class Meta:
         model = Joke
@@ -11,6 +13,7 @@ class JokeForm(forms.ModelForm):
     
 # Edit jokes
 class EditJokeForm(forms.ModelForm):
+    
     
     class Meta:
         model = Joke

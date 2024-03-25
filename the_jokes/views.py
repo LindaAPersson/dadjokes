@@ -150,11 +150,10 @@ def joke_edit(request, title):
     """
     queryset = Joke.objects.filter(status=1)
     joke = get_object_or_404(queryset, title=title)
-    print(joke)
     edit_joke_form = EditJokeForm(instance=joke)
-    
+
     if request.method == "POST":
-        edit_joke_form = EditJokeForm(request.POST, request.FILES, instance=joke)
+        edit_joke_form = EditJokeForm(request.FILES, data=request.POST)
 
         if edit_joke_form.is_valid() and joke.creator == request.user:
             joke.creator_id = request.user.id
@@ -171,7 +170,6 @@ def joke_edit(request, title):
             "joke": joke,
             "edit_joke_form": edit_joke_form,
             })
-    #return HttpResponseRedirect(reverse('jokes_detail', args=[title]))
 
 def joke_delete(request, title, joke_id):
     """
@@ -252,7 +250,6 @@ def comment_edit(request, title, comment_id):
     view to edit comments
     """
     if request.method == "POST":
-
         queryset = Joke.objects.filter(status=1)
         joke = get_object_or_404(queryset, title=title)
         comment = get_object_or_404(Comment, pk=comment_id)

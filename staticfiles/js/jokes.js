@@ -3,7 +3,7 @@ const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
 
 /**
- * Geting the deleteing comments model confirm
+ * Geting the deleteing joke model confirm
  */
 
 document.addEventListener('DOMContentLoaded', function () {

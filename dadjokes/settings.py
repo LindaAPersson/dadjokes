@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import cloudinary
 from pathlib import Path
 import os
 import dj_database_url
@@ -31,6 +31,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['8000-lindaapersson-dadjokes-u2rd1wa2lfe.ws-eu110.gitpod.io', '.herokuapp.com']
 
+cloudinary.config(secure = True)
 
 # Application definition
 
@@ -41,11 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'cloudinary_storage',
     'crispy_forms',
     'django_summernote',
     'cloudinary',

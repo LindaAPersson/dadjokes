@@ -121,13 +121,7 @@
             </div>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            {% for message in messages %}
-            M.toast({ html: '{{ message }}', classes: '{{ message.tags }}' });
-            {% endfor %}
-        });
-    </script>
+    
 
     <!--Materialize JS-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>

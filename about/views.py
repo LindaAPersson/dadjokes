@@ -5,8 +5,11 @@ from .models import Contact
 from .forms import ContactForm
 
 def contact_us(request):
-    
-
+    """
+    View for handling the contact form submission.
+    If the form is valid, it saves the contact form and displays a success message.
+    If the form is invalid, it displays an error message.
+    """
     if request.method == "POST":
         contact_form = ContactForm(data=request.POST)
         
@@ -24,6 +27,5 @@ def contact_us(request):
         "about/contact.html",
         {
             "contact_form": contact_form,
-            
         },
     )

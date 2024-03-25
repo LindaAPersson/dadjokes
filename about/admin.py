@@ -5,4 +5,7 @@ from .models import Contact
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the contact model.
+    """
     list_display = ['name'] 

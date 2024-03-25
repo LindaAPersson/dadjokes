@@ -214,3 +214,58 @@ I utilized Materialize for styling and effects, so much of the JavaScript code i
 
 ![Views](documentation/validation/pythonlinter/about_views.png)
 </details>
+
+#### Home
+
+<details>
+<summary> Urls
+</summary>
+
+![Urls](documentation/validation/pythonlinter/home_url.png)
+</details>
+
+<details>
+<summary> Views
+</summary>
+
+![Views](documentation/validation/pythonlinter/home_views.png)
+</details>
+
+#### The Jokes
+
+<details>
+<summary> Admin
+</summary>
+
+![Admin](documentation/validation/pythonlinter/jokes_admin.png)
+</details>
+
+<details>
+<summary> Forms
+</summary>
+
+![Forms](documentation/validation/pythonlinter/jokes_forms.png)
+</details>
+
+<details>
+<summary> Models
+</summary>
+
+![Models](documentation/validation/pythonlinter/jokes_models.png)
+</details>
+
+<details>
+<summary> Urls
+</summary>
+
+![Urls](documentation/validation/pythonlinter/jokes_url.png)
+</details>
+
+<details>
+<summary> Views
+</summary>
+
+![Views](documentation/validation/pythonlinter/jokes_views.png)
+</details>
+
+## Lighthouse Report

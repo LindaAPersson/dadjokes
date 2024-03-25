@@ -3,9 +3,10 @@ from .models import Joke, Comment, Category, Rating, Label
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
+
+
 @admin.register(Joke)
 class JokeAdmin(SummernoteModelAdmin):
-
     list_display = ('title', 'creator', 'status', 'category')
     search_fields = ['title']
     list_filter = ('creator', 'status')
@@ -15,7 +16,7 @@ class JokeAdmin(SummernoteModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(SummernoteModelAdmin):
 
-    list_display = ['id','creator']
+    list_display = ['id', 'creator']
     search_fields = ['id']
     list_filter = ('creator', 'approved')
     summernote_fields = ('comment_text',)
@@ -30,6 +31,7 @@ class Category(admin.ModelAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     list_display = ['creator', 'joke']
+
 
 @admin.register(Label)
 class LabelAdmin(admin.ModelAdmin):

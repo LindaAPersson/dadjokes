@@ -21,7 +21,7 @@
         {% if "placeholder" in joke.creator_image.url %}
         <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img" alt="placeholder">
         {% else %}
-        <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img">
+        <img src="{{ joke.creator_image.url }}" class="circle creator_image responsive-img" alt="persenal_image">
         {% endif %}
         </span>Author: {{joke.creator}}</p>
         <p class="small-text">Category: {{ joke.category | safe }} | Made: {{joke.formatted_timestamp}}</p>

@@ -42,21 +42,28 @@ The webpage was tested on different webbrowsers to ensur a good experience for t
 <summary> Safari
 </summary>
 
-![Mobile](documentation/readme_img/safari.png)
+![safari](documentation/readme_img/safari.png)
 </details>
 
 <details>
 <summary> Google chrome
 </summary>
 
-![Mobile](documentation/readme_img/gogglechrome.png)
+![gogglechrome](documentation/readme_img/gogglechrome.png)
 </details>
 
 <details>
 <summary> Iphone
 </summary>
 
-![Mobile](documentation/readme_img/iphone11.PNG)
+![iphone11](documentation/readme_img/iphone11.PNG)
+</details>
+
+<details>
+<summary> Samsung galaxy s22
+</summary>
+
+![samsunggalaxy](documentation/readme_img/samsunggalaxy.png)
 </details>
 
 ## Code Validation
@@ -431,9 +438,10 @@ Mobile
 |               | See joke likes | Working as expected | PASS |
 |               | See joke comments | Working as expected | PASS |
 | Jokes Detail (loged in - user) |                  |                  |                  |
-|               | like jokes | Working as expected | PASS |
+|               | like/unlike jokes | Working as expected | PASS |
 |               | Comment on jokes | Working as expected | PASS |
-|               | Edit ther own comment | Working as expected | PASS |
+|               | Edit their own comment | Working as expected | PASS |
+|               | Delet their own comment | Working as expected | PASS |
 | Category  |                  |                  |                  |
 |               | See all jokes in that category | Working as expected | PASS |
 |               | See joke comments | Working as expected | PASS |
@@ -449,4 +457,11 @@ Mobile
 |               | Edit the joke | Message 'waiting on approval'| PASS |
 |               | Delet the joke | confirm delet message | PASS |
 
+
+## Bugs
+### Resolved bugs
+
+#### Cloudinary returned HTTP files instead of HTTPS, compromising the security of the webpage. 
+
+* To address the security vulnerability stemming from Cloudinary's delivery of HTTP files, a comprehensive solution was implemented following extensive research and guidance from a tutor affiliated with Code Institute. The resolution was to append the line 'cloudinary.config(secure=True) within the settings file of the application. 
 

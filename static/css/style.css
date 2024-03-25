@@ -19,6 +19,10 @@ main {
     padding: 10px;
 }
 
+.log_confir {
+    padding-right: 3px;
+}
+
 /* Style for the navegationbar */
 .nav-wrapper {
     padding-left: 10px;

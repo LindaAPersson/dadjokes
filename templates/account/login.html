@@ -1,37 +1,30 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 {% load account socialaccount %}
-
 {% block head_title %}{% trans "Sign In" %}{% endblock head_title %}
-
 {% block content %}
 
+<!-- Login Form -->
+
 <body id="bg-img-pages" class="responsive-img">
-    <div class="row">
-      <div class="col s12 m8 offset-m2 l6 offset-l3">
-        <div class="card">
+  <div class="row">
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+      <div class="card">
         <h4>{% trans "Sign In" %}</h4>
-
         {% get_providers as socialaccount_providers %}
-
         {% if socialaccount_providers %}
         <p>{% blocktrans with site.name as site_name %}Please sign in with one
           of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
           for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
         <div class="socialaccount_ballot">
-
           <ul class="socialaccount_providers">
             {% include "socialaccount/snippets/provider_list.html" with process="login" %}
           </ul>
-
           <div class="login-or">{% trans 'or' %}</div>
-
         </div>
-
+        
         {% include "socialaccount/snippets/login_extra.html" %}
-
         {% else %}
         <p>{% blocktrans %}If you have not created an account yet, then please
           <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}

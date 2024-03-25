@@ -3,10 +3,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<body id="bg-img-pages" class="responsive-img">
+<main>
   <!-- add jokes button -->
   <div class="row">
-    <div class="col s2 m7 l6 offset-l3">
+    <div class="col s2 m7 offset-m2 l6 offset-l3">
       <a class="btn tooltipped deep-orange accent-1" data-position="right" data-tooltip="Add your own joke!"
         href="{% url 'add_jokes' %}">+</a>
     </div>
@@ -104,7 +104,7 @@
       <a id="deleteConfirm" href="#" class="btn btn-danger modal-close waves-effect waves-green btn-flat">Delete</a>
     </div>
   </div>
-</body>
+</main>
 
 
 {% endblock %}

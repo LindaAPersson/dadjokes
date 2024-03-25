@@ -11,7 +11,7 @@
 
 <head>
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen">
 
     <!--Faveicon-->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
@@ -30,7 +30,7 @@
     <title>DadJokes</title>
 </head>
 
-<body>
+<body id="bg-img-pages">
     <!-- navbar desktop -->
     <nav>
         <div class="nav-wrapper nav-sticky deep-orange accent-1">
@@ -84,18 +84,17 @@
         {% endif %}
     </ul>
 
-    <main>
-        <!-- inlog/logout confirmation -->
-        {% if user.is_authenticated %}
-        <p class="right-align white-text">You are logged in as {{ user }}</p>
-        {% else %}
-        <p class="right-align white-text">You are not logged in</p>
-        {% endif %}
+    <!-- inlog/logout confirmation -->
+    {% if user.is_authenticated %}
+    <p class="right-align white-text log_confir">You are logged in as {{ user }}</p>
+    {% else %}
+    <p class="right-align white-text log_confir">You are not logged in</p>
+    {% endif %}
 
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
-    </main>
+    {% block content %}
+    <!-- Content Goes here -->
+    {% endblock content %}
+
     <!-- Footer -->
     <footer class="page-footer deep-orange accent-1">
         <div class="container">
@@ -116,6 +115,7 @@
             </div>
         </div>
     </footer>
+
     <!-- script for materialize messages -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -136,4 +136,5 @@
     {% block script %}
     {% endblock %}
 </body>
+
 </html>

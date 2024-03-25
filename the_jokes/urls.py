@@ -12,7 +12,8 @@ urlpatterns = [
     path('the_jokes/<title>/delete_comment/<int:comment_id>', views.comment_delete, name='delete_comment'),
     path('the_jokes/<title>/<int:joke_id>', views.like_joke, name='like_jokes'),
     path('category/<str:name>', views.category, name='category'),
-    path('rate/<title>/', views.rate, name ='rate')
-    
+    path('rate/<title>/', views.rate, name ='rate'),
 ]
+
 handler404 = views.custom_404_view
+handler500 = views.custom_500_view

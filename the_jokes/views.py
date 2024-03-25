@@ -292,3 +292,10 @@ def custom_404_view(request, exception):
     Custom handler for 404 (Page Not Found) errors.
     """
     return render(request, '404.html', status=404)
+
+
+def custom_500_view(request):
+    """
+    Custom handler for 500 (server error) errors.
+    """
+    return render(request, '500.html', status=500)

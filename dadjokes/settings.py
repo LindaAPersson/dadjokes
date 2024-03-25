@@ -33,6 +33,9 @@ ALLOWED_HOSTS = ['8000-lindaapersson-dadjokes-u2rd1wa2lfe.ws-eu110.gitpod.io', '
 
 cloudinary.config(secure = True, same_site="None")
 
+GRAPH_MODELS = {
+  'app_labels': ["the_jokes", "about"]
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_extensions',
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'django.contrib.sites',

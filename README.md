@@ -76,3 +76,108 @@ While planning this site, I sat down with pen and paper and sketched out the out
 ![Wireframes2](documentation/readme_img/wireframe2.png)
 </details>
 
+## Security Features
+
+### User Authentication
+
+* Django Allauth is a popular authentication and authorization library for Django, which provides a set of features for managing user authentication, registration, and account management.
+
+### Login Decorator
+
+* To add, edit, or delete a joke or a comment, users are required to authenticate using the login_required decorator. This ensures that only authenticated users can access these views.
+
+### CSRF Protection
+
+* Django provides built-in protection against Cross-Site Request Forgery (CSRF) attacks. CSRF tokens are generated for each user session, and they are required to submit forms or perform state-changing actions. When a user logs out, the session and associated CSRF token are invalidated, making it difficult for an attacker to forge a valid request using a copied URL.
+
+### Form Validation
+
+* Django Form Validation is a process that ensures the data submitted via HTML forms meets certain criteria. If all validation rules are satisfied, the form is completed. Otherwise, it populates the form with error messages
+
+### Custom error pages
+
+* 404 Error Page, provides user with a button the redirect to home page.
+* 500 Error Page, provides user with a button the redirect to home page.
+
+## Features
+
+### Existing Features 
+
+The Home page (index.html) 
+* A navigation bar that alters depending on screen size.
+* A footer that contains links to social media platforms.
+
+<details>
+<summary> Home
+</summary>
+
+![home desktop](documentation/readme_img/features/header_desktop.png)
+![home mobile](documentation/readme_img/features/header_mobile.png)
+</details>
+
+The jokes (the_jokes.html)
+* Displays the jokes.
+* Displays the creator image. If the user has chosen their own image, that one will appear; otherwise, a placeholder image will appear.
+* Options to filter the jokes by categories, age, and labels.
+* A button for comments.
+* A button to edit the joke (only appears if the joke creator is logged in).
+* Average score of the joke.
+* A rate box if the user is signed in. The rate box has information that the user can hover over to get more details about how the rating works.
+
+<details>
+<summary> The jokes
+</summary>
+
+![jokes notlogedin](documentation/readme_img/features/jokesnotlogedin.png)
+![jokes](documentation/readme_img/features/jokes.png)
+</details>
+
+Add jokes (ad_jokes.html)
+* If the user is not logged in, a message with the text 'Log in to add a joke' appears.
+* When the user is logged in, a form appears that the user can fill out.
+
+<details>
+<summary> Add jokes
+</summary>
+
+![addjoke](documentation/readme_img/features/addjoke.png)
+</details>
+
+Edit jokes (edit_jokes.html)
+* If the user is not logged in, the edit button will not appear.
+* When the user is logged in, an edit button will display on their own jokes.
+* Clicking on the edit button, a form appears that the user can fill out.
+
+<details>
+<summary> Edit jokes
+</summary>
+
+![jokes notlogedin](documentation/readme_img/features/editjokebutton.png)
+![jokes](documentation/readme_img/features/editjoke.png)
+</details>
+
+Jokes Detail (jokes_detail.html)
+* If the user is not logged in, the comments will only be readable.
+* When the user is logged in:
+    * Leave a comment
+    * Edit their own comment
+    * Delete their own comment
+    * Like/unlike a joke
+
+<details>
+<summary> Jokes detail
+</summary>
+
+![jokesdetail](documentation/readme_img/features/jokesdetail.png)
+![editcomment](documentation/readme_img/features/editcomment.png)
+</details>
+
+Contact (contact.html)
+* Displays a contact form that all visitors can fill out
+
+<details>
+<summary> Contact
+</summary>
+
+![jokesdetail](documentation/readme_img/features/contact.png)
+</details>

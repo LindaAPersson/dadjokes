@@ -5,12 +5,10 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 /**
  * Geting the deleteing comments model confirm
  */
-
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.modal');
   var instances = M.Modal.init(elems, preventScrolling = true);
 });
-
 
 for (let button of deleteButtons) {
   button.addEventListener("click", (e) => {
@@ -19,7 +17,6 @@ for (let button of deleteButtons) {
     deleteModal.show();
   });
 }
-
 
 /**
  * Materlize drop down for categories
@@ -44,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.tooltipped');
   var instances = M.Tooltip.init(elems);
 });
-
 
 /**
  * Materlize switch for age approved

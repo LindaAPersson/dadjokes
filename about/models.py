@@ -2,9 +2,10 @@ from django.db import models
 
 # Create your models here.
 
+
 class Contact(models.Model):
     """
-    Model representing contact, 
+    Model representing contact,
     that are used for users to get in contact with the creators.
     """
     name = models.CharField(max_length=200)

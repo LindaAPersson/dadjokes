@@ -4,21 +4,26 @@ from django.http import HttpResponseRedirect
 from .models import Contact
 from .forms import ContactForm
 
+
 def contact_us(request):
     """
     View for handling the contact form submission.
-    If the form is valid, it saves the contact form and displays a success message.
+    If the form is valid, it saves the contact form and displays
+    a success message.
     If the form is invalid, it displays an error message.
     """
     if request.method == "POST":
         contact_form = ContactForm(data=request.POST)
-        
+
         if contact_form.is_valid():
             contact_form.save()
-            messages.add_message(request, messages.SUCCESS, "Message sent, you'll hear from us soon!")
+            messages.add_message(
+                request, messages.SUCCESS,
+                "Message sent, you'll hear from us soon!")
             return redirect('home')
         else:
-            messages.add_message(request, messages.ERROR, 'Error sending request!')
+            messages.add_message(
+                request, messages.ERROR, 'Error sending request!')
 
     contact_form = ContactForm()
 

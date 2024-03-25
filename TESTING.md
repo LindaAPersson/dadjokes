@@ -73,43 +73,144 @@ Testing made trough W3 Validator. All pages got one error (see below). But other
 </details>
 
 <details>
-<summary> the_jokes.html
+<summary> Jokes/the_jokes.html
 </summary>
 
 ![the_jokes.html](documentation/validation/w3validator/w3validator_jokes.png)
 </details>
 
 <details>
-<summary> jokes_detail.html
+<summary> Jokes/jokes_detail.html
 </summary>
 
 ![jokes_detail.html](documentation/validation/w3validator/w3validator_jokes_detail.png)
 </details>
 
 <details>
-<summary> category.html
+<summary> Categories/category.html
 </summary>
 
 ![category.html](documentation/validation/w3validator/w3validator_category.png)
 </details>
 
 <details>
-<summary> add_joke.html
+<summary> Add joke/add_joke.html
 </summary>
 
 ![add_joke.html](documentation/validation/w3validator/w3validator_addjoke.png)
 </details>
 
 <details>
-<summary> edit_joke.html
+<summary> Edit joke/edit_joke.html
 </summary>
 
 ![edit_joke.html](documentation/validation/w3validator/w3validator_editjoke.png)
 </details>
 
 <details>
-<summary> contact.html
+<summary> Contact/contact.html
 </summary>
 
 ![contact.html](documentation/validation/w3validator/w3validator_contact.png)
+</details>
+
+<details>
+<summary> Login/login.html
+</summary>
+
+![login.html](documentation/validation/w3validator/w3validator_login.png)
+</details>
+
+<details>
+<summary> Logout/logout.html
+</summary>
+
+![logout.html](documentation/validation/w3validator/w3validator_logout.png)
+</details>
+
+<details>
+<summary> Registrere/signup.html
+</summary>
+
+![signup.html](documentation/validation/w3validator/w3validator_registrer.png)
+</details>
+
+<details>
+<summary> Error 404/404.html
+</summary>
+
+![404.html](documentation/validation/w3validator/w3validator_404.png)
+</details>
+
+<details>
+<summary> Error 500/500.html
+</summary>
+
+![500.html](documentation/validation/w3validator/w3validator_500.png)
+</details>
+
+### CSS
+
+<details>
+<summary> Custom CSS/style.css
+</summary>
+
+![style.css](documentation/validation/w3jigsaw/style.png)
+</details>
+
+### JavaScript
+
+I utilized Materialize for styling and effects, so much of the JavaScript code is derived from their pre-made templates.
+
+<details>
+<summary> script.js
+</summary>
+
+![script.js](documentation/validation/jshint/jshint_script.png)
+</details>
+
+<details>
+<summary> comments.js
+</summary>
+
+![comments.js](documentation/validation/jshint/jshint_comments.png)
+</details>
+
+<details>
+<summary> jokes.js
+</summary>
+
+![jokes.js](documentation/validation/jshint/jshint_jokes.png)
+</details>
+
+### Python
+
+#### About
+
+<details>
+<summary> Admin
+</summary>
+
+![Admin](documentation/validation/pythonlinter/about_admin.png)
+</details>
+
+<details>
+<summary> Models
+</summary>
+
+![Models](documentation/validation/pythonlinter/about_models.png)
+</details>
+
+<details>
+<summary> Urls
+</summary>
+
+![Urls](documentation/validation/pythonlinter/about_url.png)
+</details>
+
+<details>
+<summary> Views
+</summary>
+
+![Views](documentation/validation/pythonlinter/about_views.png)
 </details>

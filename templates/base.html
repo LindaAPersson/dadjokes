@@ -8,11 +8,12 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>DadJokes</title>
+    
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,9 +22,12 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection">
-
-    
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection">
+    <!--Faveicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <title>DadJokes</title>
 
 </head>
 
@@ -37,10 +41,11 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'the_jokes_page' %}">Jokes</a></li>
                 <li><a href="{% url 'about' %}">Contact</a></li>
-    <!-- Login logout register-->
+                <!-- Login logout register-->
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
+                        href="{% url 'account_logout' %}">Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -48,31 +53,34 @@
                         href="{% url 'account_signup' %}">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+                        href="{% url 'account_login' %}">Login</a>
                 </li>
                 {% endif %}
             </ul>
         </div>
     </nav>
 
-<!-- navbar mobile -->
+    <!-- navbar mobile -->
     <ul class="sidenav deep-orange accent-1" id="mobile-demo">
         <li class="brand-logo white-text">DADJOKES</li>
         <li><a href="{% url 'home' %}" class="white-text">Home</a></li>
         <li><a href="{% url 'the_jokes_page' %}" class="white-text">Jokes</a></li>
         <li><a href="{% url 'about' %}" class="white-text">Contact</a></li>
-    <!-- Login logout register-->
+        <!-- Login logout register-->
         {% if user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link {% if request.path == logout_url %}active{% endif %} white-text" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+            <a class="nav-link {% if request.path == logout_url %}active{% endif %} white-text" aria-current="page"
+                href="{% url 'account_logout' %}">Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
             <a class="nav-link {% if request.path == signup_url %}active{% endif %} white-text" aria-current="page"
-                href="{% url 'account_signup' %}" >Register</a>
+                href="{% url 'account_signup' %}">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {% if request.path == login_url %}active{% endif %} white-text" aria-current="page" href="{% url 'account_login' %}">Login</a>
+            <a class="nav-link {% if request.path == login_url %}active{% endif %} white-text" aria-current="page"
+                href="{% url 'account_login' %}">Login</a>
         </li>
         {% endif %}
 
@@ -80,20 +88,20 @@
 
     <main>
         <!-- inlog/logout confirmation -->
-            
-            {% if user.is_authenticated %}
-            <p class="right-align white-text">You are logged in as {{ user }}</p>
-            {% else %}
-            <p class="right-align white-text">You are not logged in</p>
-            {% endif %}
 
-            
+        {% if user.is_authenticated %}
+        <p class="right-align white-text">You are logged in as {{ user }}</p>
+        {% else %}
+        <p class="right-align white-text">You are not logged in</p>
+        {% endif %}
+
+
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
     </main>
 
-        
+
     <footer class="page-footer deep-orange accent-1">
         <div class="container">
             <div class="row">
@@ -102,18 +110,21 @@
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <ul class="social-media center-align">
-                        <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/" target="_blank" aria-label="Visit Dadjokes on Instagram (opens in new tab)"><i class="fa-brands fa-instagram"></i></a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/" aria-label="Visit Dadjokes on youtube (opens in new tab)"><i class="fa-brands fa-square-youtube"></i></a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/" target="_blank"
+                                aria-label="Visit Dadjokes on Instagram (opens in new tab)"><i
+                                    class="fa-brands fa-instagram"></i></a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/"
+                                aria-label="Visit Dadjokes on youtube (opens in new tab)"><i
+                                    class="fa-brands fa-square-youtube"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
-<!-- materlize toasts (alert messages) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             {% for message in messages %}
-                M.toast({html: '{{ message }}', classes: '{{ message.tags }}'});
+            M.toast({ html: '{{ message }}', classes: '{{ message.tags }}' });
             {% endfor %}
         });
     </script>
@@ -126,8 +137,9 @@
     <script src="https://kit.fontawesome.com/b6bd3cd609.js" crossorigin="anonymous"></script>
 
     {% block extras %}
-    {% endblock %}    
+    {% endblock %}
     {% block script %}
     {% endblock %}
 </body>
+
 </html>

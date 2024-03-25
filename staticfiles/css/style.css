@@ -17,6 +17,10 @@ main {
     top: 0;
 }
 
+.nav-wrapper {
+    padding-left: 10px;
+}
+
 /* Backgrund img on index.html */
 #bg-img {
     background: url(../images/hat-591973_1920.jpg) no-repeat center/cover;
@@ -47,12 +51,11 @@ main {
 }
 /* Generall card on all pages */
 .card {
-    padding: 10px;
+    padding: 20px;
 }
 
 /* creator image */
 .creator_image {
-    height: 10px;
     width: 10vw;
 }
 
@@ -95,12 +98,135 @@ main {
     color: white;
 }
 
+/* joke box */
+.joke_box {
+    padding: 10px;
+}
 .form_buttons {
     padding-top: 10px;
 }
 
+.jokes_interact_btn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+/* rate the. jokes */
+.rate_box {
+    display: flex;
+    flex-wrap: wrap;
+}
+.rate_look{
+    background-color: #FEECE2;
+    
+}
+
+.avg-rate{
+    background-color: #FEECE2;
+    font-weight: bold;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.info-circle {
+    position: relative;
+    display: inline-block;
+}
+
+.info-icon {
+    cursor: pointer;
+    padding-left: 3px;
+}
+
+.info-content {
+    position: absolute;
+    top: -50px; 
+    left: 20px; 
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+.info-circle:hover .info-content {
+    display: block;
+}
+
+/* to add space when edit button not displayed */
+.edit-space {
+    width: 25vw;
+}
+
+
+
+/* age approvel */
+.age_green {
+    background: rgb(73, 155, 120);
+}
+
+.age_red {
+    background: rgb(198, 141, 141);
+}
+
+.age_box {
+    background-color: #FEECE2;
+    padding: 5px;
+    height: 5vh;
+    
+}
+
+.age_box .switch label input[type="checkbox"]:checked + .lever {
+    background-color: #ff9e80;
+}
+.age_box .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #ff9e80;
+
+}
+
+/* label box */
+.label_box {
+    background-color: #FEECE2;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.label-btn {
+    margin-top: 5px;
+}
+
+.custom-radio[type="radio"]:checked + span:after,
+.custom-radio[type="radio"].with-gap:checked + span:after {
+    background-color: #ff9e80;
+    border: #ff9e80;
+}
+
+/* category box */
+.category_box{
+    background-color: #FEECE2;
+    padding: 5px;
+    height: 5vh;
+}
+
+/* category page, spece between joke and filter */
+.head_category{
+    margin-bottom: 10px;
+}
+
+
+
 @media screen and (min-width: 1200px) {
-    #jokes_large {
-        
+
+    /* creator image */
+    .creator_image {
+        width: 5vw;
+    }
+
+    .rate_box {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
     }
 }

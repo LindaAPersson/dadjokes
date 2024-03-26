@@ -5,7 +5,8 @@ As a registered user, you have the power to like, comment on, and rate every jok
 
 ![Am I Responsive](documentation/readme_img/amiresponsive.png)
 
-LIVE LINK HERE
+Link to deployed site:
+[DADJOKES](https://dadjokes-27b9bc740f4b.herokuapp.com/)
 
 ## User Experience
 
@@ -268,11 +269,14 @@ Then follow these steps:
 2. Click on "New" in the Heroku dashboard and select "Create new app."
 3. Write a name for the app, choose your region, and click "Create App."
 4. In the settings tab for the new application, create one Config var with the name PORT and a value of 8000.
-5. Add two buildpack scripts: Python and Nodejs (in that order).
-6. In the deployment tab, select GitHub as the deployment method and confirm your choice.
-7. In the "Connect to GitHub" field, search for your repository name and click on the connect button next to the right repository.
-8. Choose between automatic deploys or manual deploys. I chose automatic deploys.
-9. When the app is deployed, a link will appear at the bottom of the page.
+5. In the settings tab for the new application, create one Config var with the name SECRET_KEY and a value of your secret key.
+6. In the settings tab for the new application, create one Config var with the name CLOUDINARY_URL and a value of your own Cloudinary API key.
+7. In the settings tab for the new application, create one Config var with the name DISABLE_COLLECTSTATIC and a value 1 - this is temporary, and can be removed for the final deployment.
+8. In the settings tab for the new application, create one Config var with the name DATABASE_URL and a value of your own ElephantSQL database URL.
+9. In the deployment tab, select GitHub as the deployment method and confirm your choice.
+10. In the "Connect to GitHub" field, search for your repository name and click on the connect button next to the right repository.
+11. Choose between automatic deploys or manual deploys. I chose automatic deploys.
+12. When the app is deployed, a link will appear at the bottom of the page.
 
 ## Testing
 Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.

@@ -1,22 +1,29 @@
+/* google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&family=Work+Sans:wght@400;500;600&display=swap');
 
+/* Hides object */
+#hide {
+    display: none;
+}
+
+/* Style for the body */
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    
+    font-family: 'popins', sans-serif;
 }
 
 main {
     flex: 1 0 auto;
     padding: 10px;
-    
 }
 
-#nav-sticky{
-    position: sticky;
-    top: 0;
+.log_confir {
+    padding-right: 3px;
 }
 
+/* Style for the navegationbar */
 .nav-wrapper {
     padding-left: 10px;
 }
@@ -33,7 +40,7 @@ main {
     height: 100vh;
 }
 
-
+/* Styling for objects in Footer */
 .social-media {
     display: flex;
     justify-content: center;
@@ -46,9 +53,6 @@ main {
     padding-right: 10px;
 }
 
-#hide {
-    display: none;
-}
 /* Generall card on all pages */
 .card {
     padding: 20px;
@@ -57,12 +61,6 @@ main {
 /* creator image */
 .creator_image {
     width: 10vw;
-}
-
-/* Makes text small (used on datestamp) */
-.small-text {
-    font-size: x-small;
-    color: rgb(94, 93, 96);
 }
 
 /* Comment waiting on. approval */
@@ -84,9 +82,10 @@ main {
     font-size: x-large;
     color: rgb(199, 28, 28);
 }
+
 .fa-heart {
     font-size: x-large;
-    
+
 }
 
 /* Django messages */
@@ -102,27 +101,36 @@ main {
 .joke_box {
     padding: 10px;
 }
+
 .form_buttons {
     padding-top: 10px;
 }
 
+/* The button at the bottom of the jokebox (comments, edit, rate) */
 .jokes_interact_btn {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
 }
 
-/* rate the. jokes */
+/* Makes text small (used on datestamp) */
+.small-text {
+    font-size: x-small;
+    color: rgb(94, 93, 96);
+}
+
+/* rate the jokes */
 .rate_box {
     display: flex;
     flex-wrap: wrap;
 }
-.rate_look{
+
+.rate_look {
     background-color: #FEECE2;
-    
+
 }
 
-.avg-rate{
+.avg-rate {
     background-color: #FEECE2;
     font-weight: bold;
     padding-left: 2px;
@@ -141,8 +149,8 @@ main {
 
 .info-content {
     position: absolute;
-    top: -50px; 
-    left: 20px; 
+    top: -50px;
+    left: 20px;
     background-color: white;
     border: 1px solid #ccc;
     padding: 10px;
@@ -159,9 +167,7 @@ main {
     width: 25vw;
 }
 
-
-
-/* age approvel */
+/* age approved */
 .age_green {
     background: rgb(73, 155, 120);
 }
@@ -170,19 +176,19 @@ main {
     background: rgb(198, 141, 141);
 }
 
+/* age box/switch */
 .age_box {
     background-color: #FEECE2;
     padding: 5px;
     height: 5vh;
-    
 }
 
-.age_box .switch label input[type="checkbox"]:checked + .lever {
+.age_box .switch label input[type="checkbox"]:checked+.lever {
     background-color: #ff9e80;
 }
+
 .age_box .switch label input[type=checkbox]:checked+.lever:after {
     background-color: #ff9e80;
-
 }
 
 /* label box */
@@ -197,26 +203,25 @@ main {
     margin-top: 5px;
 }
 
-.custom-radio[type="radio"]:checked + span:after,
-.custom-radio[type="radio"].with-gap:checked + span:after {
+.custom-radio[type="radio"]:checked+span:after,
+.custom-radio[type="radio"].with-gap:checked+span:after {
     background-color: #ff9e80;
     border: #ff9e80;
 }
 
 /* category box */
-.category_box{
+.category_box {
     background-color: #FEECE2;
     padding: 5px;
     height: 5vh;
 }
 
 /* category page, spece between joke and filter */
-.head_category{
+.head_category {
     margin-bottom: 10px;
 }
 
-
-
+/* Styles for laptop-size */
 @media screen and (min-width: 1200px) {
 
     /* creator image */
@@ -224,6 +229,7 @@ main {
         width: 5vw;
     }
 
+    /* Rate box */
     .rate_box {
         display: flex;
         flex-wrap: wrap;

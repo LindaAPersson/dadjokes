@@ -465,6 +465,11 @@ Cloudinary returned HTTP files instead of HTTPS, compromising the security of th
 
 * To address the security vulnerability stemming from Cloudinary's delivery of HTTP files, a comprehensive solution was implemented following extensive research and guidance from a tutor affiliated with Code Institute. The resolution was to append the line 'cloudinary.config(secure=True) within the settings file of the application. 
 
+In edit_jokes.html, the text field should preload the joke content. While it did preload the joke content, it also included all the styling applied by Summernote, which was unintended and cluttered the editing experience.
+
+*  I troubleshooted this issue with a tutor from Code Institute, and due to the time constraints, we decided that the quickest solution would be to remove the Summernote files from the admin panel. Although this resolved the bug by removing the unwanted styling, it also made the jokes appear somewhat bland and lacking in visual appeal. Therefore, as part of future features, I plan to reintegrate Summernote to provide admin with more formatting options.
+![Bug](documentation/readme_img/bugeditjokes.png)
+
 ### Unresolved bugs
 * I've encountered a persistent issue that appears in DevTools, which I've been unable to resolve. The problem involves rendering cookies in a cross-site context. Despite numerous attempts to address the issue through troubleshooting and debugging, the root cause remains elusive. Further investigation and collaboration may be necessary to pinpoint and resolve this challenging bug.
 ![Bug](documentation/readme_img/cookiesbug.png)

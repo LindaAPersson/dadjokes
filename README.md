@@ -213,6 +213,8 @@ Error Pages
 
 * Incorporate a diverse range of content beyond just text-based jokes, such as funny images, memes, or GIFs. And introduce additional genres of jokes to appeal to a broader audience. This could include puns, one-liners, anecdotes, riddles, or even interactive quizzes and games.
 
+* One of the upcoming enhancements for the project is to reintegrate Summernote into the admin panel. Summernote is a editor that easily helps format text, add images, and customize the appearance of the content. By including Summernote, admin will have access to a more intuitive and user-friendly editing experience, enabling them to create and edit jokes with greater flexibility and creativity. Additionally, Summernote will enhance the aesthetic appeal of the editing interface, making it more visually engaging. This integration aligns with the project's goal of providing a seamless and enjoyable user experience, and it will contribute to making the platform more dynamic and interactive.
+
 ## Technologies Used
 
 ### Languages Used

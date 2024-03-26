@@ -76,6 +76,17 @@ While planning this site, I sat down with pen and paper and sketched out the out
 ![Wireframes2](documentation/readme_img/wireframe2.png)
 </details>
 
+## Database scheme
+
+* I utilized Graphviz to create an accurate image depicting the structure of the database. The visualization provides a clear overview of how different tables and relationships are organized within the database schema. It's worth noting that some of the features, such as user authentication and authorization, are included as part of the installation of Allauth, a comprehensive authentication framework for Django. These features are integral to the functionality of the application and have not been altered or customized extensively. However, the database schema also includes custom models and relationships specific to the requirements of the project, all of which are represented in the visualization.
+
+<details>
+<summary> Entity Relationship Diagram (ERD)
+</summary>
+
+![ERD](my_project_visualized.png)
+</details>
+
 ## Security Features
 
 ### User Authentication

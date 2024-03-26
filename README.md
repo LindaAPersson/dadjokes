@@ -31,8 +31,8 @@ Agile Methodology was used to help prioritize and organize tasks for the hole we
 ![issues.png](documentation/readme_img/issues.png)
 </details>
 
-
-To see the Epic and user stroies in full: [project board](https://github.com/users/LindaAPersson/projects/6)
+To see the Epic and user stroies in full: [Project Board](https://github.com/users/LindaAPersson/projects/6).
+(I learned later on how to implement labels to make the user stories and epics even easier to follow. Unfortunately, I didn't have time to implement them.)
 
 ### User Stories
 

@@ -10,7 +10,7 @@
       <div class="card">
         <!-- The joke -->
         <h4># {{joke.title}}</h4>
-        <p id="joke{{ joke.joke_text }}">{{ joke.joke_text | safe }}</p>
+        <p id="joke{{ joke.joke_text }}">{{ joke.joke_text| safe }}</p>
         <p><span>
             {% if "placeholder" in joke.creator_image.url %}
             <img src="{% static 'images/placeholder.jpg' %}" class="circle creator_image responsive-img"
@@ -26,8 +26,8 @@
         <h4>Edit joke:</h4>
         <p>Posting as: {{ user.username }}</p>
         <form id="EditJokeForm" method="post" enctype="multipart/form-data">
-          {{ edit_joke_form }}
           {% csrf_token %}
+          {{ edit_joke_form  }}
           <br>
           <div class="form_buttons">
           <button id="submitButton" type="submit" class="btn-small  orange lighten-1 btn-edit"></a>Edit</button>

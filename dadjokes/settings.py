@@ -27,7 +27,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECRET_KEY = 'django-insecure-otyf_(kmz%e*&l(*idb##ss$5)dn5a!z=u2v+_)1*j54iav#*k'
 SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-lindaapersson-dadjokes-u2rd1wa2lfe.ws-eu110.gitpod.io', '.herokuapp.com']
 
@@ -36,6 +36,7 @@ cloudinary.config(secure = True, same_site="None")
 GRAPH_MODELS = {
   'app_labels': ["the_jokes", "about"]
 }
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
-    'django_summernote',
     'cloudinary',
     'home',
     'about',

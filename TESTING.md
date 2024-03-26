@@ -461,7 +461,10 @@ Mobile
 ## Bugs
 ### Resolved bugs
 
-#### Cloudinary returned HTTP files instead of HTTPS, compromising the security of the webpage. 
+Cloudinary returned HTTP files instead of HTTPS, compromising the security of the webpage. 
 
 * To address the security vulnerability stemming from Cloudinary's delivery of HTTP files, a comprehensive solution was implemented following extensive research and guidance from a tutor affiliated with Code Institute. The resolution was to append the line 'cloudinary.config(secure=True) within the settings file of the application. 
 
+### Unresolved bugs
+* I've encountered a persistent issue that appears in DevTools, which I've been unable to resolve. The problem involves rendering cookies in a cross-site context. Despite numerous attempts to address the issue through troubleshooting and debugging, the root cause remains elusive. Further investigation and collaboration may be necessary to pinpoint and resolve this challenging bug.
+![Bug](documentation/readme_img/cookiesbug.png)

@@ -102,6 +102,7 @@ While planning this site, I sat down with pen and paper and sketched out the out
 ## Features
 
 ### Existing Features 
+On the entire page, the messages 'You are not logged in' or 'You are logged in as...' are visible so the user always knows. If the user submits, edits, or deletes anything, they receive a message explaining what's happening.
 
 The Home page (index.html) 
 * A navigation bar that alters depending on screen size.
@@ -181,3 +182,90 @@ Contact (contact.html)
 
 ![jokesdetail](documentation/readme_img/features/contact.png)
 </details>
+
+Admin 
+
+* Django's built-in admin panel allows admin control over the website.
+* Admins can add, update, and delete jokes, comments, labels, and categories.
+* Admins can read all contact forms that are submitted.
+
+Error Pages
+
+*There are custom 404 and 500 error pages set up.
+*They contain buttons to redirect to home page if there is an error.
+
+### Future Features
+
+* Change the structure so that the admin don't need to approve all comments before they are displayed. And instead implement a 'Report Comment' button for users to report inappropriate or offensive comments. Admins can then review reported comments and take appropriate action, such as editing or removing them if necessary.
+
+* Implement social sharing functionality that allows users to easily share their favorite jokes with friends and followers on various social media platforms such as Facebook, Twitter, and Instagram.
+
+* Incorporate a diverse range of content beyond just text-based jokes, such as funny images, memes, or GIFs. And introduce additional genres of jokes to appeal to a broader audience. This could include puns, one-liners, anecdotes, riddles, or even interactive quizzes and games.
+
+## Technologies Used
+
+### Languages Used
+
+* [HTML5](https://en.wikipedia.org/wiki/HTML5)
+* [CSS3](https://en.wikipedia.org/wiki/CSS)
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+### Databases Used
+
+* [ElephantSQL](https://www.elephantsql.com/) - Postgres database
+* [Cloudinary](https://cloudinary.com/) - Online static file storage
+
+### Frameworks Used
+
+* [Django](https://www.djangoproject.com/) - Python framework
+* [materializecss](https://materializecss.com/) - CSS framework
+
+### Programs Used
+
+* [Github](https://github.com/) - Storing the code online
+* [Gitpod](https://www.gitpod.io/) - To write the code.
+* [Heroku](https://www.heroku.com/) - Used as the cloud-based platform to deploy the site.
+* [Google Fonts](https://fonts.google.com/) - Import main font the website.
+* [Am I Responsive](https://ui.dev/amiresponsive) - To show the website image on a range of devices.
+* [Pixabay](https://pixabay.com/sv/) - All images on the site are from Pixabay.
+* [Git](https://git-scm.com/) - Version control
+* [Favicon Generator](https://favicon.io/) - Used to create a favicon
+* [JSHint](https://jshint.com/) - Used to validate JavaScript
+* [W3C Markup Validation Service](https://validator.w3.org/) - Used to validate HTML
+* [CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Used to validate CSS
+* [CI Python Linter](https://pep8ci.herokuapp.com/#) - Used to validate Python
+
+## Deployment:
+First, I created a new repository on GitHub using a template provided by Code Institute. I took the following steps:
+
+1. Log into GitHub.
+2. Locate the right template.
+3. Click on "Use this template" to create a new repository.
+4. Choose a repository name and create the repository.
+
+The development environment used for this project was GitPod.
+
+The project was deployed using Heroku, following these steps:
+
+First, the Code Institute template provides a document called "requirements.txt," and this file needs to contain a list of all libraries the project needs to run. Otherwise, Heroku won't be able to run the project.
+
+Then follow these steps:
+1. Login to Heroku (Create an account if necessary).
+2. Click on "New" in the Heroku dashboard and select "Create new app."
+3. Write a name for the app, choose your region, and click "Create App."
+4. In the settings tab for the new application, create one Config var with the name PORT and a value of 8000.
+5. Add two buildpack scripts: Python and Nodejs (in that order).
+6. In the deployment tab, select GitHub as the deployment method and confirm your choice.
+7. In the "Connect to GitHub" field, search for your repository name and click on the connect button next to the right repository.
+8. Choose between automatic deploys or manual deploys. I chose automatic deploys.
+9. When the app is deployed, a link will appear at the bottom of the page.
+
+## Testing
+Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.
+
+## Credits
+* I got a lot of inspiration for this site from the walkthrough project 'I Think, Therefore I Blog.' That project was instrumental in helping me get started and provided a solid foundation for my own project. By studying its structure, features, and implementation details, I gained valuable insights into building a successful web application centered around user-generated content
+* When creating the rating function, I encountered challenges in calculating the average score from all the ratings. Fortunately, this site provided invaluable assistance and guidance precisely when I needed it most. 
+[Rating](https://medium.com/geekculture/django-implementing-star-rating-e1deff03bb1c)
+* The link provided valuable assistance with pagination. [Pagination](https://www.geeksforgeeks.org/how-to-add-pagination-in-django-project/)
